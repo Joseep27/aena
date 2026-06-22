@@ -293,6 +293,48 @@
   .clear-btn:hover { background: rgba(239,68,68,0.2); }
   .hist-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
 
+  /* NOTE BUTTON & MODAL */
+  .note-btn {
+    background: none; border: none; cursor: pointer;
+    font-size: 18px; padding: 2px 6px; opacity: 0.5;
+    transition: opacity 0.15s; flex-shrink: 0;
+  }
+  .note-btn:hover { opacity: 1; }
+  .note-btn.has-note { opacity: 1; }
+  .q-header { display: flex; align-items: flex-start; gap: 10px; }
+  .q-header .q-text { flex: 1; }
+  .note-overlay {
+    display: none; position: fixed; inset: 0;
+    background: rgba(0,0,0,0.6); z-index: 200;
+    align-items: center; justify-content: center;
+  }
+  .note-overlay.open { display: flex; }
+  .note-modal {
+    background: var(--bg2); border: 1px solid var(--border2);
+    border-radius: var(--radius); padding: 24px; width: 90%; max-width: 500px;
+  }
+  .note-modal h3 { font-size: 14px; font-weight: 500; color: var(--text2); margin-bottom: 12px; }
+  .note-modal textarea {
+    width: 100%; height: 120px; background: var(--bg3);
+    border: 1px solid var(--border); border-radius: var(--radius2);
+    color: var(--text); font-size: 14px; padding: 10px 12px;
+    resize: vertical; font-family: inherit;
+  }
+  .note-modal textarea:focus { outline: none; border-color: var(--border2); }
+  .note-actions { display: flex; gap: 10px; margin-top: 12px; justify-content: flex-end; }
+  .note-save {
+    padding: 8px 20px; background: var(--accent); color: #fff;
+    border: none; border-radius: var(--radius2); font-size: 14px;
+    font-weight: 600; cursor: pointer;
+  }
+  .note-save:hover { background: var(--accent2); }
+  .note-cancel {
+    padding: 8px 16px; background: none; color: var(--text2);
+    border: 1px solid var(--border); border-radius: var(--radius2);
+    font-size: 14px; cursor: pointer;
+  }
+  .note-cancel:hover { color: var(--text); }
+
   @media (max-width: 600px) {
     .stats-row { grid-template-columns: repeat(2, 1fr); }
     .question-card { padding: 20px; }
@@ -349,7 +391,10 @@
 
     <div class="question-card" id="questionCard">
       <div class="q-meta" id="qMeta">Tema 3 · Vehículos SSEI</div>
-      <div class="q-text" id="qText">Cargando pregunta...</div>
+      <div class="q-header">
+        <div class="q-text" id="qText">Cargando pregunta...</div>
+        <button class="note-btn" id="noteBtn" onclick="openNote('t3')" title="Añadir nota">📝</button>
+      </div>
       <div class="options" id="optionsContainer"></div>
       <div class="feedback" id="feedback"><span class="feedback-icon" id="feedbackIcon"></span><span id="feedbackText"></span></div>
       <button class="next-btn" id="nextBtn" onclick="nextQuestion()">Siguiente →</button>
@@ -366,11 +411,31 @@
 
     <div style="margin-top: 40px; border-top: 1px solid var(--border); padding-top: 32px;">
       <div class="hist-header">
-        <div class="hist-title">Historial de sesiones</div>
+        <div class="hist-title">Historial</div>
         <button class="clear-btn" onclick="clearHistory()">Borrar historial</button>
       </div>
 
       <div class="hist-section">
+        <div class="hist-title">Preguntas más falladas</div>
+        <div class="hist-card">
+          <table class="hist-table">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Pregunta</th>
+                <th>Respuesta correcta</th>
+                <th>Veces fallada</th>
+              </tr>
+            </thead>
+            <tbody id="failBody">
+              <tr><td colspan="4" class="hist-empty">Sin datos aún.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="hist-section">
+        <div class="hist-title">Sesiones</div>
         <div class="hist-card">
           <table class="hist-table">
             <thead>
@@ -385,24 +450,6 @@
             </thead>
             <tbody id="histBody">
               <tr><td colspan="6" class="hist-empty">Sin sesiones registradas aún.</td></tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-
-      <div class="hist-section">
-        <div class="hist-title">Preguntas más falladas</div>
-        <div class="hist-card">
-          <table class="hist-table">
-            <thead>
-              <tr>
-                <th>#</th>
-                <th>Pregunta</th>
-                <th>Veces fallada</th>
-              </tr>
-            </thead>
-            <tbody id="failBody">
-              <tr><td colspan="3" class="hist-empty">Sin datos aún.</td></tr>
             </tbody>
           </table>
         </div>
@@ -442,7 +489,10 @@
 
     <div class="question-card" id="questionCard5">
       <div class="q-meta" id="qMeta5">Tema 5 · Familiarización con aeronaves</div>
-      <div class="q-text" id="qText5">Cargando pregunta...</div>
+      <div class="q-header">
+        <div class="q-text" id="qText5">Cargando pregunta...</div>
+        <button class="note-btn" id="noteBtn5" onclick="openNote('t5')" title="Añadir nota">📝</button>
+      </div>
       <div class="options" id="optionsContainer5"></div>
       <div class="feedback" id="feedback5"><span class="feedback-icon" id="feedbackIcon5"></span><span id="feedbackText5"></span></div>
       <button class="next-btn" id="nextBtn5" onclick="nextQuestion5()">Siguiente →</button>
@@ -463,6 +513,20 @@
         <button class="clear-btn" onclick="clearHistory5()">Borrar historial</button>
       </div>
       <div class="hist-section">
+        <div class="hist-title">Preguntas más falladas</div>
+        <div class="hist-card">
+          <table class="hist-table">
+            <thead>
+              <tr><th>#</th><th>Pregunta</th><th>Respuesta correcta</th><th>Veces fallada</th></tr>
+            </thead>
+            <tbody id="failBody5">
+              <tr><td colspan="4" class="hist-empty">Sin datos aún.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="hist-section">
+        <div class="hist-title">Sesiones</div>
         <div class="hist-card">
           <table class="hist-table">
             <thead>
@@ -474,21 +538,20 @@
           </table>
         </div>
       </div>
-      <div class="hist-section">
-        <div class="hist-title">Preguntas más falladas</div>
-        <div class="hist-card">
-          <table class="hist-table">
-            <thead>
-              <tr><th>#</th><th>Pregunta</th><th>Veces fallada</th></tr>
-            </thead>
-            <tbody id="failBody5">
-              <tr><td colspan="3" class="hist-empty">Sin datos aún.</td></tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
     </div>
   </section>
+
+<!-- NOTE OVERLAY -->
+<div class="note-overlay" id="noteOverlay">
+  <div class="note-modal">
+    <h3 id="noteModalTitle">Nota</h3>
+    <textarea id="noteTextarea" placeholder="Escribe tu nota aquí..."></textarea>
+    <div class="note-actions">
+      <button class="note-cancel" onclick="closeNote()">Cancelar</button>
+      <button class="note-save" onclick="saveNote()">Guardar</button>
+    </div>
+  </div>
+</div>
 
 </div>
 
@@ -1092,6 +1155,24 @@ function saveSession(pct, total) {
 function renderHistory() {
   const hist = JSON.parse(localStorage.getItem('aena_hist') || '[]');
   const fails = JSON.parse(localStorage.getItem('aena_fails') || '{}');
+
+  const failBody = document.getElementById('failBody');
+  const failEntries = Object.entries(fails)
+    .map(([k, v]) => ({ q: PREGUNTAS[+k], veces: v, idx: +k }))
+    .filter(e => e.q)
+    .sort((a, b) => b.veces - a.veces)
+    .slice(0, 10);
+  if (failEntries.length === 0) {
+    failBody.innerHTML = '<tr><td colspan="4" class="hist-empty">Sin datos aún.</td></tr>';
+  } else {
+    failBody.innerHTML = failEntries.map((e, i) => `<tr>
+      <td style="color:var(--text2)">${i + 1}</td>
+      <td style="font-size:13px">${e.q.texto}</td>
+      <td style="font-size:13px;color:var(--green)">${e.q.opciones[e.q.correcta]}</td>
+      <td><span class="pill pill-red">${e.veces}x</span></td>
+    </tr>`).join('');
+  }
+
   const tbody = document.getElementById('histBody');
   if (hist.length === 0) {
     tbody.innerHTML = '<tr><td colspan="6" class="hist-empty">Sin sesiones registradas aún.</td></tr>';
@@ -1108,22 +1189,6 @@ function renderHistory() {
         <td style="color:var(--text2);font-size:13px">${nota}</td>
       </tr>`;
     }).join('');
-  }
-
-  const failBody = document.getElementById('failBody');
-  const failEntries = Object.entries(fails)
-    .map(([k, v]) => ({ q: PREGUNTAS[+k], veces: v, idx: +k }))
-    .filter(e => e.q)
-    .sort((a, b) => b.veces - a.veces)
-    .slice(0, 10);
-  if (failEntries.length === 0) {
-    failBody.innerHTML = '<tr><td colspan="3" class="hist-empty">Sin datos aún.</td></tr>';
-  } else {
-    failBody.innerHTML = failEntries.map((e, i) => `<tr>
-      <td style="color:var(--text2)">${i + 1}</td>
-      <td style="font-size:13px">${e.q.texto}</td>
-      <td><span class="pill pill-red">${e.veces}x</span></td>
-    </tr>`).join('');
   }
 }
 
@@ -1480,6 +1545,19 @@ function saveSession5(pct, total) {
 function renderHistory5() {
   const hist = JSON.parse(localStorage.getItem('aena_hist5') || '[]');
   const fails = JSON.parse(localStorage.getItem('aena_fails5') || '{}');
+
+  const failBody = document.getElementById('failBody5');
+  const failEntries = Object.entries(fails)
+    .map(([k,v]) => ({ q: PREGUNTAS_T5[+k], veces: v }))
+    .filter(e => e.q)
+    .sort((a,b) => b.veces - a.veces)
+    .slice(0, 10);
+  if (failEntries.length === 0) {
+    failBody.innerHTML = '<tr><td colspan="4" class="hist-empty">Sin datos aún.</td></tr>';
+  } else {
+    failBody.innerHTML = failEntries.map((e,i) => `<tr><td style="color:var(--text2)">${i+1}</td><td style="font-size:13px">${e.q.texto}</td><td style="font-size:13px;color:var(--green)">${e.q.opciones[e.q.correcta]}</td><td><span class="pill pill-red">${e.veces}x</span></td></tr>`).join('');
+  }
+
   const tbody = document.getElementById('histBody5');
   if (hist.length === 0) {
     tbody.innerHTML = '<tr><td colspan="6" class="hist-empty">Sin sesiones registradas aún.</td></tr>';
@@ -1489,17 +1567,6 @@ function renderHistory5() {
       const nota = s.pct >= 80 ? '✓ Bien' : s.pct >= 60 ? '⚠ Regular' : '✗ Repasar';
       return `<tr><td>${s.fecha}</td><td>${s.tema}</td><td style="color:var(--green);font-weight:600">${s.aciertos}</td><td style="color:var(--red);font-weight:600">${s.errores}</td><td><span class="pill ${cls}">${s.pct}%</span></td><td style="color:var(--text2);font-size:13px">${nota}</td></tr>`;
     }).join('');
-  }
-  const failBody = document.getElementById('failBody5');
-  const failEntries = Object.entries(fails)
-    .map(([k,v]) => ({ q: PREGUNTAS_T5[+k], veces: v }))
-    .filter(e => e.q)
-    .sort((a,b) => b.veces - a.veces)
-    .slice(0, 10);
-  if (failEntries.length === 0) {
-    failBody.innerHTML = '<tr><td colspan="3" class="hist-empty">Sin datos aún.</td></tr>';
-  } else {
-    failBody.innerHTML = failEntries.map((e,i) => `<tr><td style="color:var(--text2)">${i+1}</td><td style="font-size:13px">${e.q.texto}</td><td><span class="pill pill-red">${e.veces}x</span></td></tr>`).join('');
   }
 }
 
@@ -1513,6 +1580,63 @@ function clearHistory5() {
 buildQueue5();
 loadQuestion5();
 renderHistory5();
+
+// --- NOTAS ---
+let currentNoteKey = null;
+
+function openNote(tema) {
+  const q = tema === 't3' ? queue[current] : queue5[current5];
+  if (!q) return;
+  currentNoteKey = `note_${tema}_${q.originalIdx}`;
+  const saved = localStorage.getItem(currentNoteKey) || '';
+  document.getElementById('noteTextarea').value = saved;
+  document.getElementById('noteModalTitle').textContent = q.texto.length > 60 ? q.texto.slice(0,60)+'…' : q.texto;
+  document.getElementById('noteOverlay').classList.add('open');
+  setTimeout(() => document.getElementById('noteTextarea').focus(), 50);
+}
+
+function closeNote() {
+  document.getElementById('noteOverlay').classList.remove('open');
+  currentNoteKey = null;
+}
+
+function saveNote() {
+  const val = document.getElementById('noteTextarea').value.trim();
+  if (val) {
+    localStorage.setItem(currentNoteKey, val);
+  } else {
+    localStorage.removeItem(currentNoteKey);
+  }
+  // Update button appearance
+  updateNoteBtn();
+  closeNote();
+}
+
+function updateNoteBtn() {
+  // T3
+  if (queue[current]) {
+    const key3 = `note_t3_${queue[current].originalIdx}`;
+    const btn3 = document.getElementById('noteBtn');
+    if (btn3) btn3.classList.toggle('has-note', !!localStorage.getItem(key3));
+  }
+  // T5
+  if (queue5[current5]) {
+    const key5 = `note_t5_${queue5[current5].originalIdx}`;
+    const btn5 = document.getElementById('noteBtn5');
+    if (btn5) btn5.classList.toggle('has-note', !!localStorage.getItem(key5));
+  }
+}
+
+// Close overlay on background click
+document.getElementById('noteOverlay').addEventListener('click', function(e) {
+  if (e.target === this) closeNote();
+});
+
+// Patch loadQuestion to update note btn
+const _origLoad = loadQuestion;
+loadQuestion = function() { _origLoad(); setTimeout(updateNoteBtn, 10); };
+const _origLoad5 = loadQuestion5;
+loadQuestion5 = function() { _origLoad5(); setTimeout(updateNoteBtn, 10); };
 
 </script>
 </body>
