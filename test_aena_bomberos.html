@@ -1,0 +1,1519 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Test AENA Bomberos</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0f1117;
+    --bg2: #181b24;
+    --bg3: #1e2130;
+    --border: rgba(255,255,255,0.08);
+    --border2: rgba(255,255,255,0.15);
+    --text: #e8eaf0;
+    --text2: #8b90a0;
+    --accent: #f97316;
+    --accent2: #fb923c;
+    --green: #22c55e;
+    --red: #ef4444;
+    --yellow: #eab308;
+    --radius: 10px;
+    --radius2: 6px;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 15px;
+    min-height: 100vh;
+  }
+
+  /* HEADER */
+  .header {
+    background: var(--bg2);
+    border-bottom: 1px solid var(--border);
+    padding: 14px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .header-left { display: flex; align-items: center; gap: 12px; }
+  .logo {
+    width: 34px; height: 34px;
+    background: var(--accent);
+    border-radius: var(--radius2);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; font-weight: 700; color: #fff;
+  }
+  .header h1 { font-size: 16px; font-weight: 600; letter-spacing: 0.01em; }
+  .header h1 span { color: var(--accent); }
+  .streak-badge {
+    background: rgba(249,115,22,0.15);
+    border: 1px solid rgba(249,115,22,0.3);
+    color: var(--accent2);
+    font-size: 13px;
+    font-weight: 500;
+    padding: 4px 12px;
+    border-radius: 20px;
+  }
+
+  /* TABS */
+  .tabs-bar {
+    background: var(--bg2);
+    border-bottom: 1px solid var(--border);
+    padding: 0 24px;
+    display: flex;
+    gap: 4px;
+    overflow-x: auto;
+  }
+  .tabs-bar::-webkit-scrollbar { height: 3px; }
+  .tabs-bar::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 2px; }
+  .tab-btn {
+    padding: 12px 18px;
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    color: var(--text2);
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.15s;
+  }
+  .tab-btn:hover { color: var(--text); }
+  .tab-btn.active { color: var(--accent); border-bottom-color: var(--accent); }
+
+  /* MAIN */
+  .main { max-width: 860px; margin: 0 auto; padding: 28px 20px 60px; }
+
+  /* SECTION */
+  .section { display: none; }
+  .section.active { display: block; }
+
+  /* STATS ROW */
+  .stats-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+  .stat-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 14px 16px;
+  }
+  .stat-label { font-size: 11px; font-weight: 500; color: var(--text2); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 6px; }
+  .stat-value { font-size: 24px; font-weight: 700; }
+  .stat-value.green { color: var(--green); }
+  .stat-value.red { color: var(--red); }
+  .stat-value.accent { color: var(--accent); }
+
+  /* PROGRESS BAR */
+  .progress-wrap { margin-bottom: 24px; }
+  .progress-label { font-size: 12px; color: var(--text2); margin-bottom: 6px; display: flex; justify-content: space-between; }
+  .progress-bar { height: 6px; background: var(--bg3); border-radius: 3px; overflow: hidden; }
+  .progress-fill { height: 100%; background: var(--accent); border-radius: 3px; transition: width 0.4s ease; }
+
+  /* QUESTION CARD */
+  .question-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 28px;
+    margin-bottom: 16px;
+  }
+  .q-meta {
+    font-size: 11px; font-weight: 600;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 14px;
+  }
+  .q-text {
+    font-size: 17px;
+    font-weight: 500;
+    line-height: 1.55;
+    color: var(--text);
+  }
+
+  /* OPTIONS */
+  .options { display: flex; flex-direction: column; gap: 10px; margin-top: 24px; }
+  .option-btn {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 14px 18px;
+    text-align: left;
+    color: var(--text);
+    font-size: 15px;
+    cursor: pointer;
+    transition: all 0.15s;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .option-btn:hover:not(:disabled) {
+    border-color: var(--border2);
+    background: rgba(255,255,255,0.04);
+  }
+  .option-btn:disabled { cursor: default; }
+  .option-btn.correct { border-color: var(--green); background: rgba(34,197,94,0.08); color: #86efac; }
+  .option-btn.wrong { border-color: var(--red); background: rgba(239,68,68,0.08); color: #fca5a5; }
+  .option-btn.revealed { border-color: var(--green); background: rgba(34,197,94,0.05); color: #86efac; }
+  .opt-letter {
+    width: 26px; height: 26px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.06);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; font-weight: 600;
+    flex-shrink: 0;
+    color: var(--text2);
+  }
+  .option-btn.correct .opt-letter { background: rgba(34,197,94,0.2); color: var(--green); }
+  .option-btn.wrong .opt-letter { background: rgba(239,68,68,0.2); color: var(--red); }
+  .option-btn.revealed .opt-letter { background: rgba(34,197,94,0.2); color: var(--green); }
+
+  /* FEEDBACK */
+  .feedback {
+    display: none;
+    margin-top: 16px;
+    padding: 14px 18px;
+    border-radius: var(--radius);
+    font-size: 14px;
+    font-weight: 500;
+    align-items: center;
+    gap: 10px;
+  }
+  .feedback.show { display: flex; }
+  .feedback.correct { background: rgba(34,197,94,0.1); border: 1px solid rgba(34,197,94,0.25); color: #86efac; }
+  .feedback.wrong { background: rgba(239,68,68,0.1); border: 1px solid rgba(239,68,68,0.25); color: #fca5a5; }
+  .feedback-icon { font-size: 18px; }
+
+  /* NEXT BTN */
+  .next-btn {
+    display: none;
+    width: 100%;
+    padding: 14px;
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    border-radius: var(--radius);
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 14px;
+    transition: background 0.15s;
+  }
+  .next-btn:hover { background: var(--accent2); }
+  .next-btn.show { display: block; }
+
+  /* FINISH CARD */
+  .finish-card {
+    display: none;
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 40px;
+    text-align: center;
+  }
+  .finish-card.show { display: block; }
+  .finish-emoji { font-size: 52px; margin-bottom: 16px; }
+  .finish-title { font-size: 22px; font-weight: 700; margin-bottom: 8px; }
+  .finish-sub { color: var(--text2); font-size: 15px; margin-bottom: 28px; }
+  .finish-score { font-size: 48px; font-weight: 800; color: var(--accent); margin-bottom: 4px; }
+  .finish-detail { color: var(--text2); font-size: 14px; margin-bottom: 32px; }
+  .restart-btn {
+    padding: 13px 32px;
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    border-radius: var(--radius);
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  .restart-btn:hover { background: var(--accent2); }
+
+  /* HISTORIAL */
+  .hist-title { font-size: 14px; font-weight: 600; color: var(--text2); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 14px; }
+  .hist-empty { color: var(--text2); font-size: 14px; padding: 20px 0; text-align: center; }
+  .hist-table { width: 100%; border-collapse: collapse; }
+  .hist-table th {
+    font-size: 11px; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.06em;
+    color: var(--text2);
+    padding: 10px 14px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+  }
+  .hist-table td {
+    padding: 11px 14px;
+    font-size: 13px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text);
+  }
+  .hist-table tr:last-child td { border-bottom: none; }
+  .pill {
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+  .pill-green { background: rgba(34,197,94,0.15); color: var(--green); }
+  .pill-red { background: rgba(239,68,68,0.15); color: var(--red); }
+  .pill-yellow { background: rgba(234,179,8,0.15); color: var(--yellow); }
+
+  .hist-section { margin-bottom: 28px; }
+  .hist-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+
+  .clear-btn {
+    padding: 8px 16px;
+    background: rgba(239,68,68,0.1);
+    border: 1px solid rgba(239,68,68,0.25);
+    color: var(--red);
+    border-radius: var(--radius2);
+    font-size: 13px;
+    cursor: pointer;
+    font-weight: 500;
+  }
+  .clear-btn:hover { background: rgba(239,68,68,0.2); }
+  .hist-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
+
+  @media (max-width: 600px) {
+    .stats-row { grid-template-columns: repeat(2, 1fr); }
+    .question-card { padding: 20px; }
+    .q-text { font-size: 15px; }
+    .main { padding: 20px 14px 60px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-left">
+    <div class="logo">🚒</div>
+    <h1>Test <span>AENA</span> Bomberos</h1>
+  </div>
+  <div class="streak-badge" id="streakBadge">🔥 Racha: 0 días</div>
+</div>
+
+<div class="tabs-bar">
+  <button class="tab-btn active" onclick="showTab('t3')">Tema 3</button>
+  <button class="tab-btn" onclick="showTab('t5')">Tema 5</button>
+</div>
+
+<div class="main">
+
+  <!-- TEMA 3 SECTION -->
+  <section class="section active" id="tab-t3">
+    <div class="stats-row">
+      <div class="stat-card">
+        <div class="stat-label">Pregunta</div>
+        <div class="stat-value accent" id="statPregunta">1 / 0</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Aciertos</div>
+        <div class="stat-value green" id="statAciertos">0</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Errores</div>
+        <div class="stat-value red" id="statErrores">0</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">% Éxito</div>
+        <div class="stat-value" id="statPct">—</div>
+      </div>
+    </div>
+
+    <div class="progress-wrap">
+      <div class="progress-label">
+        <span id="progressLabel">Progreso</span>
+        <span id="progressPct">0%</span>
+      </div>
+      <div class="progress-bar"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
+    </div>
+
+    <div class="question-card" id="questionCard">
+      <div class="q-meta" id="qMeta">Tema 3 · Vehículos SSEI</div>
+      <div class="q-text" id="qText">Cargando pregunta...</div>
+      <div class="options" id="optionsContainer"></div>
+      <div class="feedback" id="feedback"><span class="feedback-icon" id="feedbackIcon"></span><span id="feedbackText"></span></div>
+      <button class="next-btn" id="nextBtn" onclick="nextQuestion()">Siguiente →</button>
+    </div>
+
+    <div class="finish-card" id="finishCard">
+      <div class="finish-emoji" id="finishEmoji">🎯</div>
+      <div class="finish-title">Test completado</div>
+      <div class="finish-sub">Tema 3 · Vehículos SSEI para aeronaves</div>
+      <div class="finish-score" id="finishScore">0%</div>
+      <div class="finish-detail" id="finishDetail"></div>
+      <button class="restart-btn" onclick="restartTest()">Repetir test 🔄</button>
+    </div>
+
+    <div style="margin-top: 40px; border-top: 1px solid var(--border); padding-top: 32px;">
+      <div class="hist-header">
+        <div class="hist-title">Historial de sesiones</div>
+        <button class="clear-btn" onclick="clearHistory()">Borrar historial</button>
+      </div>
+
+      <div class="hist-section">
+        <div class="hist-card">
+          <table class="hist-table">
+            <thead>
+              <tr>
+                <th>Fecha</th>
+                <th>Tema</th>
+                <th>Aciertos</th>
+                <th>Errores</th>
+                <th>% Éxito</th>
+                <th>Nota</th>
+              </tr>
+            </thead>
+            <tbody id="histBody">
+              <tr><td colspan="6" class="hist-empty">Sin sesiones registradas aún.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="hist-section">
+        <div class="hist-title">Preguntas más falladas</div>
+        <div class="hist-card">
+          <table class="hist-table">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Pregunta</th>
+                <th>Veces fallada</th>
+              </tr>
+            </thead>
+            <tbody id="failBody">
+              <tr><td colspan="3" class="hist-empty">Sin datos aún.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- TEMA 5 SECTION -->
+  <section class="section" id="tab-t5">
+    <div class="stats-row">
+      <div class="stat-card">
+        <div class="stat-label">Pregunta</div>
+        <div class="stat-value accent" id="statPregunta5">1 / 0</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Aciertos</div>
+        <div class="stat-value green" id="statAciertos5">0</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Errores</div>
+        <div class="stat-value red" id="statErrores5">0</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">% Éxito</div>
+        <div class="stat-value" id="statPct5">—</div>
+      </div>
+    </div>
+
+    <div class="progress-wrap">
+      <div class="progress-label">
+        <span>Progreso</span>
+        <span id="progressPct5">0%</span>
+      </div>
+      <div class="progress-bar"><div class="progress-fill" id="progressFill5" style="width:0%"></div></div>
+    </div>
+
+    <div class="question-card" id="questionCard5">
+      <div class="q-meta" id="qMeta5">Tema 5 · Familiarización con aeronaves</div>
+      <div class="q-text" id="qText5">Cargando pregunta...</div>
+      <div class="options" id="optionsContainer5"></div>
+      <div class="feedback" id="feedback5"><span class="feedback-icon" id="feedbackIcon5"></span><span id="feedbackText5"></span></div>
+      <button class="next-btn" id="nextBtn5" onclick="nextQuestion5()">Siguiente →</button>
+    </div>
+
+    <div class="finish-card" id="finishCard5">
+      <div class="finish-emoji" id="finishEmoji5">🎯</div>
+      <div class="finish-title">Test completado</div>
+      <div class="finish-sub">Tema 5 · Familiarización con aeronaves</div>
+      <div class="finish-score" id="finishScore5">0%</div>
+      <div class="finish-detail" id="finishDetail5"></div>
+      <button class="restart-btn" onclick="restartTest5()">Repetir test 🔄</button>
+    </div>
+
+    <div style="margin-top: 40px; border-top: 1px solid var(--border); padding-top: 32px;">
+      <div class="hist-header">
+        <div class="hist-title">Historial de sesiones</div>
+        <button class="clear-btn" onclick="clearHistory5()">Borrar historial</button>
+      </div>
+      <div class="hist-section">
+        <div class="hist-card">
+          <table class="hist-table">
+            <thead>
+              <tr><th>Fecha</th><th>Tema</th><th>Aciertos</th><th>Errores</th><th>% Éxito</th><th>Nota</th></tr>
+            </thead>
+            <tbody id="histBody5">
+              <tr><td colspan="6" class="hist-empty">Sin sesiones registradas aún.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="hist-section">
+        <div class="hist-title">Preguntas más falladas</div>
+        <div class="hist-card">
+          <table class="hist-table">
+            <thead>
+              <tr><th>#</th><th>Pregunta</th><th>Veces fallada</th></tr>
+            </thead>
+            <tbody id="failBody5">
+              <tr><td colspan="3" class="hist-empty">Sin datos aún.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<script>
+const PREGUNTAS = [
+  // --- NÚMERO DE VEHÍCULOS POR NIVEL ---
+  {
+    tema: "Vehículos SSEI · Número mínimo",
+    texto: "¿Cuántos vehículos SSEI mínimos requiere un aeropuerto de nivel de protección 1?",
+    opciones: ["1 vehículo", "2 vehículos", "3 vehículos"],
+    correcta: 0
+  },
+  {
+    tema: "Vehículos SSEI · Número mínimo",
+    texto: "¿Cuántos vehículos SSEI mínimos requiere un aeropuerto de nivel de protección 5?",
+    opciones: ["2 vehículos", "3 vehículos", "1 vehículo"],
+    correcta: 2
+  },
+  {
+    tema: "Vehículos SSEI · Número mínimo",
+    texto: "¿A partir de qué nivel de protección SSEI se exigen un mínimo de 2 vehículos?",
+    opciones: ["Nivel 5", "Nivel 6", "Nivel 7"],
+    correcta: 1
+  },
+  {
+    tema: "Vehículos SSEI · Número mínimo",
+    texto: "¿Cuántos vehículos SSEI mínimos requiere un aeropuerto de nivel de protección 7?",
+    opciones: ["3 vehículos", "2 vehículos", "4 vehículos"],
+    correcta: 1
+  },
+  {
+    tema: "Vehículos SSEI · Número mínimo",
+    texto: "¿A partir de qué nivel de protección SSEI se exigen un mínimo de 3 vehículos?",
+    opciones: ["Nivel 7", "Nivel 8", "Nivel 9"],
+    correcta: 1
+  },
+  {
+    tema: "Vehículos SSEI · Número mínimo",
+    texto: "¿Cuántos vehículos SSEI mínimos requiere un aeropuerto de nivel de protección 10?",
+    opciones: ["4 vehículos", "2 vehículos", "3 vehículos"],
+    correcta: 2
+  },
+  // --- DENOMINACIÓN Y EJEMPLO VP ---
+  {
+    tema: "Vehículos SSEI · General",
+    texto: "¿Cómo se denominan en general los tipos de vehículos de extinción de incendios en aeropuertos?",
+    opciones: ["VE (Vehículo de Extinción)", "VP (Vehículo Pesado)", "VS (Vehículo de Salvamento)"],
+    correcta: 1
+  },
+  {
+    tema: "Vehículos SSEI · General",
+    texto: "Un vehículo VP 10/25, ¿cuántos litros de capacidad de agua tiene?",
+    opciones: ["8.000 litros", "12.000 litros", "10.000 litros"],
+    correcta: 2
+  },
+  {
+    tema: "Vehículos SSEI · General",
+    texto: "Un vehículo VP 10/25, ¿cuántos kg de polvo químico lleva?",
+    opciones: ["125 kg", "250 kg", "500 kg"],
+    correcta: 1
+  },
+  {
+    tema: "Vehículos SSEI · General",
+    texto: "Un vehículo VP 10/25, ¿cuántos litros de emulsor lleva?",
+    opciones: ["1.000 litros", "1.500 litros", "1.200 litros"],
+    correcta: 2
+  },
+  {
+    tema: "Vehículos SSEI · General",
+    texto: "La OACI diferencia vehículos SSEI según su capacidad. ¿Cuál es el límite que marca la diferencia?",
+    opciones: ["3.000 litros", "5.000 litros", "4.500 litros"],
+    correcta: 2
+  },
+  // --- CARACTERÍSTICAS PROPUESTAS: MONITOR PRINCIPAL ---
+  {
+    tema: "Características VSSEI · Monitor principal",
+    texto: "El monitor principal (torreta) en vehículos VSSEI de hasta 4.500 litros, ¿para qué clases es obligatorio?",
+    opciones: ["Clases 1 y 2", "Clases 3 a 9", "Todas las clases"],
+    correcta: 1
+  },
+  {
+    tema: "Características VSSEI · Monitor principal",
+    texto: "El monitor principal (torreta) en vehículos VSSEI de hasta 4.500 litros, ¿para qué clases es opcional?",
+    opciones: ["Clases 1 y 2", "Clases 5 y 6", "Clases 3 y 4"],
+    correcta: 0
+  },
+  {
+    tema: "Características VSSEI · Monitor principal",
+    texto: "En vehículos VSSEI de más de 4.500 litros, ¿el monitor principal es obligatorio u opcional?",
+    opciones: ["Opcional", "Obligatorio", "Solo recomendado"],
+    correcta: 1
+  },
+  {
+    tema: "Características VSSEI · Régimen de descarga",
+    texto: "¿Qué régimen de descarga tiene el monitor principal en VSSEI de hasta 4.500 litros?",
+    opciones: ["De baja capacidad", "De alta capacidad", "De alta y baja capacidad"],
+    correcta: 1
+  },
+  {
+    tema: "Características VSSEI · Régimen de descarga",
+    texto: "¿Qué régimen de descarga tiene el monitor principal en VSSEI de más de 4.500 litros?",
+    opciones: ["De alta capacidad únicamente", "De baja capacidad únicamente", "De alta y baja capacidad"],
+    correcta: 2
+  },
+  // --- CARACTERÍSTICAS PROPUESTAS: ACELERACIÓN Y VELOCIDAD ---
+  {
+    tema: "Características VSSEI · Prestaciones",
+    texto: "¿En cuántos segundos debe alcanzar 80 km/h un VSSEI de hasta 4.500 litros?",
+    opciones: ["En 30 segundos", "En 25 segundos", "En 40 segundos"],
+    correcta: 1
+  },
+  {
+    tema: "Características VSSEI · Prestaciones",
+    texto: "¿En cuántos segundos debe alcanzar 80 km/h un VSSEI de más de 4.500 litros?",
+    opciones: ["En 25 segundos", "En 35 segundos", "En 40 segundos"],
+    correcta: 2
+  },
+  {
+    tema: "Características VSSEI · Prestaciones",
+    texto: "¿Cuál es la velocidad máxima mínima exigida a un VSSEI de hasta 4.500 litros?",
+    opciones: ["> 100 km/h", "> 105 km/h", "> 110 km/h"],
+    correcta: 1
+  },
+  {
+    tema: "Características VSSEI · Prestaciones",
+    texto: "¿Cuál es la velocidad máxima mínima exigida a un VSSEI de más de 4.500 litros?",
+    opciones: ["> 95 km/h", "> 105 km/h", "> 100 km/h"],
+    correcta: 2
+  },
+  // --- AUTOPROTECCIÓN, TRACCIÓN, TRANSMISIÓN ---
+  {
+    tema: "Características VSSEI · Equipamiento",
+    texto: "La autoprotección en VSSEI de hasta 4.500 litros, ¿es obligatoria u opcional?",
+    opciones: ["Obligatoria", "No se menciona", "Opcional"],
+    correcta: 2
+  },
+  {
+    tema: "Características VSSEI · Equipamiento",
+    texto: "La autoprotección en VSSEI de más de 4.500 litros, ¿es obligatoria u opcional?",
+    opciones: ["Opcional", "Obligatoria", "Recomendada"],
+    correcta: 1
+  },
+  {
+    tema: "Características VSSEI · Equipamiento",
+    texto: "La tracción a las cuatro ruedas en vehículos VSSEI (ambas categorías), ¿es obligatoria u opcional?",
+    opciones: ["Obligatoria en ambas", "Solo obligatoria en >4.500 L", "Opcional en ambas"],
+    correcta: 0
+  },
+  {
+    tema: "Características VSSEI · Equipamiento",
+    texto: "La transmisión automática o semiautomática en vehículos VSSEI (ambas categorías), ¿es obligatoria u opcional?",
+    opciones: ["Opcional en ambas", "Solo obligatoria en >4.500 L", "Obligatoria en ambas"],
+    correcta: 2
+  },
+  {
+    tema: "Características VSSEI · Equipamiento",
+    texto: "Las ruedas traseras dobles en VSSEI de más de 4.500 litros, ¿son obligatorias?",
+    opciones: ["Opcionales", "Solo recomendadas", "Obligatorias"],
+    correcta: 2
+  },
+  {
+    tema: "Características VSSEI · Equipamiento",
+    texto: "Las ruedas traseras dobles en VSSEI de hasta 4.500 litros, ¿para qué clases son obligatorias?",
+    opciones: ["Clases 1 y 2", "Clases 3 y 9", "Todas las clases"],
+    correcta: 1
+  },
+  {
+    tema: "Características VSSEI · Ángulos",
+    texto: "¿Cuál es el ángulo mínimo de llegada y salida exigido a los VSSEI de hasta 4.500 litros?",
+    opciones: ["> 20º", "> 25º", "> 30º"],
+    correcta: 2
+  },
+  {
+    tema: "Características VSSEI · Ángulos",
+    texto: "¿Cuál es el ángulo mínimo de inclinación estático exigido a los VSSEI de hasta 4.500 litros?",
+    opciones: ["> 25º", "> 30º", "> 35º"],
+    correcta: 1
+  },
+  {
+    tema: "Características VSSEI · Ángulos",
+    texto: "Los ángulos de llegada/salida e inclinación estática, ¿se especifican también para VSSEI de más de 4.500 litros?",
+    opciones: ["Sí, > 25º", "No se especifican", "Sí, > 30º"],
+    correcta: 1
+  },
+  // --- MONITOR FRONTAL ---
+  {
+    tema: "Características VSSEI · Monitor frontal",
+    texto: "El monitor frontal en vehículos VSSEI (ambas categorías), ¿es obligatorio u opcional?",
+    opciones: ["Obligatorio en ambas", "Obligatorio solo en >4.500 L", "Opcional en ambas"],
+    correcta: 2
+  },
+  // --- MANGUERAS ---
+  {
+    tema: "Características VSSEI · Mangueras",
+    texto: "Las mangueras de maniobra en vehículos VSSEI (ambas categorías), ¿son obligatorias u opcionales?",
+    opciones: ["Obligatorias en ambas", "Solo obligatorias en >4.500 L", "Opcionales en ambas"],
+    correcta: 0
+  },
+  // --- RÉGIMEN DE DESCARGA (3.2.2) ---
+  {
+    tema: "Vehículos SSEI · Régimen descarga",
+    texto: "¿En cuánto tiempo debe cumplirse el tiempo de control entre el número mínimo de vehículos de la categoría del aeropuerto?",
+    opciones: ["30 segundos", "2 minutos", "1 minuto"],
+    correcta: 2
+  },
+  {
+    tema: "Vehículos SSEI · Régimen descarga",
+    texto: "¿Cuál es el alcance mínimo efectivo del monitor principal?",
+    opciones: ["30 m", "50 m", "70 m"],
+    correcta: 1
+  },
+  {
+    tema: "Vehículos SSEI · Régimen descarga",
+    texto: "¿Se puede usar el monitor principal con el vehículo en movimiento?",
+    opciones: ["No, solo con el vehículo parado", "Sí, debe poder usarse en movimiento", "Solo a velocidades inferiores a 20 km/h"],
+    correcta: 1
+  },
+  // --- EQUIPAMIENTO SALVAMENTO ---
+  {
+    tema: "Equipamiento salvamento",
+    texto: "¿Cuánto pesa el martillo sacaclavos de la caja de herramientas de salvamento?",
+    opciones: ["0.4 Kg", "1.0 Kg", "0.6 Kg"],
+    correcta: 2
+  },
+  {
+    tema: "Equipamiento salvamento",
+    texto: "¿Cuál es la medida del cortacables en la caja de herramientas de salvamento?",
+    opciones: ["2.0 cm", "1.6 cm", "1.2 cm"],
+    correcta: 1
+  },
+  {
+    tema: "Equipamiento salvamento",
+    texto: "¿Cuánto mide la palanca de pie de cabra en la caja de herramientas de salvamento?",
+    opciones: ["25 cm", "40 cm", "30 cm"],
+    correcta: 2
+  },
+  {
+    tema: "Equipamiento salvamento",
+    texto: "¿Cuánto miden la combinación y el corte lateral en la caja de herramientas de salvamento?",
+    opciones: ["15 cm", "25 cm", "20 cm"],
+    correcta: 2
+  },
+  {
+    tema: "Equipamiento salvamento",
+    texto: "¿Cuánto mide el fulcro desplazable (pico de loro) en la caja de herramientas de salvamento?",
+    opciones: ["20 cm", "25 cm", "30 cm"],
+    correcta: 1
+  },
+  {
+    tema: "Equipamiento salvamento",
+    texto: "¿Cuánto mide la llave ajustable en la caja de herramientas de salvamento?",
+    opciones: ["20 cm", "25 cm", "30 cm"],
+    correcta: 2
+  },
+  {
+    tema: "Equipamiento salvamento",
+    texto: "¿Qué rango de llaves de ajuste incluye la caja de herramientas de salvamento?",
+    opciones: ["8mm – 18mm", "12mm – 24mm", "10mm – 21mm"],
+    correcta: 2
+  },
+  // --- DEPÓSITO AGUA ---
+  {
+    tema: "Vehículos SSEI · Depósito de agua",
+    texto: "¿De qué material están construidos los depósitos de agua de los vehículos SSEI más grandes?",
+    opciones: ["Acero inoxidable", "Aluminio reforzado", "Poliéster reforzado con fibra de vidrio"],
+    correcta: 2
+  },
+  {
+    tema: "Vehículos SSEI · Depósito de agua",
+    texto: "¿Cuál es la capacidad máxima de agua que pueden alcanzar los vehículos SSEI más grandes?",
+    opciones: ["10.000 litros", "13.500 litros", "15.000 litros"],
+    correcta: 1
+  },
+  {
+    tema: "Vehículos SSEI · Depósito de agua",
+    texto: "¿De qué diámetro son las conexiones para el llenado de agua del depósito?",
+    opciones: ["45 mm", "100 mm", "70 mm"],
+    correcta: 2
+  },
+  // --- BOMBA ---
+  {
+    tema: "Vehículos SSEI · Bomba",
+    texto: "¿Cuál es el caudal máximo que pueden alcanzar las bombas de los vehículos SSEI según el modelo?",
+    opciones: ["5.000 l/min", "10.000 l/min", "8.000 l/min"],
+    correcta: 2
+  },
+  {
+    tema: "Vehículos SSEI · Bomba",
+    texto: "¿A qué presión alcanzan los 8.000 l/min las bombas de los vehículos SSEI?",
+    opciones: ["7 bares", "14 bares", "10 bares"],
+    correcta: 2
+  },
+  {
+    tema: "Vehículos SSEI · Bomba",
+    texto: "¿A qué tipo de presión trabajan las bombas de los vehículos SSEI?",
+    opciones: ["Alta presión (hasta 50 bar)", "Baja presión (máx. 20 bar)", "Media presión (máx. 35 bar)"],
+    correcta: 1
+  },
+  // --- ASPIRACIÓN EXTERIOR / LLENADO ---
+  {
+    tema: "Vehículos SSEI · Aspiración",
+    texto: "¿De qué diámetro son las tomas de aspiración exterior, normalmente con racor Storz?",
+    opciones: ["Por encima de 100 mm", "70 mm", "45 mm"],
+    correcta: 0
+  },
+  {
+    tema: "Vehículos SSEI · Aspiración",
+    texto: "Al llenar el tanque por aspiración exterior, ¿cuál es la altura máxima desde el nivel del agua hasta el eje de la bomba?",
+    opciones: ["5 m", "10 m", "7,5 m"],
+    correcta: 2
+  },
+  {
+    tema: "Vehículos SSEI · Aspiración",
+    texto: "Durante el llenado por aspiración, ¿a qué porcentaje de revoluciones máximas se acciona el acelerador?",
+    opciones: ["50%", "75%", "90%"],
+    correcta: 1
+  },
+  // --- DOSIFICADOR ESPUMÓGENO ---
+  {
+    tema: "Vehículos SSEI · Espumógeno",
+    texto: "¿Hasta qué porcentaje máximo se puede seleccionar la mezcla de espumógeno?",
+    opciones: ["3%", "6%", "10%"],
+    correcta: 1
+  },
+  // --- MONITOR PRINCIPAL (CAUDAL/ALCANCE) ---
+  {
+    tema: "Vehículos SSEI · Monitor principal",
+    texto: "¿Cuál es el caudal máximo aproximado que manejan los monitores principales más potentes?",
+    opciones: ["3.000 l/min", "5.000 l/min", "7.000 l/min"],
+    correcta: 2
+  },
+  {
+    tema: "Vehículos SSEI · Monitor principal",
+    texto: "¿A qué alcance aproximado pueden llegar los monitores principales más potentes?",
+    opciones: ["70 m", "100 m", "120 m"],
+    correcta: 1
+  },
+  // --- MONITOR FRONTAL (CAUDAL/ALCANCE) ---
+  {
+    tema: "Vehículos SSEI · Monitor frontal",
+    texto: "¿Cuál es el caudal máximo aproximado que manejan los monitores frontales más potentes?",
+    opciones: ["1.500 l/min", "3.000 l/min", "5.000 l/min"],
+    correcta: 1
+  },
+  {
+    tema: "Vehículos SSEI · Monitor frontal",
+    texto: "¿A qué alcance aproximado pueden llegar los monitores frontales más potentes?",
+    opciones: ["40 m", "60 m", "80 m"],
+    correcta: 1
+  },
+  // --- MANGUERAS Y LANZAS ---
+  {
+    tema: "Vehículos SSEI · Mangueras y lanzas",
+    texto: "¿Qué longitudes tienen las mangueras de los vehículos SSEI para diámetros de 45 y 70 mm?",
+    opciones: ["10 a 30 m", "30 a 80 m", "20 a 50 m"],
+    correcta: 2
+  },
+  {
+    tema: "Vehículos SSEI · Mangueras y lanzas",
+    texto: "¿De qué diámetro y longitud son los carretes semirrígidos que pueden montar algunos vehículos?",
+    opciones: ["38 o 45 mm y 20 m", "25 o 38 mm y 30 m", "45 o 70 mm y 50 m"],
+    correcta: 1
+  },
+  {
+    tema: "Vehículos SSEI · Mangueras y lanzas",
+    texto: "¿Con qué caudales variables trabajan las lanzas multiefecto de 45 mm?",
+    opciones: ["100, 200, 300 y 400 l/min", "115, 230, 360 y 475 l/min", "150, 300, 450 y 600 l/min"],
+    correcta: 1
+  },
+  {
+    tema: "Vehículos SSEI · Mangueras y lanzas",
+    texto: "En pantalla de niebla, ¿cuál es la apertura aproximada de las lanzas multiefecto de 45 mm?",
+    opciones: ["3 m de diámetro", "10 m de diámetro", "6 m de diámetro"],
+    correcta: 2
+  },
+  // --- AUTOPROTECCIÓN ---
+  {
+    tema: "Vehículos SSEI · Autoprotección",
+    texto: "Las boquillas del sistema de autoprotección son de accionamiento electro-neumático. ¿Desde dónde se accionan?",
+    opciones: ["Desde el exterior del vehículo", "Desde la cabina", "Desde el panel trasero"],
+    correcta: 1
+  },
+  {
+    tema: "Vehículos SSEI · Autoprotección",
+    texto: "¿Cuál es el caudal aproximado de las boquillas del sistema de autoprotección?",
+    opciones: ["Hasta 200 l/min", "Hasta 600 l/min", "Hasta 400 l/min"],
+    correcta: 2
+  },
+  // --- POLVO QUÍMICO ---
+  {
+    tema: "Vehículos SSEI · Polvo químico",
+    texto: "¿De qué material es el depósito del equipo de polvo químico seco?",
+    opciones: ["Poliéster reforzado con fibra de vidrio", "Acero inoxidable", "Aluminio anodizado"],
+    correcta: 1
+  },
+  {
+    tema: "Vehículos SSEI · Polvo químico",
+    texto: "¿Cuál es el rango de capacidades del depósito de polvo químico seco?",
+    opciones: ["50 – 125 kg", "125 – 250 kg", "250 – 500 kg"],
+    correcta: 1
+  },
+  {
+    tema: "Vehículos SSEI · Polvo químico",
+    texto: "¿Entre qué presiones trabaja el equipo de polvo químico seco (según fabricante)?",
+    opciones: ["5 – 8 bares", "15 – 20 bares", "10 – 14 bares"],
+    correcta: 2
+  },
+  {
+    tema: "Vehículos SSEI · Polvo químico",
+    texto: "¿A partir de qué presión mínima de trabajo se puede empezar a lanzar polvo químico?",
+    opciones: ["Entre 10 y 12 bares", "Entre 5 y 7 bares", "Entre 14 y 16 bares"],
+    correcta: 0
+  },
+  {
+    tema: "Vehículos SSEI · Polvo químico",
+    texto: "¿Cuál es el caudal del monitor principal de polvo químico y su alcance?",
+    opciones: ["200 kg/min y 10 m", "400 kg/min y 20 m", "600 kg/min y 30 m"],
+    correcta: 1
+  },
+  {
+    tema: "Vehículos SSEI · Polvo químico",
+    texto: "¿Cuál es el caudal de la lanza manual de polvo químico y su alcance?",
+    opciones: ["50 kg/min y 5 m", "125 kg/min y 8-10 m", "250 kg/min y 15 m"],
+    correcta: 1
+  },
+  // --- CONDUCCIÓN ---
+  {
+    tema: "Vehículos SSEI · Conducción",
+    texto: "Antes de arrancar un vehículo SSEI, ¿qué inspección se recomienda realizar?",
+    opciones: ["Inspección del motor únicamente", "Inspección visual de 360º alrededor del vehículo", "Comprobación de niveles en cabina"],
+    correcta: 1
+  },
+  {
+    tema: "Vehículos SSEI · Conducción todoterreno",
+    texto: "Al bloquear el diferencial longitudinal, ¿qué distribución de tracción se obtiene entre parte delantera y trasera?",
+    opciones: ["70% / 30%", "60% / 40%", "50% / 50%"],
+    correcta: 2
+  },
+  {
+    tema: "Vehículos SSEI · Conducción todoterreno",
+    texto: "¿A qué velocidad se desactiva automáticamente el bloqueo del diferencial del eje delantero por motivos de seguridad?",
+    opciones: ["Al superar los 25 km/h", "Al superar los 15 km/h", "Al superar los 40 km/h"],
+    correcta: 0
+  },
+  {
+    tema: "Vehículos SSEI · Conducción todoterreno",
+    texto: "Cuando el bloqueo del diferencial está activado, ¿cuál es la velocidad máxima de desplazamiento recomendada?",
+    opciones: ["10 km/h en línea recta", "3 km/h en línea recta", "5 km/h en curva"],
+    correcta: 1
+  }
+];
+
+// --- STATE ---
+let queue = [];
+let current = 0;
+let aciertos = 0;
+let errores = 0;
+let answered = false;
+let sessionFails = {};
+
+function shuffle(arr) {
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
+}
+
+function buildQueue() {
+  queue = shuffle([...PREGUNTAS].map((q, i) => ({ ...q, originalIdx: i })));
+  current = 0;
+  aciertos = 0;
+  errores = 0;
+  sessionFails = {};
+}
+
+function loadQuestion() {
+  if (current >= queue.length) { showFinish(); return; }
+  answered = false;
+  const q = queue[current];
+  document.getElementById('qMeta').textContent = `Tema 3 · ${q.tema} · ${current + 1}/${queue.length}`;
+  document.getElementById('qText').textContent = q.texto;
+  updateStats();
+
+  // Shuffle options but track correct
+  const letters = ['A', 'B', 'C'];
+  const opts = q.opciones.map((o, i) => ({ text: o, isCorrect: i === q.correcta }));
+  shuffle(opts);
+
+  const container = document.getElementById('optionsContainer');
+  container.innerHTML = '';
+  opts.forEach((opt, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'option-btn';
+    btn.dataset.correct = opt.isCorrect;
+    btn.innerHTML = `<span class="opt-letter">${letters[i]}</span>${opt.text}`;
+    btn.onclick = () => selectOption(btn, opt.isCorrect, q);
+    container.appendChild(btn);
+  });
+
+  document.getElementById('feedback').className = 'feedback';
+  document.getElementById('nextBtn').className = 'next-btn';
+  document.getElementById('questionCard').style.display = 'block';
+  document.getElementById('finishCard').className = 'finish-card';
+}
+
+function selectOption(btn, isCorrect, q) {
+  if (answered) return;
+  answered = true;
+  const allBtns = document.querySelectorAll('.option-btn');
+  allBtns.forEach(b => {
+    b.disabled = true;
+    if (b.dataset.correct === 'true') b.classList.add('revealed');
+  });
+
+  const feedback = document.getElementById('feedback');
+  const feedbackIcon = document.getElementById('feedbackIcon');
+  const feedbackText = document.getElementById('feedbackText');
+
+  if (isCorrect) {
+    btn.classList.remove('revealed');
+    btn.classList.add('correct');
+    aciertos++;
+    feedback.className = 'feedback correct show';
+    feedbackIcon.textContent = '✓';
+    feedbackText.textContent = '¡Correcto!';
+  } else {
+    btn.classList.add('wrong');
+    errores++;
+    // Track fail
+    const key = q.originalIdx;
+    sessionFails[key] = (sessionFails[key] || 0) + 1;
+    // Guardar fallo inmediatamente en localStorage
+    const fails = JSON.parse(localStorage.getItem('aena_fails') || '{}');
+    fails[key] = (fails[key] || 0) + 1;
+    localStorage.setItem('aena_fails', JSON.stringify(fails));
+    feedback.className = 'feedback wrong show';
+    feedbackIcon.textContent = '✗';
+    const correctText = q.opciones[q.correcta];
+    feedbackText.textContent = `Incorrecto. La respuesta correcta es: ${correctText}`;
+  }
+
+  document.getElementById('nextBtn').className = 'next-btn show';
+  updateStats();
+  renderHistory();
+}
+
+function nextQuestion() {
+  current++;
+  loadQuestion();
+}
+
+function updateStats() {
+  const total = current + (answered ? 1 : 0);
+  document.getElementById('statPregunta').textContent = `${Math.min(current + 1, queue.length)} / ${queue.length}`;
+  document.getElementById('statAciertos').textContent = aciertos;
+  document.getElementById('statErrores').textContent = errores;
+  const pct = total > 0 ? Math.round((aciertos / total) * 100) : 0;
+  document.getElementById('statPct').textContent = total > 0 ? pct + '%' : '—';
+  document.getElementById('statPct').style.color = pct >= 70 ? 'var(--green)' : pct >= 50 ? 'var(--yellow)' : 'var(--red)';
+  const prog = queue.length > 0 ? Math.round((current / queue.length) * 100) : 0;
+  document.getElementById('progressFill').style.width = prog + '%';
+  document.getElementById('progressPct').textContent = prog + '%';
+}
+
+function showFinish() {
+  document.getElementById('questionCard').style.display = 'none';
+  const total = queue.length;
+  const pct = Math.round((aciertos / total) * 100);
+  const card = document.getElementById('finishCard');
+  card.className = 'finish-card show';
+  document.getElementById('finishScore').textContent = pct + '%';
+  document.getElementById('finishDetail').textContent = `${aciertos} aciertos y ${errores} errores de ${total} preguntas`;
+  document.getElementById('finishEmoji').textContent = pct >= 80 ? '🎯' : pct >= 60 ? '💪' : '📚';
+  saveSession(pct, total);
+  updateStreak();
+}
+
+function restartTest() {
+  buildQueue();
+  document.getElementById('questionCard').style.display = 'block';
+  document.getElementById('finishCard').className = 'finish-card';
+  loadQuestion();
+}
+
+// --- HISTORIAL ---
+function saveSession(pct, total) {
+  const hist = JSON.parse(localStorage.getItem('aena_hist') || '[]');
+  const fails = JSON.parse(localStorage.getItem('aena_fails') || '{}');
+  const now = new Date();
+  const fecha = now.toLocaleDateString('es-ES', { day: '2-digit', month: '2-digit', year: 'numeric' });
+  hist.unshift({ fecha, tema: 'Tema 3 · Vehículos SSEI', aciertos, errores, total, pct });
+  if (hist.length > 50) hist.pop();
+  localStorage.setItem('aena_hist', JSON.stringify(hist));
+  // Accumulate fails
+  Object.entries(sessionFails).forEach(([k, v]) => { fails[k] = (fails[k] || 0) + v; });
+  localStorage.setItem('aena_fails', JSON.stringify(fails));
+  renderHistory();
+}
+
+function renderHistory() {
+  const hist = JSON.parse(localStorage.getItem('aena_hist') || '[]');
+  const fails = JSON.parse(localStorage.getItem('aena_fails') || '{}');
+  const tbody = document.getElementById('histBody');
+  if (hist.length === 0) {
+    tbody.innerHTML = '<tr><td colspan="6" class="hist-empty">Sin sesiones registradas aún.</td></tr>';
+  } else {
+    tbody.innerHTML = hist.map(s => {
+      const cls = s.pct >= 80 ? 'pill-green' : s.pct >= 60 ? 'pill-yellow' : 'pill-red';
+      const nota = s.pct >= 80 ? '✓ Bien' : s.pct >= 60 ? '⚠ Regular' : '✗ Repasar';
+      return `<tr>
+        <td>${s.fecha}</td>
+        <td>${s.tema}</td>
+        <td style="color:var(--green);font-weight:600">${s.aciertos}</td>
+        <td style="color:var(--red);font-weight:600">${s.errores}</td>
+        <td><span class="pill ${cls}">${s.pct}%</span></td>
+        <td style="color:var(--text2);font-size:13px">${nota}</td>
+      </tr>`;
+    }).join('');
+  }
+
+  const failBody = document.getElementById('failBody');
+  const failEntries = Object.entries(fails)
+    .map(([k, v]) => ({ q: PREGUNTAS[+k], veces: v, idx: +k }))
+    .filter(e => e.q)
+    .sort((a, b) => b.veces - a.veces)
+    .slice(0, 10);
+  if (failEntries.length === 0) {
+    failBody.innerHTML = '<tr><td colspan="3" class="hist-empty">Sin datos aún.</td></tr>';
+  } else {
+    failBody.innerHTML = failEntries.map((e, i) => `<tr>
+      <td style="color:var(--text2)">${i + 1}</td>
+      <td style="font-size:13px">${e.q.texto}</td>
+      <td><span class="pill pill-red">${e.veces}x</span></td>
+    </tr>`).join('');
+  }
+}
+
+function clearHistory() {
+  if (!confirm('¿Borrar todo el historial?')) return;
+  localStorage.removeItem('aena_hist');
+  localStorage.removeItem('aena_fails');
+  localStorage.removeItem('aena_streak');
+  localStorage.removeItem('aena_lastday');
+  renderHistory();
+  updateStreak();
+}
+
+// --- STREAK ---
+function updateStreak() {
+  const today = new Date().toDateString();
+  const last = localStorage.getItem('aena_lastday');
+  let streak = parseInt(localStorage.getItem('aena_streak') || '0');
+  if (last === today) {
+    // same day, no change
+  } else {
+    const yesterday = new Date(); yesterday.setDate(yesterday.getDate() - 1);
+    if (last === yesterday.toDateString()) { streak++; }
+    else { streak = 1; }
+    localStorage.setItem('aena_streak', streak);
+    localStorage.setItem('aena_lastday', today);
+  }
+  document.getElementById('streakBadge').textContent = `🔥 Racha: ${streak} día${streak !== 1 ? 's' : ''}`;
+}
+
+function showTab(name) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + name).classList.add('active');
+  event.target.classList.add('active');
+  if (name === 't3') renderHistory();
+  if (name === 't5') renderHistory5();
+}
+
+// --- INIT ---
+buildQueue();
+loadQuestion();
+updateStreak();
+renderHistory();
+const PREGUNTAS_T5 = [
+  // --- CABINA DE PASAJEROS ---
+  {
+    tema: "Cabina de pasajeros",
+    texto: "¿Cuántos pasajeros suelen tener como máximo los aviones de fuselaje estrecho (narrow body)?",
+    opciones: ["Menos de 200 pasajeros", "Menos de 300 pasajeros", "Menos de 150 pasajeros"],
+    correcta: 0
+  },
+  {
+    tema: "Cabina de pasajeros",
+    texto: "¿Cuántos metros de ancho mínimo tiene la cabina de un fuselaje ancho (wide body)?",
+    opciones: ["Más de 3,5 metros", "Más de 5 metros", "Más de 4,5 metros"],
+    correcta: 2
+  },
+  {
+    tema: "Cabina de pasajeros",
+    texto: "¿Cuántos pasajeros tiene como mínimo un avión de fuselaje ancho (wide body)?",
+    opciones: ["Más de 150 pasajeros", "Más de 200 pasajeros", "Más de 250 pasajeros"],
+    correcta: 1
+  },
+  // --- ALAS ---
+  {
+    tema: "Alas · Winglets",
+    texto: "¿Hasta qué porcentaje permiten reducir el consumo de combustible los winglets?",
+    opciones: ["Hasta un 2%", "Hasta un 6%", "Hasta un 4%"],
+    correcta: 2
+  },
+  // --- TREN DE ATERRIZAJE ---
+  {
+    tema: "Tren de aterrizaje",
+    texto: "¿De qué material son las pastillas de los frenos del tren de aterrizaje?",
+    opciones: ["Acero inoxidable con tratamiento especial", "Carbono con tratamiento especial", "Composite reforzado con fibra de vidrio"],
+    correcta: 1
+  },
+  {
+    tema: "Tren de aterrizaje",
+    texto: "¿Qué temperatura pueden alcanzar las pastillas de carbono de los frenos en aterrizajes de emergencia o despegues abortados?",
+    opciones: ["Hasta 1.500 ºC", "Hasta 5.000 ºC", "Hasta 3.000 ºC"],
+    correcta: 2
+  },
+  // --- MATERIALES: ALUMINIO ---
+  {
+    tema: "Materiales · Aluminio",
+    texto: "¿Cómo se llama la aleación de aluminio más usada en aeronaves?",
+    opciones: ["Titanio aeronáutico", "Duraluminio", "Aleación magnesio-aluminio"],
+    correcta: 1
+  },
+  {
+    tema: "Materiales · Aluminio",
+    texto: "¿Qué porcentaje de cobre contiene el duraluminio?",
+    opciones: ["1%", "4%", "7%"],
+    correcta: 1
+  },
+  {
+    tema: "Materiales · Aluminio",
+    texto: "¿Qué porcentaje de magnesio contiene el duraluminio?",
+    opciones: ["4%", "2%", "1%"],
+    correcta: 2
+  },
+  {
+    tema: "Materiales · Aluminio",
+    texto: "¿Cuál es la densidad del aluminio?",
+    opciones: ["1,7 gr/cm³", "4,5 gr/cm³", "2,7 gr/cm³"],
+    correcta: 2
+  },
+  // --- MATERIALES: ACERO ---
+  {
+    tema: "Materiales · Acero",
+    texto: "¿A qué temperatura aproximada se funde el acero?",
+    opciones: ["Próximas a los 800 ºC", "Próximas a los 1.500 ºC", "Próximas a los 2.000 ºC"],
+    correcta: 1
+  },
+  {
+    tema: "Materiales · Acero",
+    texto: "¿A partir de qué temperatura empieza el acero a perder propiedades?",
+    opciones: ["A partir de 300 ºC o 400 ºC", "A partir de 1.000 ºC o 1.100 ºC", "A partir de 600 ºC o 700 ºC"],
+    correcta: 2
+  },
+  // --- MATERIALES: MAGNESIO ---
+  {
+    tema: "Materiales · Magnesio",
+    texto: "¿Cuál es la densidad del magnesio?",
+    opciones: ["2,7 gr/cm³", "1,7 gr/cm³", "4,5 gr/cm³"],
+    correcta: 1
+  },
+  // --- MATERIALES: TITANIO ---
+  {
+    tema: "Materiales · Titanio",
+    texto: "¿Cuál es la densidad del titanio?",
+    opciones: ["2,7 gr/cm³", "1,7 gr/cm³", "4,5 gr/cm³"],
+    correcta: 2
+  },
+  {
+    tema: "Materiales · Titanio",
+    texto: "¿Cuál es el punto de fusión del titanio?",
+    opciones: ["1.200 ºC", "2.500 ºC", "1.800 ºC"],
+    correcta: 2
+  },
+  // --- MATERIALES: COMPOSITE ---
+  {
+    tema: "Materiales · Composite",
+    texto: "En caso de incendio, ¿a partir de qué temperatura el composite genera gases altamente tóxicos?",
+    opciones: ["Por encima de 200 ºC", "Por encima de 800 ºC", "Por encima de 400 ºC"],
+    correcta: 2
+  },
+  {
+    tema: "Materiales · Composite",
+    texto: "¿De qué proceden los gases tóxicos que genera el composite en un incendio?",
+    opciones: ["De la fibra de carbono", "De las resinas", "Del revestimiento metálico"],
+    correcta: 1
+  },
+  // --- TURBO-FAN ---
+  {
+    tema: "Motores · Turbo-fan",
+    texto: "En un turbo-fan, ¿cuál es la relación de derivación habitual entre el flujo secundario y el primario?",
+    opciones: ["De 1 a 3", "De 4 a 7", "De 8 a 12"],
+    correcta: 1
+  },
+  {
+    tema: "Motores · Turbo-fan",
+    texto: "En un turbo-fan, el eje LP acopla el fan con turbinas a baja velocidad. ¿Cuántas etapas de turbina acopla?",
+    opciones: ["3 etapas", "5 etapas", "8 etapas"],
+    correcta: 1
+  },
+  {
+    tema: "Motores · Turbo-fan",
+    texto: "En un turbo-fan, el eje IP acopla 1 etapa de turbina. ¿Con cuántas etapas de compresión?",
+    opciones: ["5 etapas de compresión", "6 etapas de compresión", "8 etapas de compresión"],
+    correcta: 2
+  },
+  {
+    tema: "Motores · Turbo-fan",
+    texto: "En un turbo-fan, ¿cuántas etapas de compresión y turbina acopla el eje HP?",
+    opciones: ["4 de compresión y 2 de turbina", "6 de compresión y 1 de turbina", "8 de compresión y 1 de turbina"],
+    correcta: 1
+  },
+  {
+    tema: "Motores · Turbo-fan",
+    texto: "En un turbo-fan, ¿a qué velocidad gira el eje HP?",
+    opciones: ["Baja velocidad", "Velocidad media", "Alta velocidad"],
+    correcta: 2
+  },
+  // --- TURBO-HÉLICE ---
+  {
+    tema: "Motores · Turbohélice",
+    texto: "¿Qué porcentaje de la potencia generada emplea el turbohélice en mover la hélice?",
+    opciones: ["70%", "90%", "95%"],
+    correcta: 1
+  },
+  {
+    tema: "Motores · Turbohélice",
+    texto: "¿Para qué velocidades es eficaz el turbohélice?",
+    opciones: ["Hasta 300 o 400 km/h", "Hasta 800 o 900 km/h", "Hasta 500 o 600 km/h"],
+    correcta: 2
+  },
+  {
+    tema: "Motores · Turbohélice",
+    texto: "¿A cuántas rpm está limitado el giro de las hélices en el turbohélice?",
+    opciones: ["1.000 o 1.500 rpm", "2.500 o 3.000 rpm", "4.000 o 5.000 rpm"],
+    correcta: 1
+  },
+  // --- SISTEMA HIDRÁULICO ---
+  {
+    tema: "Sistemas · Hidráulico",
+    texto: "¿Con qué presión suele operar el sistema hidráulico de una aeronave?",
+    opciones: ["Del orden de 1.000 psi", "Del orden de 3.000 psi", "Del orden de 6.000 psi"],
+    correcta: 1
+  },
+  // --- SISTEMA DE PRESURIZACIÓN ---
+  {
+    tema: "Sistemas · Presurización",
+    texto: "¿Por encima de qué altitud los aviones comerciales tienen cabinas presurizadas?",
+    opciones: ["Por encima de los 5.000 pies", "Por encima de los 10.000 pies", "Por encima de los 20.000 pies"],
+    correcta: 1
+  },
+  {
+    tema: "Sistemas · Presurización",
+    texto: "El control isobárico de presurización mantiene la presión interior equivalente a la de una altitud de:",
+    opciones: ["2.000 pies", "10.000 pies", "5.000 pies"],
+    correcta: 2
+  },
+  // --- GPU ---
+  {
+    tema: "Sistemas · GPU",
+    texto: "¿Qué tipo de corriente proporciona generalmente una GPU (Ground Power Unit)?",
+    opciones: ["400 Hz AC o 28 V DC", "50 Hz AC o 12 V DC", "60 Hz AC o 110 V DC"],
+    correcta: 0
+  }
+];
+// --- TEMA 5 ENGINE ---
+let queue5 = [], current5 = 0, aciertos5 = 0, errores5 = 0, answered5 = false, sessionFails5 = {};
+
+function shuffle5(arr) {
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
+}
+
+function buildQueue5() {
+  queue5 = shuffle5([...PREGUNTAS_T5].map((q, i) => ({ ...q, originalIdx: i })));
+  current5 = 0; aciertos5 = 0; errores5 = 0; sessionFails5 = {};
+}
+
+function loadQuestion5() {
+  if (current5 >= queue5.length) { showFinish5(); return; }
+  answered5 = false;
+  const q = queue5[current5];
+  document.getElementById('qMeta5').textContent = `Tema 5 · ${q.tema} · ${current5 + 1}/${queue5.length}`;
+  document.getElementById('qText5').textContent = q.texto;
+  updateStats5();
+  const letters = ['A','B','C'];
+  const opts = q.opciones.map((o,i) => ({ text: o, isCorrect: i === q.correcta }));
+  shuffle5(opts);
+  const container = document.getElementById('optionsContainer5');
+  container.innerHTML = '';
+  opts.forEach((opt, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'option-btn';
+    btn.dataset.correct = opt.isCorrect;
+    btn.innerHTML = `<span class="opt-letter">${letters[i]}</span>${opt.text}`;
+    btn.onclick = () => selectOption5(btn, opt.isCorrect, q);
+    container.appendChild(btn);
+  });
+  document.getElementById('feedback5').className = 'feedback';
+  document.getElementById('nextBtn5').className = 'next-btn';
+  document.getElementById('questionCard5').style.display = 'block';
+  document.getElementById('finishCard5').className = 'finish-card';
+}
+
+function selectOption5(btn, isCorrect, q) {
+  if (answered5) return;
+  answered5 = true;
+  document.querySelectorAll('#optionsContainer5 .option-btn').forEach(b => {
+    b.disabled = true;
+    if (b.dataset.correct === 'true') b.classList.add('revealed');
+  });
+  const feedback = document.getElementById('feedback5');
+  const feedbackIcon = document.getElementById('feedbackIcon5');
+  const feedbackText = document.getElementById('feedbackText5');
+  if (isCorrect) {
+    btn.classList.remove('revealed'); btn.classList.add('correct');
+    aciertos5++;
+    feedback.className = 'feedback correct show';
+    feedbackIcon.textContent = '✓';
+    feedbackText.textContent = '¡Correcto!';
+  } else {
+    btn.classList.add('wrong');
+    errores5++;
+    const key = q.originalIdx;
+    sessionFails5[key] = (sessionFails5[key] || 0) + 1;
+    const fails = JSON.parse(localStorage.getItem('aena_fails5') || '{}');
+    fails[key] = (fails[key] || 0) + 1;
+    localStorage.setItem('aena_fails5', JSON.stringify(fails));
+    feedback.className = 'feedback wrong show';
+    feedbackIcon.textContent = '✗';
+    feedbackText.textContent = `Incorrecto. La respuesta correcta es: ${q.opciones[q.correcta]}`;
+  }
+  document.getElementById('nextBtn5').className = 'next-btn show';
+  updateStats5();
+  renderHistory5();
+}
+
+function nextQuestion5() { current5++; loadQuestion5(); }
+
+function updateStats5() {
+  const total = current5 + (answered5 ? 1 : 0);
+  document.getElementById('statPregunta5').textContent = `${Math.min(current5+1, queue5.length)} / ${queue5.length}`;
+  document.getElementById('statAciertos5').textContent = aciertos5;
+  document.getElementById('statErrores5').textContent = errores5;
+  const pct = total > 0 ? Math.round((aciertos5/total)*100) : 0;
+  const el = document.getElementById('statPct5');
+  el.textContent = total > 0 ? pct+'%' : '—';
+  el.style.color = pct >= 70 ? 'var(--green)' : pct >= 50 ? 'var(--yellow)' : 'var(--red)';
+  const prog = queue5.length > 0 ? Math.round((current5/queue5.length)*100) : 0;
+  document.getElementById('progressFill5').style.width = prog+'%';
+  document.getElementById('progressPct5').textContent = prog+'%';
+}
+
+function showFinish5() {
+  document.getElementById('questionCard5').style.display = 'none';
+  const total = queue5.length;
+  const pct = Math.round((aciertos5/total)*100);
+  const card = document.getElementById('finishCard5');
+  card.className = 'finish-card show';
+  document.getElementById('finishScore5').textContent = pct+'%';
+  document.getElementById('finishDetail5').textContent = `${aciertos5} aciertos y ${errores5} errores de ${total} preguntas`;
+  document.getElementById('finishEmoji5').textContent = pct >= 80 ? '🎯' : pct >= 60 ? '💪' : '📚';
+  saveSession5(pct, total);
+}
+
+function restartTest5() {
+  buildQueue5();
+  document.getElementById('questionCard5').style.display = 'block';
+  document.getElementById('finishCard5').className = 'finish-card';
+  loadQuestion5();
+}
+
+function saveSession5(pct, total) {
+  const hist = JSON.parse(localStorage.getItem('aena_hist5') || '[]');
+  const now = new Date();
+  const fecha = now.toLocaleDateString('es-ES', { day:'2-digit', month:'2-digit', year:'numeric' });
+  hist.unshift({ fecha, tema: 'Tema 5 · Aeronaves', aciertos: aciertos5, errores: errores5, total, pct });
+  if (hist.length > 50) hist.pop();
+  localStorage.setItem('aena_hist5', JSON.stringify(hist));
+  renderHistory5();
+}
+
+function renderHistory5() {
+  const hist = JSON.parse(localStorage.getItem('aena_hist5') || '[]');
+  const fails = JSON.parse(localStorage.getItem('aena_fails5') || '{}');
+  const tbody = document.getElementById('histBody5');
+  if (hist.length === 0) {
+    tbody.innerHTML = '<tr><td colspan="6" class="hist-empty">Sin sesiones registradas aún.</td></tr>';
+  } else {
+    tbody.innerHTML = hist.map(s => {
+      const cls = s.pct >= 80 ? 'pill-green' : s.pct >= 60 ? 'pill-yellow' : 'pill-red';
+      const nota = s.pct >= 80 ? '✓ Bien' : s.pct >= 60 ? '⚠ Regular' : '✗ Repasar';
+      return `<tr><td>${s.fecha}</td><td>${s.tema}</td><td style="color:var(--green);font-weight:600">${s.aciertos}</td><td style="color:var(--red);font-weight:600">${s.errores}</td><td><span class="pill ${cls}">${s.pct}%</span></td><td style="color:var(--text2);font-size:13px">${nota}</td></tr>`;
+    }).join('');
+  }
+  const failBody = document.getElementById('failBody5');
+  const failEntries = Object.entries(fails)
+    .map(([k,v]) => ({ q: PREGUNTAS_T5[+k], veces: v }))
+    .filter(e => e.q)
+    .sort((a,b) => b.veces - a.veces)
+    .slice(0, 10);
+  if (failEntries.length === 0) {
+    failBody.innerHTML = '<tr><td colspan="3" class="hist-empty">Sin datos aún.</td></tr>';
+  } else {
+    failBody.innerHTML = failEntries.map((e,i) => `<tr><td style="color:var(--text2)">${i+1}</td><td style="font-size:13px">${e.q.texto}</td><td><span class="pill pill-red">${e.veces}x</span></td></tr>`).join('');
+  }
+}
+
+function clearHistory5() {
+  if (!confirm('¿Borrar historial del Tema 5?')) return;
+  localStorage.removeItem('aena_hist5');
+  localStorage.removeItem('aena_fails5');
+  renderHistory5();
+}
+
+buildQueue5();
+loadQuestion5();
+renderHistory5();
+
+</script>
+</body>
+</html>
