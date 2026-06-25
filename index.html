@@ -230,6 +230,19 @@
   .finish-sub { color: var(--text2); font-size: 15px; margin-bottom: 28px; }
   .finish-score { font-size: 48px; font-weight: 800; color: var(--accent); margin-bottom: 4px; }
   .finish-detail { color: var(--text2); font-size: 14px; margin-bottom: 32px; }
+  .reset-top-btn {
+    display: flex; align-items: center; gap: 8px;
+    padding: 8px 16px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid var(--border);
+    color: var(--text2);
+    border-radius: var(--radius2);
+    font-size: 13px; font-weight: 500; cursor: pointer;
+    transition: all 0.15s;
+    margin-bottom: 20px;
+  }
+  .reset-top-btn:hover { background: rgba(255,255,255,0.1); color: var(--text); border-color: var(--border2); }
+
   .restart-btn {
     padding: 13px 32px;
     background: var(--accent);
@@ -356,12 +369,15 @@
 <div class="tabs-bar">
   <button class="tab-btn active" onclick="showTab('t3')">Tema 3</button>
   <button class="tab-btn" onclick="showTab('t5')">Tema 5</button>
+  <button class="tab-btn" onclick="showTab('t1')">Tema 1</button>
+  <button class="tab-btn" onclick="showTab('t7')">Tema 7</button>
 </div>
 
 <div class="main">
 
   <!-- TEMA 3 SECTION -->
   <section class="section active" id="tab-t3">
+    <button class="reset-top-btn" onclick="restartTest()">🔄 Nuevo test</button>
     <div class="stats-row">
       <div class="stat-card">
         <div class="stat-label">Pregunta</div>
@@ -460,6 +476,7 @@
 
   <!-- TEMA 5 SECTION -->
   <section class="section" id="tab-t5">
+    <button class="reset-top-btn" onclick="restartTest5()">🔄 Nuevo test</button>
     <div class="stats-row">
       <div class="stat-card">
         <div class="stat-label">Pregunta</div>
@@ -540,6 +557,83 @@
       </div>
     </div>
   </section>
+
+  <!-- TEMA 1 SECTION -->
+  <section class="section" id="tab-t1">
+    <button class="reset-top-btn" onclick="restartTest1()">🔄 Nuevo test</button>
+    <div class="stats-row">
+      <div class="stat-card"><div class="stat-label">Pregunta</div><div class="stat-value accent" id="statPregunta1">1 / 0</div></div>
+      <div class="stat-card"><div class="stat-label">Aciertos</div><div class="stat-value green" id="statAciertos1">0</div></div>
+      <div class="stat-card"><div class="stat-label">Errores</div><div class="stat-value red" id="statErrores1">0</div></div>
+      <div class="stat-card"><div class="stat-label">% Éxito</div><div class="stat-value" id="statPct1">—</div></div>
+    </div>
+    <div class="progress-wrap">
+      <div class="progress-label"><span>Progreso</span><span id="progressPct1">0%</span></div>
+      <div class="progress-bar"><div class="progress-fill" id="progressFill1" style="width:0%"></div></div>
+    </div>
+    <div class="question-card" id="questionCard1">
+      <div class="q-meta" id="qMeta1">Tema 1 · Tecnología del fuego</div>
+      <div class="q-header">
+        <div class="q-text" id="qText1">Cargando...</div>
+        <button class="note-btn" id="noteBtn1" onclick="openNote('t1')" title="Añadir nota">📝</button>
+      </div>
+      <div class="options" id="optionsContainer1"></div>
+      <div class="feedback" id="feedback1"><span class="feedback-icon" id="feedbackIcon1"></span><span id="feedbackText1"></span></div>
+      <button class="next-btn" id="nextBtn1" onclick="nextQuestion1()">Siguiente →</button>
+    </div>
+    <div class="finish-card" id="finishCard1">
+      <div class="finish-emoji" id="finishEmoji1">🎯</div>
+      <div class="finish-title">Test completado</div>
+      <div class="finish-sub">Tema 1 · Tecnología del fuego y agentes extintores</div>
+      <div class="finish-score" id="finishScore1">0%</div>
+      <div class="finish-detail" id="finishDetail1"></div>
+      <button class="restart-btn" onclick="restartTest1()">Repetir test 🔄</button>
+    </div>
+    <div style="margin-top:40px;border-top:1px solid var(--border);padding-top:32px;">
+      <div class="hist-header"><div class="hist-title">Historial</div><button class="clear-btn" onclick="clearHistory1()">Borrar historial</button></div>
+      <div class="hist-section"><div class="hist-title">Preguntas más falladas</div><div class="hist-card"><table class="hist-table"><thead><tr><th>#</th><th>Pregunta</th><th>Respuesta correcta</th><th>Veces fallada</th></tr></thead><tbody id="failBody1"><tr><td colspan="4" class="hist-empty">Sin datos aún.</td></tr></tbody></table></div></div>
+      <div class="hist-section"><div class="hist-title">Sesiones</div><div class="hist-card"><table class="hist-table"><thead><tr><th>Fecha</th><th>Tema</th><th>Aciertos</th><th>Errores</th><th>% Éxito</th><th>Nota</th></tr></thead><tbody id="histBody1"><tr><td colspan="6" class="hist-empty">Sin sesiones registradas aún.</td></tr></tbody></table></div></div>
+    </div>
+  </section>
+
+  <!-- TEMA 7 SECTION -->
+  <section class="section" id="tab-t7">
+    <button class="reset-top-btn" onclick="restartTest7()">🔄 Nuevo test</button>
+    <div class="stats-row">
+      <div class="stat-card"><div class="stat-label">Pregunta</div><div class="stat-value accent" id="statPregunta7">1 / 0</div></div>
+      <div class="stat-card"><div class="stat-label">Aciertos</div><div class="stat-value green" id="statAciertos7">0</div></div>
+      <div class="stat-card"><div class="stat-label">Errores</div><div class="stat-value red" id="statErrores7">0</div></div>
+      <div class="stat-card"><div class="stat-label">% Éxito</div><div class="stat-value" id="statPct7">—</div></div>
+    </div>
+    <div class="progress-wrap">
+      <div class="progress-label"><span>Progreso</span><span id="progressPct7">0%</span></div>
+      <div class="progress-bar"><div class="progress-fill" id="progressFill7" style="width:0%"></div></div>
+    </div>
+    <div class="question-card" id="questionCard7">
+      <div class="q-meta" id="qMeta7">Tema 7 · Familiarización con el aeropuerto</div>
+      <div class="q-header">
+        <div class="q-text" id="qText7">Cargando...</div>
+        <button class="note-btn" id="noteBtn7" onclick="openNote('t7')" title="Añadir nota">📝</button>
+      </div>
+      <div class="options" id="optionsContainer7"></div>
+      <div class="feedback" id="feedback7"><span class="feedback-icon" id="feedbackIcon7"></span><span id="feedbackText7"></span></div>
+      <button class="next-btn" id="nextBtn7" onclick="nextQuestion7()">Siguiente →</button>
+    </div>
+    <div class="finish-card" id="finishCard7">
+      <div class="finish-emoji" id="finishEmoji7">🎯</div>
+      <div class="finish-title">Test completado</div>
+      <div class="finish-sub">Tema 7 · Familiarización con el aeropuerto</div>
+      <div class="finish-score" id="finishScore7">0%</div>
+      <div class="finish-detail" id="finishDetail7"></div>
+      <button class="restart-btn" onclick="restartTest7()">Repetir test 🔄</button>
+    </div>
+    <div style="margin-top:40px;border-top:1px solid var(--border);padding-top:32px;">
+      <div class="hist-header"><div class="hist-title">Historial</div><button class="clear-btn" onclick="clearHistory7()">Borrar historial</button></div>
+      <div class="hist-section"><div class="hist-title">Preguntas más falladas</div><div class="hist-card"><table class="hist-table"><thead><tr><th>#</th><th>Pregunta</th><th>Respuesta correcta</th><th>Veces fallada</th></tr></thead><tbody id="failBody7"><tr><td colspan="4" class="hist-empty">Sin datos aún.</td></tr></tbody></table></div></div>
+      <div class="hist-section"><div class="hist-title">Sesiones</div><div class="hist-card"><table class="hist-table"><thead><tr><th>Fecha</th><th>Tema</th><th>Aciertos</th><th>Errores</th><th>% Éxito</th><th>Nota</th></tr></thead><tbody id="histBody7"><tr><td colspan="6" class="hist-empty">Sin sesiones registradas aún.</td></tr></tbody></table></div></div>
+    </div>
+  </section>
+
 
 <!-- NOTE OVERLAY -->
 <div class="note-overlay" id="noteOverlay">
@@ -1226,6 +1320,8 @@ function showTab(name) {
   event.target.classList.add('active');
   if (name === 't3') renderHistory();
   if (name === 't5') renderHistory5();
+  if (name === 't1') renderHistory1();
+  if (name === 't7') renderHistory7();
 }
 
 // --- INIT ---
@@ -1585,7 +1681,7 @@ renderHistory5();
 let currentNoteKey = null;
 
 function openNote(tema) {
-  const q = tema === 't3' ? queue[current] : queue5[current5];
+  const q = tema === 't3' ? queue[current] : tema === 't5' ? queue5[current5] : tema === 't1' ? queue1[current1] : queue7[current7];
   if (!q) return;
   currentNoteKey = `note_${tema}_${q.originalIdx}`;
   const saved = localStorage.getItem(currentNoteKey) || '';
@@ -1625,6 +1721,18 @@ function updateNoteBtn() {
     const btn5 = document.getElementById('noteBtn5');
     if (btn5) btn5.classList.toggle('has-note', !!localStorage.getItem(key5));
   }
+  // T1
+  if (typeof queue1 !== 'undefined' && queue1[current1]) {
+    const key1 = `note_t1_${queue1[current1].originalIdx}`;
+    const btn1 = document.getElementById('noteBtn1');
+    if (btn1) btn1.classList.toggle('has-note', !!localStorage.getItem(key1));
+  }
+  // T7
+  if (typeof queue7 !== 'undefined' && queue7[current7]) {
+    const key7 = `note_t7_${queue7[current7].originalIdx}`;
+    const btn7 = document.getElementById('noteBtn7');
+    if (btn7) btn7.classList.toggle('has-note', !!localStorage.getItem(key7));
+  }
 }
 
 // Close overlay on background click
@@ -1637,6 +1745,260 @@ const _origLoad = loadQuestion;
 loadQuestion = function() { _origLoad(); setTimeout(updateNoteBtn, 10); };
 const _origLoad5 = loadQuestion5;
 loadQuestion5 = function() { _origLoad5(); setTimeout(updateNoteBtn, 10); };
+
+const PREGUNTAS_T1 = [
+  // COMBURENTE
+  { tema:"Comburente · Composición del aire", texto:"¿Cuál es la composición del aire en porcentaje de O₂, N₂ y otros gases?", opciones:["21% O₂ + 78% N₂ + 1% otros","18% O₂ + 80% N₂ + 2% otros","25% O₂ + 74% N₂ + 1% otros"], correcta:0 },
+  { tema:"Comburente · O₂", texto:"¿Por debajo de qué concentración de O₂ decrece el fuego?", opciones:["Por debajo del 15%","Por debajo del 18%","Por debajo del 21%"], correcta:1 },
+  { tema:"Comburente · O₂", texto:"¿Por debajo de qué proporción de O₂ la mayoría de combustibles no mantienen la combustión?", opciones:["Por debajo del 12%","Por debajo del 18%","Por debajo del 15%"], correcta:2 },
+  // VELOCIDAD COMBUSTIÓN
+  { tema:"Velocidad de combustión", texto:"¿Cómo se llama la combustión muy rápida cuya velocidad de onda de choque es inferior a la velocidad del sonido?", opciones:["Detonación","Deflagración","Explosión controlada"], correcta:1 },
+  { tema:"Velocidad de combustión", texto:"En una deflagración, ¿cuál es la velocidad del frente de llama?", opciones:["≥ 340 m/s","= 340 m/s","< 340 m/s"], correcta:2 },
+  { tema:"Velocidad de combustión", texto:"¿Cómo se llama la combustión muy rápida cuya velocidad de onda de choque es igual o superior a la velocidad del sonido?", opciones:["Deflagración","Fulminación","Detonación"], correcta:2 },
+  { tema:"Velocidad de combustión", texto:"En una detonación, ¿cuál es la velocidad del frente de llama?", opciones:["< 340 m/s","≥ 340 m/s","Entre 200 y 340 m/s"], correcta:1 },
+  // AGUA
+  { tema:"Agentes extintores · Agua", texto:"¿Cuántas veces aproximadamente incrementa su volumen el agua al vaporizarse?", opciones:["Aprox. 500 veces","Aprox. 1.700 veces","Aprox. 3.000 veces"], correcta:1 },
+  { tema:"Agentes extintores · Agua", texto:"¿Cuál es el diámetro óptimo de las gotas de agua para conseguir los mejores resultados de extinción?", opciones:["Entre 0,02 y 0,1 mm","Entre 2 y 5 mm","Entre 0,2 y 1 mm"], correcta:2 },
+  // ESPUMA - GENERAL
+  { tema:"Espuma · Dosificación", texto:"¿Hasta qué porcentaje máximo se dosifica el espumógeno con agua?", opciones:["Hasta el 3%","Hasta el 6%","Hasta el 10%"], correcta:1 },
+  // ÍNDICE DE EXPANSIÓN
+  { tema:"Espuma · Índice de expansión", texto:"¿Cuál es el índice de expansión de la espuma de baja expansión?", opciones:["Entre 20 y 200","< 20","≥ 200"], correcta:1 },
+  { tema:"Espuma · Índice de expansión", texto:"La espuma de baja expansión tiene entre 7 y 9 un elevado contenido hídrico y burbuja pequeña. ¿Cuál es su índice de expansión máximo?", opciones:["< 20","< 50","< 100"], correcta:0 },
+  { tema:"Espuma · Índice de expansión", texto:"¿Cuál es el índice de expansión de la espuma de media expansión?", opciones:["< 20","≥ 200","Entre 20 y 200"], correcta:2 },
+  { tema:"Espuma · Índice de expansión", texto:"¿Cuál es el índice de expansión de la espuma de alta expansión?", opciones:["Entre 20 y 200","≥ 200","< 20"], correcta:1 },
+  { tema:"Espuma · Índice de expansión", texto:"¿Cómo son las burbujas de la espuma de alta expansión?", opciones:["Pequeñas y con alto contenido hídrico","Medianas y compactas","Ligeras y de gran tamaño"], correcta:2 },
+  // LANZAS ESPUMA
+  { tema:"Espuma · Lanzas baja expansión", texto:"Una lanza de baja expansión racorada en 45 mm, ¿qué caudal nominal tiene?", opciones:["400 u 800 l/min","100 o 200 l/min","200 o 400 l/min"], correcta:2 },
+  { tema:"Espuma · Lanzas baja expansión", texto:"Una lanza de baja expansión racorada en 70 mm, ¿qué caudal nominal tiene?", opciones:["200 o 400 l/min","400 u 800 l/min","800 o 1.600 l/min"], correcta:1 },
+  { tema:"Espuma · Lanzas baja expansión · Colores", texto:"¿Qué color identifica una lanza de espuma de baja expansión de 200 l/min?", opciones:["Rojo","Azul","Amarillo"], correcta:2 },
+  { tema:"Espuma · Lanzas baja expansión · Colores", texto:"¿Qué color identifica una lanza de espuma de baja expansión de 400 l/min?", opciones:["Amarillo","Rojo","Azul"], correcta:1 },
+  { tema:"Espuma · Lanzas baja expansión · Colores", texto:"¿Qué color identifica una lanza de espuma de baja expansión de 800 l/min?", opciones:["Rojo","Amarillo","Azul"], correcta:2 },
+  { tema:"Espuma · Lanzas expansión", texto:"Las lanzas de espuma mediante expansión racoradas en 45 mm tienen manómetro. ¿Qué presión indica la zona óptima para la formación de espuma?", opciones:["5 Kg/cm²","3 Kg/cm²","1 Kg/cm²"], correcta:1 },
+  // DOSIFICACIÓN CLASES ESPUMA
+  { tema:"Espuma · Dosificación AFFF", texto:"¿Cuál es la dosificación de espumógeno en agua para la espuma AFFF?", opciones:["Del 2-3-6%","Hasta el 6%","Del 3-6%"], correcta:1 },
+  { tema:"Espuma · Dosificación multiexpansión", texto:"¿Cuál es la dosificación de espumógeno en agua para espumas multiexpansión?", opciones:["Hasta el 6%","Del 2-3-6%","Del 3-6%"], correcta:1 },
+  { tema:"Espuma · Dosificación antialcohol", texto:"¿Cuál es la dosificación de espumógeno en agua para espumas antialcohol?", opciones:["Del 2-3-6%","Hasta el 6%","Del 3-6%"], correcta:2 },
+  // CARACTERÍSTICAS ESPUMA
+  { tema:"Espuma · Estabilidad", texto:"¿Qué define el 'drenaje del 25%' en la espuma?", opciones:["El tiempo hasta que pierde el 25% del líquido que la constituye","El porcentaje de agua en la mezcla espumante","La presión mínima de trabajo de la lanza"], correcta:0 },
+  { tema:"Espuma · Estabilidad", texto:"¿Qué dos factores modificadores NO considera el parámetro de drenaje del 25%?", opciones:["La presión y el caudal","Las elevadas temperaturas y el contacto con el combustible","La distancia de lanzamiento y el viento"], correcta:1 },
+  // CO2
+  { tema:"Agentes gaseosos · CO₂", texto:"¿Cuántas veces aproximadamente es más denso el CO₂ que el aire?", opciones:["1,5 veces","3 veces","0,8 veces"], correcta:0 },
+  { tema:"Agentes gaseosos · CO₂", texto:"¿Por debajo de qué temperatura se almacena el CO₂ como gas licuado en botellas?", opciones:["Por debajo de 0 ºC","Por debajo de 31 ºC","Por debajo de 50 ºC"], correcta:1 },
+  { tema:"Agentes gaseosos · CO₂", texto:"¿Qué concentración de CO₂ en volumen provoca molestias generalizadas en corto espacio de tiempo?", opciones:["1%","4%","9%"], correcta:1 },
+  { tema:"Agentes gaseosos · CO₂", texto:"¿Qué concentración de CO₂ es la máxima soportable y provoca pérdida de consciencia?", opciones:["4%","15%","9%"], correcta:2 },
+  { tema:"Agentes gaseosos · CO₂", texto:"¿Qué temperatura alcanza el CO₂ al salir del extintor y qué riesgo supone?", opciones:["0 ºC, riesgo de hipotermia leve","−79 ºC, puede producir quemaduras en la piel","−20 ºC, riesgo de congelación superficial"], correcta:1 },
+  { tema:"Agentes gaseosos · CO₂", texto:"¿Qué equipo de protección es necesario para actuar en espacios donde se haya vaporizado CO₂?", opciones:["Máscara de filtro antigás","Equipo de respiración autónoma (ERA)","Guantes y gafas de protección únicamente"], correcta:1 },
+  // HALONES
+  { tema:"Agentes gaseosos · Halones", texto:"¿Durante cuántos minutos pueden aplicarse los halones antes de que el incendio alcance temperaturas peligrosas?", opciones:["Durante los 5 primeros minutos","Durante los 10 primeros minutos","Durante los 20 primeros minutos"], correcta:1 },
+  { tema:"Agentes gaseosos · Halones", texto:"¿A partir de qué temperatura aproximada el halón se descompone en productos tóxicos e ineficaces?", opciones:["A partir de 200 ºC","A partir de 300 ºC","A partir de 500 ºC"], correcta:2 },
+  { tema:"Agentes gaseosos · Halones", texto:"¿Qué productos tóxicos genera la descomposición del halón a altas temperaturas?", opciones:["Monóxido de carbono y dióxido de azufre","Bromuro, cloruro y fluoruro de hidrógeno","Amoníaco y ácido clorhídrico"], correcta:1 },
+  // POLVO QUÍMICO
+  { tema:"Polvo químico seco · PQS", texto:"¿Cuál es el rango de dimensión de partículas del polvo químico seco?", opciones:["Entre 1 y 10 micras","Entre 50 y 200 micras","Entre 10 y 75 micras"], correcta:2 },
+  { tema:"Polvo químico seco · PQS", texto:"¿Con qué tamaño de partículas se obtienen los mejores resultados en el PQS?", opciones:["Entre 20 y 25 micras","Entre 5 y 10 micras","Entre 50 y 75 micras"], correcta:0 },
+];
+
+const PREGUNTAS_T7 = [
+  // PISTAS - BOEING 747
+  { tema:"Pistas · Distancias", texto:"¿Cuántos metros necesita un Boeing 747-400 para despegar (a máximo peso) en un aeropuerto a nivel del mar con temperatura estándar?", opciones:["2.500 metros","3.200 metros","4.000 metros"], correcta:1 },
+  { tema:"Pistas · Distancias", texto:"¿Cuántos metros necesita un Boeing 747-400 a 600 m de elevación y 15 ºC sobre temperatura estándar?", opciones:["3.200 metros","4.500 metros","Cerca de 4.000 metros"], correcta:2 },
+  // ILUMINACIÓN - UMBRAL
+  { tema:"Pista · Luces de umbral", texto:"¿A qué distancia máxima del extremo de la pista se distribuyen las luces de umbral?", opciones:["A menos de 3 metros","A menos de 10 metros","A menos de 30 metros"], correcta:0 },
+  // EJE DE PISTA
+  { tema:"Pista · Eje · Iluminación", texto:"En el eje de pista, ¿de qué color son las luces desde el umbral hasta los 900 m del extremo?", opciones:["Rojas","Blancas variables","Rojas y blancas alternativas"], correcta:1 },
+  { tema:"Pista · Eje · Iluminación", texto:"En el eje de pista, ¿de qué color son las luces desde los 900 m hasta los 300 m del extremo?", opciones:["Blancas","Rojas","Rojas y blancas alternativas"], correcta:2 },
+  { tema:"Pista · Eje · Iluminación", texto:"En el eje de pista, ¿de qué color son las luces en los últimos 300 m hasta el extremo?", opciones:["Blancas","Rojas y blancas alternativas","Rojas"], correcta:2 },
+  // BORDE DE PISTA
+  { tema:"Pista · Borde · Iluminación", texto:"En el extremo de pista (sentido despegue), ¿en qué distancia pueden ser amarillas las luces de borde?", opciones:["En los últimos 300 m o el cuarto de pista","En 600 metros o el tercio de la pista","En 900 metros o la mitad de la pista"], correcta:1 },
+  // ZONA TOMA CONTACTO
+  { tema:"Pista · Zona de toma de contacto", texto:"En una pista de más de 2.400 metros, ¿cuánto mide la zona de toma de contacto?", opciones:["600 metros","1.200 metros","900 metros"], correcta:2 },
+  { tema:"Pista · Zona de toma de contacto", texto:"¿A qué distancia del umbral comienza la señalización de la zona de toma de contacto?", opciones:["A 50 metros","A 300 metros","A 150 metros"], correcta:2 },
+  { tema:"Pista · Zona de toma de contacto", texto:"¿Hasta qué distancia del umbral van las luces de la zona de toma de contacto?", opciones:["Hasta 600 metros","Hasta 900 metros","Hasta 1.200 metros"], correcta:1 },
+  // FRANJA DE PISTA
+  { tema:"Pista · Franja", texto:"¿Entre qué distancias puede variar la franja de pista desde el borde según el tipo de operaciones?", opciones:["Entre 30 y 60 metros","Entre 100 y 150 metros","Entre 45 y 77,5 metros"], correcta:2 },
+  // RESA
+  { tema:"Pista · RESA", texto:"¿Cuál es la extensión mínima del Área de Seguridad de Extremo de Pista (RESA) desde el extremo de la franja?", opciones:["Por lo menos 90 m","Por lo menos 150 m","Por lo menos 60 m"], correcta:0 },
+  // SEÑAL ANTERIOR AL UMBRAL
+  { tema:"Pista · Umbral", texto:"¿A partir de qué longitud pavimentada se señaliza el área anterior al umbral como no apta para aeronaves?", opciones:["Si excede de 30 metros","Si excede de 60 metros","Si excede de 100 metros"], correcta:1 },
+  // LOCALIZADOR ILS
+  { tema:"ILS · Localizador", texto:"¿A qué distancia del extremo de pista se ubica normalmente la antena del localizador (LLz)?", opciones:["A unos 150 metros","A unos 300 metros","A unos 500 metros"], correcta:1 },
+  { tema:"ILS · Localizador", texto:"¿A qué distancia lateral de la prolongación del eje de pista se sitúa el equipo transmisor del localizador?", opciones:["A 30-50 metros","A 80-100 metros","A 150-200 metros"], correcta:1 },
+  // SENDA DE DESCENSO
+  { tema:"ILS · Senda de descenso", texto:"¿A qué distancia aproximada desde el umbral se ubica la senda de descenso (Glide Path)?", opciones:["A unos 150 metros","A unos 500 metros","A unos 300 metros"], correcta:2 },
+  { tema:"ILS · Senda de descenso", texto:"¿A qué distancia lateral del eje de pista se ubica la senda de descenso?", opciones:["A 80 metros","A 150 metros","A 300 metros"], correcta:1 },
+  // RADIOBALIZAS
+  { tema:"ILS · Radiobalizas", texto:"¿Cuántas radiobalizas mínimas debe tener toda instalación ILS?", opciones:["Una","Tres","Dos"], correcta:2 },
+  { tema:"ILS · Radiobalizas", texto:"¿A qué distancia del umbral de pista se ubica la Radiobaliza Exterior (Outer Marker)?", opciones:["A unos 1.050 m","A unos 7 km","A unos 300 m"], correcta:1 },
+  { tema:"ILS · Radiobalizas", texto:"¿A qué distancia del umbral se ubica la Radiobaliza Intermedia (Middle Marker)?", opciones:["A unos 7 km","A unos 300 m","A unos 1.050 m"], correcta:2 },
+  { tema:"ILS · Radiobalizas", texto:"¿Entre qué distancias se sitúa la Radiobaliza Interior (Inner Marker)?", opciones:["Entre 75 y 450 m","Entre 300 y 600 m","Entre 1.000 y 2.000 m"], correcta:0 },
+  // CATEGORÍAS ILS
+  { tema:"ILS · Categoría I", texto:"En categoría ILS I, ¿cuál es la altura de decisión mínima?", opciones:["No inferior a 30 metros","No inferior a 60 metros","No inferior a 100 metros"], correcta:1 },
+  { tema:"ILS · Categoría I", texto:"En categoría ILS I, ¿cuál es la visibilidad mínima requerida?", opciones:["No menos de 500 metros","No menos de 800 metros","No menos de 1.000 metros"], correcta:1 },
+  { tema:"ILS · Categoría I", texto:"En categoría ILS I, ¿cuál es el alcance visual en pista (RVR) mínimo?", opciones:["No inferior a 300 metros","No inferior a 550 metros","No inferior a 175 metros"], correcta:1 },
+  { tema:"ILS · Categoría II", texto:"En categoría ILS II, ¿entre qué valores está la altura de decisión?", opciones:["Por debajo de 60 m pero no inferior a 30 m","Por debajo de 30 m o sin altura de decisión","No inferior a 60 m"], correcta:0 },
+  { tema:"ILS · Categoría II", texto:"En categoría ILS II, ¿cuál es el alcance visual en pista (RVR) mínimo?", opciones:["No inferior a 550 metros","No inferior a 175 metros","No inferior a 300 metros"], correcta:2 },
+  { tema:"ILS · Categoría III A", texto:"En categoría ILS III A, ¿cuál es la altura de decisión?", opciones:["Inferior a 60 metros","Inferior a 30 metros o sin altura de decisión","Inferior a 15 metros o sin altura de decisión"], correcta:1 },
+  { tema:"ILS · Categoría III A", texto:"En categoría ILS III A, ¿cuál es el alcance visual en pista mínimo?", opciones:["No inferior a 50 metros","No inferior a 300 metros","No inferior a 175 metros"], correcta:2 },
+  { tema:"ILS · Categoría III B", texto:"En categoría ILS III B, ¿cuál es la altura de decisión?", opciones:["Inferior a 30 metros o sin altura de decisión","Inferior a 15 metros o sin altura de decisión","No inferior a 60 metros"], correcta:1 },
+  { tema:"ILS · Categoría III B", texto:"En categoría ILS III B, ¿cuál es el alcance visual en pista mínimo?", opciones:["No inferior a 175 metros","No inferior a 300 metros","No inferior a 50 metros"], correcta:2 },
+];
+
+// --- TEMA 1 ENGINE ---
+let queue1=[], current1=0, aciertos1=0, errores1=0, answered1=false, sessionFails1={};
+function shuffle1(arr){for(let i=arr.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[arr[i],arr[j]]=[arr[j],arr[i]];}return arr;}
+function buildQueue1(){queue1=shuffle1([...PREGUNTAS_T1].map((q,i)=>{return{...q,originalIdx:i}}));current1=0;aciertos1=0;errores1=0;sessionFails1={};}
+function loadQuestion1(){
+  if(current1>=queue1.length){showFinish1();return;}
+  answered1=false;
+  const q=queue1[current1];
+  document.getElementById('qMeta1').textContent=`${q.tema} · ${current1+1}/${queue1.length}`;
+  document.getElementById('qText1').textContent=q.texto;
+  updateStats1();
+  const letters=['A','B','C'];
+  const opts=q.opciones.map((o,i)=>({text:o,isCorrect:i===q.correcta}));
+  shuffle1(opts);
+  const container=document.getElementById('optionsContainer1');
+  container.innerHTML='';
+  opts.forEach((opt,i)=>{
+    const btn=document.createElement('button');
+    btn.className='option-btn';btn.dataset.correct=opt.isCorrect;
+    btn.innerHTML=`<span class="opt-letter">${letters[i]}</span>${opt.text}`;
+    btn.onclick=()=>selectOption1(btn,opt.isCorrect,q);
+    container.appendChild(btn);
+  });
+  document.getElementById('feedback1').className='feedback';
+  document.getElementById('nextBtn1').className='next-btn';
+  document.getElementById('questionCard1').style.display='block';
+  document.getElementById('finishCard1').className='finish-card';
+  setTimeout(updateNoteBtn,10);
+}
+function selectOption1(btn,isCorrect,q){
+  if(answered1)return;answered1=true;
+  document.querySelectorAll('#optionsContainer1 .option-btn').forEach(b=>{b.disabled=true;if(b.dataset.correct==='true')b.classList.add('revealed');});
+  const feedback=document.getElementById('feedback1');
+  if(isCorrect){btn.classList.remove('revealed');btn.classList.add('correct');aciertos1++;feedback.className='feedback correct show';document.getElementById('feedbackIcon1').textContent='✓';document.getElementById('feedbackText1').textContent='¡Correcto!';}
+  else{btn.classList.add('wrong');errores1++;const key=q.originalIdx;sessionFails1[key]=(sessionFails1[key]||0)+1;const fails=JSON.parse(localStorage.getItem('aena_fails1')||'{}');fails[key]=(fails[key]||0)+1;localStorage.setItem('aena_fails1',JSON.stringify(fails));feedback.className='feedback wrong show';document.getElementById('feedbackIcon1').textContent='✗';document.getElementById('feedbackText1').textContent=`Incorrecto. La respuesta correcta es: ${q.opciones[q.correcta]}`;}
+  document.getElementById('nextBtn1').className='next-btn show';
+  updateStats1();renderHistory1();
+}
+function nextQuestion1(){current1++;loadQuestion1();}
+function updateStats1(){
+  const total=current1+(answered1?1:0);
+  document.getElementById('statPregunta1').textContent=`${Math.min(current1+1,queue1.length)} / ${queue1.length}`;
+  document.getElementById('statAciertos1').textContent=aciertos1;
+  document.getElementById('statErrores1').textContent=errores1;
+  const pct=total>0?Math.round((aciertos1/total)*100):0;
+  const el=document.getElementById('statPct1');el.textContent=total>0?pct+'%':'—';
+  el.style.color=pct>=70?'var(--green)':pct>=50?'var(--yellow)':'var(--red)';
+  const prog=queue1.length>0?Math.round((current1/queue1.length)*100):0;
+  document.getElementById('progressFill1').style.width=prog+'%';
+  document.getElementById('progressPct1').textContent=prog+'%';
+}
+function showFinish1(){
+  document.getElementById('questionCard1').style.display='none';
+  const total=queue1.length;const pct=Math.round((aciertos1/total)*100);
+  const card=document.getElementById('finishCard1');card.className='finish-card show';
+  document.getElementById('finishScore1').textContent=pct+'%';
+  document.getElementById('finishDetail1').textContent=`${aciertos1} aciertos y ${errores1} errores de ${total} preguntas`;
+  document.getElementById('finishEmoji1').textContent=pct>=80?'🎯':pct>=60?'💪':'📚';
+  saveSession1(pct,total);
+}
+function restartTest1(){buildQueue1();document.getElementById('questionCard1').style.display='block';document.getElementById('finishCard1').className='finish-card';loadQuestion1();}
+function saveSession1(pct,total){
+  const hist=JSON.parse(localStorage.getItem('aena_hist1')||'[]');
+  const now=new Date();const fecha=now.toLocaleDateString('es-ES',{day:'2-digit',month:'2-digit',year:'numeric'});
+  hist.unshift({fecha,tema:'Tema 1',aciertos:aciertos1,errores:errores1,total,pct});
+  if(hist.length>50)hist.pop();localStorage.setItem('aena_hist1',JSON.stringify(hist));renderHistory1();
+}
+function renderHistory1(){
+  const hist=JSON.parse(localStorage.getItem('aena_hist1')||'[]');
+  const fails=JSON.parse(localStorage.getItem('aena_fails1')||'{}');
+  const failBody=document.getElementById('failBody1');
+  const failEntries=Object.entries(fails).map(([k,v])=>({q:PREGUNTAS_T1[+k],veces:v})).filter(e=>e.q).sort((a,b)=>b.veces-a.veces).slice(0,10);
+  failBody.innerHTML=failEntries.length===0?'<tr><td colspan="4" class="hist-empty">Sin datos aún.</td></tr>':failEntries.map((e,i)=>`<tr><td style="color:var(--text2)">${i+1}</td><td style="font-size:13px">${e.q.texto}</td><td style="font-size:13px;color:var(--green)">${e.q.opciones[e.q.correcta]}</td><td><span class="pill pill-red">${e.veces}x</span></td></tr>`).join('');
+  const tbody=document.getElementById('histBody1');
+  tbody.innerHTML=hist.length===0?'<tr><td colspan="6" class="hist-empty">Sin sesiones registradas aún.</td></tr>':hist.map(s=>{const cls=s.pct>=80?'pill-green':s.pct>=60?'pill-yellow':'pill-red';const nota=s.pct>=80?'✓ Bien':s.pct>=60?'⚠ Regular':'✗ Repasar';return`<tr><td>${s.fecha}</td><td>${s.tema}</td><td style="color:var(--green);font-weight:600">${s.aciertos}</td><td style="color:var(--red);font-weight:600">${s.errores}</td><td><span class="pill ${cls}">${s.pct}%</span></td><td style="color:var(--text2);font-size:13px">${nota}</td></tr>`;}).join('');
+}
+function clearHistory1(){if(!confirm('¿Borrar historial del Tema 1?'))return;localStorage.removeItem('aena_hist1');localStorage.removeItem('aena_fails1');renderHistory1();}
+buildQueue1();loadQuestion1();renderHistory1();
+
+// --- TEMA 7 ENGINE ---
+let queue7=[], current7=0, aciertos7=0, errores7=0, answered7=false, sessionFails7={};
+function shuffle7(arr){for(let i=arr.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[arr[i],arr[j]]=[arr[j],arr[i]];}return arr;}
+function buildQueue7(){queue7=shuffle7([...PREGUNTAS_T7].map((q,i)=>{return{...q,originalIdx:i}}));current7=0;aciertos7=0;errores7=0;sessionFails7={};}
+function loadQuestion7(){
+  if(current7>=queue7.length){showFinish7();return;}
+  answered7=false;
+  const q=queue7[current7];
+  document.getElementById('qMeta7').textContent=`${q.tema} · ${current7+1}/${queue7.length}`;
+  document.getElementById('qText7').textContent=q.texto;
+  updateStats7();
+  const letters=['A','B','C'];
+  const opts=q.opciones.map((o,i)=>({text:o,isCorrect:i===q.correcta}));
+  shuffle7(opts);
+  const container=document.getElementById('optionsContainer7');
+  container.innerHTML='';
+  opts.forEach((opt,i)=>{
+    const btn=document.createElement('button');
+    btn.className='option-btn';btn.dataset.correct=opt.isCorrect;
+    btn.innerHTML=`<span class="opt-letter">${letters[i]}</span>${opt.text}`;
+    btn.onclick=()=>selectOption7(btn,opt.isCorrect,q);
+    container.appendChild(btn);
+  });
+  document.getElementById('feedback7').className='feedback';
+  document.getElementById('nextBtn7').className='next-btn';
+  document.getElementById('questionCard7').style.display='block';
+  document.getElementById('finishCard7').className='finish-card';
+  setTimeout(updateNoteBtn,10);
+}
+function selectOption7(btn,isCorrect,q){
+  if(answered7)return;answered7=true;
+  document.querySelectorAll('#optionsContainer7 .option-btn').forEach(b=>{b.disabled=true;if(b.dataset.correct==='true')b.classList.add('revealed');});
+  const feedback=document.getElementById('feedback7');
+  if(isCorrect){btn.classList.remove('revealed');btn.classList.add('correct');aciertos7++;feedback.className='feedback correct show';document.getElementById('feedbackIcon7').textContent='✓';document.getElementById('feedbackText7').textContent='¡Correcto!';}
+  else{btn.classList.add('wrong');errores7++;const key=q.originalIdx;sessionFails7[key]=(sessionFails7[key]||0)+1;const fails=JSON.parse(localStorage.getItem('aena_fails7')||'{}');fails[key]=(fails[key]||0)+1;localStorage.setItem('aena_fails7',JSON.stringify(fails));feedback.className='feedback wrong show';document.getElementById('feedbackIcon7').textContent='✗';document.getElementById('feedbackText7').textContent=`Incorrecto. La respuesta correcta es: ${q.opciones[q.correcta]}`;}
+  document.getElementById('nextBtn7').className='next-btn show';
+  updateStats7();renderHistory7();
+}
+function nextQuestion7(){current7++;loadQuestion7();}
+function updateStats7(){
+  const total=current7+(answered7?1:0);
+  document.getElementById('statPregunta7').textContent=`${Math.min(current7+1,queue7.length)} / ${queue7.length}`;
+  document.getElementById('statAciertos7').textContent=aciertos7;
+  document.getElementById('statErrores7').textContent=errores7;
+  const pct=total>0?Math.round((aciertos7/total)*100):0;
+  const el=document.getElementById('statPct7');el.textContent=total>0?pct+'%':'—';
+  el.style.color=pct>=70?'var(--green)':pct>=50?'var(--yellow)':'var(--red)';
+  const prog=queue7.length>0?Math.round((current7/queue7.length)*100):0;
+  document.getElementById('progressFill7').style.width=prog+'%';
+  document.getElementById('progressPct7').textContent=prog+'%';
+}
+function showFinish7(){
+  document.getElementById('questionCard7').style.display='none';
+  const total=queue7.length;const pct=Math.round((aciertos7/total)*100);
+  const card=document.getElementById('finishCard7');card.className='finish-card show';
+  document.getElementById('finishScore7').textContent=pct+'%';
+  document.getElementById('finishDetail7').textContent=`${aciertos7} aciertos y ${errores7} errores de ${total} preguntas`;
+  document.getElementById('finishEmoji7').textContent=pct>=80?'🎯':pct>=60?'💪':'📚';
+  saveSession7(pct,total);
+}
+function restartTest7(){buildQueue7();document.getElementById('questionCard7').style.display='block';document.getElementById('finishCard7').className='finish-card';loadQuestion7();}
+function saveSession7(pct,total){
+  const hist=JSON.parse(localStorage.getItem('aena_hist7')||'[]');
+  const now=new Date();const fecha=now.toLocaleDateString('es-ES',{day:'2-digit',month:'2-digit',year:'numeric'});
+  hist.unshift({fecha,tema:'Tema 7',aciertos:aciertos7,errores:errores7,total,pct});
+  if(hist.length>50)hist.pop();localStorage.setItem('aena_hist7',JSON.stringify(hist));renderHistory7();
+}
+function renderHistory7(){
+  const hist=JSON.parse(localStorage.getItem('aena_hist7')||'[]');
+  const fails=JSON.parse(localStorage.getItem('aena_fails7')||'{}');
+  const failBody=document.getElementById('failBody7');
+  const failEntries=Object.entries(fails).map(([k,v])=>({q:PREGUNTAS_T7[+k],veces:v})).filter(e=>e.q).sort((a,b)=>b.veces-a.veces).slice(0,10);
+  failBody.innerHTML=failEntries.length===0?'<tr><td colspan="4" class="hist-empty">Sin datos aún.</td></tr>':failEntries.map((e,i)=>`<tr><td style="color:var(--text2)">${i+1}</td><td style="font-size:13px">${e.q.texto}</td><td style="font-size:13px;color:var(--green)">${e.q.opciones[e.q.correcta]}</td><td><span class="pill pill-red">${e.veces}x</span></td></tr>`).join('');
+  const tbody=document.getElementById('histBody7');
+  tbody.innerHTML=hist.length===0?'<tr><td colspan="6" class="hist-empty">Sin sesiones registradas aún.</td></tr>':hist.map(s=>{const cls=s.pct>=80?'pill-green':s.pct>=60?'pill-yellow':'pill-red';const nota=s.pct>=80?'✓ Bien':s.pct>=60?'⚠ Regular':'✗ Repasar';return`<tr><td>${s.fecha}</td><td>${s.tema}</td><td style="color:var(--green);font-weight:600">${s.aciertos}</td><td style="color:var(--red);font-weight:600">${s.errores}</td><td><span class="pill ${cls}">${s.pct}%</span></td><td style="color:var(--text2);font-size:13px">${nota}</td></tr>`;}).join('');
+}
+function clearHistory7(){if(!confirm('¿Borrar historial del Tema 7?'))return;localStorage.removeItem('aena_hist7');localStorage.removeItem('aena_fails7');renderHistory7();}
+buildQueue7();loadQuestion7();renderHistory7();
 
 </script>
 </body>
