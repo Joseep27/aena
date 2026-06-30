@@ -371,6 +371,10 @@
   <button class="tab-btn" onclick="showTab('t5')">Tema 5</button>
   <button class="tab-btn" onclick="showTab('t1')">Tema 1</button>
   <button class="tab-btn" onclick="showTab('t7')">Tema 7</button>
+  <button class="tab-btn" onclick="showTab('t2')">Tema 2</button>
+  <button class="tab-btn" onclick="showTab('t9')">Capítulo 9</button>
+  <button class="tab-btn" onclick="showTab('t12')">Capítulo 12</button>
+  <button class="tab-btn" onclick="showTab('t4')">Tema 4</button>
 </div>
 
 <div class="main">
@@ -631,6 +635,161 @@
       <div class="hist-header"><div class="hist-title">Historial</div><button class="clear-btn" onclick="clearHistory7()">Borrar historial</button></div>
       <div class="hist-section"><div class="hist-title">Preguntas más falladas</div><div class="hist-card"><table class="hist-table"><thead><tr><th>#</th><th>Pregunta</th><th>Respuesta correcta</th><th>Veces fallada</th></tr></thead><tbody id="failBody7"><tr><td colspan="4" class="hist-empty">Sin datos aún.</td></tr></tbody></table></div></div>
       <div class="hist-section"><div class="hist-title">Sesiones</div><div class="hist-card"><table class="hist-table"><thead><tr><th>Fecha</th><th>Tema</th><th>Aciertos</th><th>Errores</th><th>% Éxito</th><th>Nota</th></tr></thead><tbody id="histBody7"><tr><td colspan="6" class="hist-empty">Sin sesiones registradas aún.</td></tr></tbody></table></div></div>
+    </div>
+  </section>
+
+
+
+  <!-- TEMA 2 SECTION -->
+  <section class="section" id="tab-t2">
+    <button class="reset-top-btn" onclick="restartTest2()">🔄 Nuevo test</button>
+    <div class="stats-row">
+      <div class="stat-card"><div class="stat-label">Pregunta</div><div class="stat-value accent" id="statPregunta2">1 / 0</div></div>
+      <div class="stat-card"><div class="stat-label">Aciertos</div><div class="stat-value green" id="statAciertos2">0</div></div>
+      <div class="stat-card"><div class="stat-label">Errores</div><div class="stat-value red" id="statErrores2">0</div></div>
+      <div class="stat-card"><div class="stat-label">% Éxito</div><div class="stat-value" id="statPct2">—</div></div>
+    </div>
+    <div class="progress-wrap">
+      <div class="progress-label"><span>Progreso</span><span id="progressPct2">0%</span></div>
+      <div class="progress-bar"><div class="progress-fill" id="progressFill2" style="width:0%"></div></div>
+    </div>
+    <div class="question-card" id="questionCard2">
+      <div class="q-meta" id="qMeta2">Tema 2 · Medios manuales de extinción</div>
+      <div class="q-header">
+        <div class="q-text" id="qText2">Cargando...</div>
+        <button class="note-btn" id="noteBtn2" onclick="openNote('t2')" title="Añadir nota">📝</button>
+      </div>
+      <div class="options" id="optionsContainer2"></div>
+      <div class="feedback" id="feedback2"><span class="feedback-icon" id="feedbackIcon2"></span><span id="feedbackText2"></span></div>
+      <button class="next-btn" id="nextBtn2" onclick="nextQuestion2()">Siguiente →</button>
+    </div>
+    <div class="finish-card" id="finishCard2">
+      <div class="finish-emoji" id="finishEmoji2">🎯</div>
+      <div class="finish-title">Test completado</div>
+      <div class="finish-sub">Tema 2 · Medios manuales de extinción</div>
+      <div class="finish-score" id="finishScore2">0%</div>
+      <div class="finish-detail" id="finishDetail2"></div>
+      <button class="restart-btn" onclick="restartTest2()">Repetir test 🔄</button>
+    </div>
+    <div style="margin-top:40px;border-top:1px solid var(--border);padding-top:32px;">
+      <div class="hist-header"><div class="hist-title">Historial</div><button class="clear-btn" onclick="clearHistory2()">Borrar historial</button></div>
+      <div class="hist-section"><div class="hist-title">Preguntas más falladas</div><div class="hist-card"><table class="hist-table"><thead><tr><th>#</th><th>Pregunta</th><th>Respuesta correcta</th><th>Veces fallada</th></tr></thead><tbody id="failBody2"><tr><td colspan="4" class="hist-empty">Sin datos aún.</td></tr></tbody></table></div></div>
+      <div class="hist-section"><div class="hist-title">Sesiones</div><div class="hist-card"><table class="hist-table"><thead><tr><th>Fecha</th><th>Tema</th><th>Aciertos</th><th>Errores</th><th>% Éxito</th><th>Nota</th></tr></thead><tbody id="histBody2"><tr><td colspan="6" class="hist-empty">Sin sesiones registradas aún.</td></tr></tbody></table></div></div>
+    </div>
+  </section>
+
+  <!-- CAPÍTULO 9 SECTION -->
+  <section class="section" id="tab-t9">
+    <button class="reset-top-btn" onclick="restartTest9()">🔄 Nuevo test</button>
+    <div class="stats-row">
+      <div class="stat-card"><div class="stat-label">Pregunta</div><div class="stat-value accent" id="statPregunta9">1 / 0</div></div>
+      <div class="stat-card"><div class="stat-label">Aciertos</div><div class="stat-value green" id="statAciertos9">0</div></div>
+      <div class="stat-card"><div class="stat-label">Errores</div><div class="stat-value red" id="statErrores9">0</div></div>
+      <div class="stat-card"><div class="stat-label">% Éxito</div><div class="stat-value" id="statPct9">—</div></div>
+    </div>
+    <div class="progress-wrap">
+      <div class="progress-label"><span>Progreso</span><span id="progressPct9">0%</span></div>
+      <div class="progress-bar"><div class="progress-fill" id="progressFill9" style="width:0%"></div></div>
+    </div>
+    <div class="question-card" id="questionCard9">
+      <div class="q-meta" id="qMeta9">Capítulo 9 · Urgencias médicas</div>
+      <div class="q-header">
+        <div class="q-text" id="qText9">Cargando...</div>
+        <button class="note-btn" id="noteBtn9" onclick="openNote('t9')" title="Añadir nota">📝</button>
+      </div>
+      <div class="options" id="optionsContainer9"></div>
+      <div class="feedback" id="feedback9"><span class="feedback-icon" id="feedbackIcon9"></span><span id="feedbackText9"></span></div>
+      <button class="next-btn" id="nextBtn9" onclick="nextQuestion9()">Siguiente →</button>
+    </div>
+    <div class="finish-card" id="finishCard9">
+      <div class="finish-emoji" id="finishEmoji9">🎯</div>
+      <div class="finish-title">Test completado</div>
+      <div class="finish-sub">Capítulo 9 · Urgencias médicas</div>
+      <div class="finish-score" id="finishScore9">0%</div>
+      <div class="finish-detail" id="finishDetail9"></div>
+      <button class="restart-btn" onclick="restartTest9()">Repetir test 🔄</button>
+    </div>
+    <div style="margin-top:40px;border-top:1px solid var(--border);padding-top:32px;">
+      <div class="hist-header"><div class="hist-title">Historial</div><button class="clear-btn" onclick="clearHistory9()">Borrar historial</button></div>
+      <div class="hist-section"><div class="hist-title">Preguntas más falladas</div><div class="hist-card"><table class="hist-table"><thead><tr><th>#</th><th>Pregunta</th><th>Respuesta correcta</th><th>Veces fallada</th></tr></thead><tbody id="failBody9"><tr><td colspan="4" class="hist-empty">Sin datos aún.</td></tr></tbody></table></div></div>
+      <div class="hist-section"><div class="hist-title">Sesiones</div><div class="hist-card"><table class="hist-table"><thead><tr><th>Fecha</th><th>Tema</th><th>Aciertos</th><th>Errores</th><th>% Éxito</th><th>Nota</th></tr></thead><tbody id="histBody9"><tr><td colspan="6" class="hist-empty">Sin sesiones registradas aún.</td></tr></tbody></table></div></div>
+    </div>
+  </section>
+
+  <!-- CAPÍTULO 12 SECTION -->
+  <section class="section" id="tab-t12">
+    <button class="reset-top-btn" onclick="restartTest12()">🔄 Nuevo test</button>
+    <div class="stats-row">
+      <div class="stat-card"><div class="stat-label">Pregunta</div><div class="stat-value accent" id="statPregunta12">1 / 0</div></div>
+      <div class="stat-card"><div class="stat-label">Aciertos</div><div class="stat-value green" id="statAciertos12">0</div></div>
+      <div class="stat-card"><div class="stat-label">Errores</div><div class="stat-value red" id="statErrores12">0</div></div>
+      <div class="stat-card"><div class="stat-label">% Éxito</div><div class="stat-value" id="statPct12">—</div></div>
+    </div>
+    <div class="progress-wrap">
+      <div class="progress-label"><span>Progreso</span><span id="progressPct12">0%</span></div>
+      <div class="progress-bar"><div class="progress-fill" id="progressFill12" style="width:0%"></div></div>
+    </div>
+    <div class="question-card" id="questionCard12">
+      <div class="q-meta" id="qMeta12">Capítulo 12 · Procedimientos OACI</div>
+      <div class="q-header">
+        <div class="q-text" id="qText12">Cargando...</div>
+        <button class="note-btn" id="noteBtn12" onclick="openNote('t12')" title="Añadir nota">📝</button>
+      </div>
+      <div class="options" id="optionsContainer12"></div>
+      <div class="feedback" id="feedback12"><span class="feedback-icon" id="feedbackIcon12"></span><span id="feedbackText12"></span></div>
+      <button class="next-btn" id="nextBtn12" onclick="nextQuestion12()">Siguiente →</button>
+    </div>
+    <div class="finish-card" id="finishCard12">
+      <div class="finish-emoji" id="finishEmoji12">🎯</div>
+      <div class="finish-title">Test completado</div>
+      <div class="finish-sub">Capítulo 12 · Procedimientos OACI</div>
+      <div class="finish-score" id="finishScore12">0%</div>
+      <div class="finish-detail" id="finishDetail12"></div>
+      <button class="restart-btn" onclick="restartTest12()">Repetir test 🔄</button>
+    </div>
+    <div style="margin-top:40px;border-top:1px solid var(--border);padding-top:32px;">
+      <div class="hist-header"><div class="hist-title">Historial</div><button class="clear-btn" onclick="clearHistory12()">Borrar historial</button></div>
+      <div class="hist-section"><div class="hist-title">Preguntas más falladas</div><div class="hist-card"><table class="hist-table"><thead><tr><th>#</th><th>Pregunta</th><th>Respuesta correcta</th><th>Veces fallada</th></tr></thead><tbody id="failBody12"><tr><td colspan="4" class="hist-empty">Sin datos aún.</td></tr></tbody></table></div></div>
+      <div class="hist-section"><div class="hist-title">Sesiones</div><div class="hist-card"><table class="hist-table"><thead><tr><th>Fecha</th><th>Tema</th><th>Aciertos</th><th>Errores</th><th>% Éxito</th><th>Nota</th></tr></thead><tbody id="histBody12"><tr><td colspan="6" class="hist-empty">Sin sesiones registradas aún.</td></tr></tbody></table></div></div>
+    </div>
+  </section>
+
+
+  <!-- TEMA 4 SECTION -->
+  <section class="section" id="tab-t4">
+    <button class="reset-top-btn" onclick="restartTest4()">🔄 Nuevo test</button>
+    <div class="stats-row">
+      <div class="stat-card"><div class="stat-label">Pregunta</div><div class="stat-value accent" id="statPregunta4">1 / 0</div></div>
+      <div class="stat-card"><div class="stat-label">Aciertos</div><div class="stat-value green" id="statAciertos4">0</div></div>
+      <div class="stat-card"><div class="stat-label">Errores</div><div class="stat-value red" id="statErrores4">0</div></div>
+      <div class="stat-card"><div class="stat-label">% Éxito</div><div class="stat-value" id="statPct4">—</div></div>
+    </div>
+    <div class="progress-wrap">
+      <div class="progress-label"><span>Progreso</span><span id="progressPct4">0%</span></div>
+      <div class="progress-bar"><div class="progress-fill" id="progressFill4" style="width:0%"></div></div>
+    </div>
+    <div class="question-card" id="questionCard4">
+      <div class="q-meta" id="qMeta4">Tema 4 · Equipos de protección</div>
+      <div class="q-header">
+        <div class="q-text" id="qText4">Cargando...</div>
+        <button class="note-btn" id="noteBtn4" onclick="openNote('t4')" title="Añadir nota">📝</button>
+      </div>
+      <div class="options" id="optionsContainer4"></div>
+      <div class="feedback" id="feedback4"><span class="feedback-icon" id="feedbackIcon4"></span><span id="feedbackText4"></span></div>
+      <button class="next-btn" id="nextBtn4" onclick="nextQuestion4()">Siguiente →</button>
+    </div>
+    <div class="finish-card" id="finishCard4">
+      <div class="finish-emoji" id="finishEmoji4">🎯</div>
+      <div class="finish-title">Test completado</div>
+      <div class="finish-sub">Tema 4 · Equipos de protección</div>
+      <div class="finish-score" id="finishScore4">0%</div>
+      <div class="finish-detail" id="finishDetail4"></div>
+      <button class="restart-btn" onclick="restartTest4()">Repetir test 🔄</button>
+    </div>
+    <div style="margin-top:40px;border-top:1px solid var(--border);padding-top:32px;">
+      <div class="hist-header"><div class="hist-title">Historial</div><button class="clear-btn" onclick="clearHistory4()">Borrar historial</button></div>
+      <div class="hist-section"><div class="hist-title">Preguntas más falladas</div><div class="hist-card"><table class="hist-table"><thead><tr><th>#</th><th>Pregunta</th><th>Respuesta correcta</th><th>Veces fallada</th></tr></thead><tbody id="failBody4"><tr><td colspan="4" class="hist-empty">Sin datos aún.</td></tr></tbody></table></div></div>
+      <div class="hist-section"><div class="hist-title">Sesiones</div><div class="hist-card"><table class="hist-table"><thead><tr><th>Fecha</th><th>Tema</th><th>Aciertos</th><th>Errores</th><th>% Éxito</th><th>Nota</th></tr></thead><tbody id="histBody4"><tr><td colspan="6" class="hist-empty">Sin sesiones registradas aún.</td></tr></tbody></table></div></div>
     </div>
   </section>
 
@@ -1322,6 +1481,10 @@ function showTab(name) {
   if (name === 't5') renderHistory5();
   if (name === 't1') renderHistory1();
   if (name === 't7') renderHistory7();
+  if (name === 't2') renderHistory2();
+  if (name === 't9') renderHistory9();
+  if (name === 't12') renderHistory12();
+  if (name === 't4') renderHistory4();
 }
 
 // --- INIT ---
@@ -1681,7 +1844,7 @@ renderHistory5();
 let currentNoteKey = null;
 
 function openNote(tema) {
-  const q = tema === 't3' ? queue[current] : tema === 't5' ? queue5[current5] : tema === 't1' ? queue1[current1] : queue7[current7];
+  const q = tema === 't3' ? queue[current] : tema === 't5' ? queue5[current5] : tema === 't1' ? queue1[current1] : tema === 't7' ? queue7[current7] : tema === 't2' ? queue2[current2] : tema === 't9' ? queue9[current9] : tema === 't12' ? queue12[current12] : queue4[current4];
   if (!q) return;
   currentNoteKey = `note_${tema}_${q.originalIdx}`;
   const saved = localStorage.getItem(currentNoteKey) || '';
@@ -1732,6 +1895,30 @@ function updateNoteBtn() {
     const key7 = `note_t7_${queue7[current7].originalIdx}`;
     const btn7 = document.getElementById('noteBtn7');
     if (btn7) btn7.classList.toggle('has-note', !!localStorage.getItem(key7));
+  }
+  // T2
+  if (typeof queue2 !== 'undefined' && queue2[current2]) {
+    const key2 = `note_t2_${queue2[current2].originalIdx}`;
+    const btn2 = document.getElementById('noteBtn2');
+    if (btn2) btn2.classList.toggle('has-note', !!localStorage.getItem(key2));
+  }
+  // T9
+  if (typeof queue9 !== 'undefined' && queue9[current9]) {
+    const key9 = `note_t9_${queue9[current9].originalIdx}`;
+    const btn9 = document.getElementById('noteBtn9');
+    if (btn9) btn9.classList.toggle('has-note', !!localStorage.getItem(key9));
+  }
+  // T12
+  if (typeof queue12 !== 'undefined' && queue12[current12]) {
+    const key12 = `note_t12_${queue12[current12].originalIdx}`;
+    const btn12 = document.getElementById('noteBtn12');
+    if (btn12) btn12.classList.toggle('has-note', !!localStorage.getItem(key12));
+  }
+  // T4
+  if (typeof queue4 !== 'undefined' && queue4[current4]) {
+    const key4 = `note_t4_${queue4[current4].originalIdx}`;
+    const btn4 = document.getElementById('noteBtn4');
+    if (btn4) btn4.classList.toggle('has-note', !!localStorage.getItem(key4));
   }
 }
 
@@ -1828,177 +2015,838 @@ const PREGUNTAS_T7 = [
   // RADIOBALIZAS
   { tema:"ILS · Radiobalizas", texto:"¿Cuántas radiobalizas mínimas debe tener toda instalación ILS?", opciones:["Una","Tres","Dos"], correcta:2 },
   { tema:"ILS · Radiobalizas", texto:"¿A qué distancia del umbral de pista se ubica la Radiobaliza Exterior (Outer Marker)?", opciones:["A unos 1.050 m","A unos 7 km","A unos 300 m"], correcta:1 },
-  { tema:"ILS · Radiobalizas", texto:"¿A qué distancia del umbral se ubica la Radiobaliza Intermedia (Middle Marker)?", opciones:["A unos 7 km","A unos 300 m","A unos 1.050 m"], correcta:2 },
-  { tema:"ILS · Radiobalizas", texto:"¿Entre qué distancias se sitúa la Radiobaliza Interior (Inner Marker)?", opciones:["Entre 75 y 450 m","Entre 300 y 600 m","Entre 1.000 y 2.000 m"], correcta:0 },
-  // CATEGORÍAS ILS
-  { tema:"ILS · Categoría I", texto:"En categoría ILS I, ¿cuál es la altura de decisión mínima?", opciones:["No inferior a 30 metros","No inferior a 60 metros","No inferior a 100 metros"], correcta:1 },
-  { tema:"ILS · Categoría I", texto:"En categoría ILS I, ¿cuál es la visibilidad mínima requerida?", opciones:["No menos de 500 metros","No menos de 800 metros","No menos de 1.000 metros"], correcta:1 },
-  { tema:"ILS · Categoría I", texto:"En categoría ILS I, ¿cuál es el alcance visual en pista (RVR) mínimo?", opciones:["No inferior a 300 metros","No inferior a 550 metros","No inferior a 175 metros"], correcta:1 },
-  { tema:"ILS · Categoría II", texto:"En categoría ILS II, ¿entre qué valores está la altura de decisión?", opciones:["Por debajo de 60 m pero no inferior a 30 m","Por debajo de 30 m o sin altura de decisión","No inferior a 60 m"], correcta:0 },
-  { tema:"ILS · Categoría II", texto:"En categoría ILS II, ¿cuál es el alcance visual en pista (RVR) mínimo?", opciones:["No inferior a 550 metros","No inferior a 175 metros","No inferior a 300 metros"], correcta:2 },
-  { tema:"ILS · Categoría III A", texto:"En categoría ILS III A, ¿cuál es la altura de decisión?", opciones:["Inferior a 60 metros","Inferior a 30 metros o sin altura de decisión","Inferior a 15 metros o sin altura de decisión"], correcta:1 },
-  { tema:"ILS · Categoría III A", texto:"En categoría ILS III A, ¿cuál es el alcance visual en pista mínimo?", opciones:["No inferior a 50 metros","No inferior a 300 metros","No inferior a 175 metros"], correcta:2 },
-  { tema:"ILS · Categoría III B", texto:"En categoría ILS III B, ¿cuál es la altura de decisión?", opciones:["Inferior a 30 metros o sin altura de decisión","Inferior a 15 metros o sin altura de decisión","No inferior a 60 metros"], correcta:1 },
-  { tema:"ILS · Categoría III B", texto:"En categoría ILS III B, ¿cuál es el alcance visual en pista mínimo?", opciones:["No inferior a 175 metros","No inferior a 300 metros","No inferior a 50 metros"], correcta:2 },
-];
 
 // --- TEMA 1 ENGINE ---
-let queue1=[], current1=0, aciertos1=0, errores1=0, answered1=false, sessionFails1={};
-function shuffle1(arr){for(let i=arr.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[arr[i],arr[j]]=[arr[j],arr[i]];}return arr;}
-function buildQueue1(){queue1=shuffle1([...PREGUNTAS_T1].map((q,i)=>{return{...q,originalIdx:i}}));current1=0;aciertos1=0;errores1=0;sessionFails1={};}
-function loadQuestion1(){
-  if(current1>=queue1.length){showFinish1();return;}
-  answered1=false;
-  const q=queue1[current1];
-  document.getElementById('qMeta1').textContent=`${q.tema} · ${current1+1}/${queue1.length}`;
-  document.getElementById('qText1').textContent=q.texto;
+let queue1 = [], current1 = 0, aciertos1 = 0, errores1 = 0, answered1 = false, sessionFails1 = {};
+
+function shuffle1(arr) {
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
+}
+
+function buildQueue1() {
+  queue1 = shuffle1([...PREGUNTAS_T1].map((q, i) => ({ ...q, originalIdx: i })));
+  current1 = 0; aciertos1 = 0; errores1 = 0; sessionFails1 = {};
+}
+
+function loadQuestion1() {
+  if (current1 >= queue1.length) { showFinish1(); return; }
+  answered1 = false;
+  const q = queue1[current1];
+  document.getElementById('qMeta1').textContent = `Tema 1 · Tecnología del fuego · ${q.tema} · ${current1 + 1}/${queue1.length}`;
+  document.getElementById('qText1').textContent = q.texto;
   updateStats1();
-  const letters=['A','B','C'];
-  const opts=q.opciones.map((o,i)=>({text:o,isCorrect:i===q.correcta}));
+  const letters = ['A','B','C'];
+  const opts = q.opciones.map((o,i) => ({ text: o, isCorrect: i === q.correcta }));
   shuffle1(opts);
-  const container=document.getElementById('optionsContainer1');
-  container.innerHTML='';
-  opts.forEach((opt,i)=>{
-    const btn=document.createElement('button');
-    btn.className='option-btn';btn.dataset.correct=opt.isCorrect;
-    btn.innerHTML=`<span class="opt-letter">${letters[i]}</span>${opt.text}`;
-    btn.onclick=()=>selectOption1(btn,opt.isCorrect,q);
+  const container = document.getElementById('optionsContainer1');
+  container.innerHTML = '';
+  opts.forEach((opt, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'option-btn';
+    btn.dataset.correct = opt.isCorrect;
+    btn.innerHTML = `<span class="opt-letter">${letters[i]}</span>${opt.text}`;
+    btn.onclick = () => selectOption1(btn, opt.isCorrect, q);
     container.appendChild(btn);
   });
-  document.getElementById('feedback1').className='feedback';
-  document.getElementById('nextBtn1').className='next-btn';
-  document.getElementById('questionCard1').style.display='block';
-  document.getElementById('finishCard1').className='finish-card';
-  setTimeout(updateNoteBtn,10);
+  document.getElementById('feedback1').className = 'feedback';
+  document.getElementById('nextBtn1').className = 'next-btn';
+  document.getElementById('questionCard1').style.display = 'block';
+  document.getElementById('finishCard1').className = 'finish-card';
 }
-function selectOption1(btn,isCorrect,q){
-  if(answered1)return;answered1=true;
-  document.querySelectorAll('#optionsContainer1 .option-btn').forEach(b=>{b.disabled=true;if(b.dataset.correct==='true')b.classList.add('revealed');});
-  const feedback=document.getElementById('feedback1');
-  if(isCorrect){btn.classList.remove('revealed');btn.classList.add('correct');aciertos1++;feedback.className='feedback correct show';document.getElementById('feedbackIcon1').textContent='✓';document.getElementById('feedbackText1').textContent='¡Correcto!';}
-  else{btn.classList.add('wrong');errores1++;const key=q.originalIdx;sessionFails1[key]=(sessionFails1[key]||0)+1;const fails=JSON.parse(localStorage.getItem('aena_fails1')||'{}');fails[key]=(fails[key]||0)+1;localStorage.setItem('aena_fails1',JSON.stringify(fails));feedback.className='feedback wrong show';document.getElementById('feedbackIcon1').textContent='✗';document.getElementById('feedbackText1').textContent=`Incorrecto. La respuesta correcta es: ${q.opciones[q.correcta]}`;}
-  document.getElementById('nextBtn1').className='next-btn show';
-  updateStats1();renderHistory1();
+
+function selectOption1(btn, isCorrect, q) {
+  if (answered1) return;
+  answered1 = true;
+  document.querySelectorAll('#optionsContainer1 .option-btn').forEach(b => {
+    b.disabled = true;
+    if (b.dataset.correct === 'true') b.classList.add('revealed');
+  });
+  const feedback = document.getElementById('feedback1');
+  const feedbackIcon = document.getElementById('feedbackIcon1');
+  const feedbackText = document.getElementById('feedbackText1');
+  if (isCorrect) {
+    btn.classList.remove('revealed'); btn.classList.add('correct');
+    aciertos1++;
+    feedback.className = 'feedback correct show';
+    feedbackIcon.textContent = '✓';
+    feedbackText.textContent = '¡Correcto!';
+  } else {
+    btn.classList.add('wrong');
+    errores1++;
+    const key = q.originalIdx;
+    sessionFails1[key] = (sessionFails1[key] || 0) + 1;
+    const fails = JSON.parse(localStorage.getItem('aena1_fails') || '{}');
+    fails[key] = (fails[key] || 0) + 1;
+    localStorage.setItem('aena1_fails', JSON.stringify(fails));
+    feedback.className = 'feedback wrong show';
+    feedbackIcon.textContent = '✗';
+    feedbackText.textContent = `Incorrecto. La respuesta correcta es: ${q.opciones[q.correcta]}`;
+  }
+  document.getElementById('nextBtn1').className = 'next-btn show';
+  updateStats1();
+  renderHistory1();
 }
-function nextQuestion1(){current1++;loadQuestion1();}
-function updateStats1(){
-  const total=current1+(answered1?1:0);
-  document.getElementById('statPregunta1').textContent=`${Math.min(current1+1,queue1.length)} / ${queue1.length}`;
-  document.getElementById('statAciertos1').textContent=aciertos1;
-  document.getElementById('statErrores1').textContent=errores1;
-  const pct=total>0?Math.round((aciertos1/total)*100):0;
-  const el=document.getElementById('statPct1');el.textContent=total>0?pct+'%':'—';
-  el.style.color=pct>=70?'var(--green)':pct>=50?'var(--yellow)':'var(--red)';
-  const prog=queue1.length>0?Math.round((current1/queue1.length)*100):0;
-  document.getElementById('progressFill1').style.width=prog+'%';
-  document.getElementById('progressPct1').textContent=prog+'%';
+
+function nextQuestion1() { current1++; loadQuestion1(); }
+
+function updateStats1() {
+  const total = current1 + (answered1 ? 1 : 0);
+  document.getElementById('statPregunta1').textContent = `${Math.min(current1+1, queue1.length)} / ${queue1.length}`;
+  document.getElementById('statAciertos1').textContent = aciertos1;
+  document.getElementById('statErrores1').textContent = errores1;
+  const pct = total > 0 ? Math.round((aciertos1/total)*100) : 0;
+  const el = document.getElementById('statPct1');
+  el.textContent = total > 0 ? pct+'%' : '—';
+  el.style.color = pct >= 70 ? 'var(--green)' : pct >= 50 ? 'var(--yellow)' : 'var(--red)';
+  const prog = queue1.length > 0 ? Math.round((current1/queue1.length)*100) : 0;
+  document.getElementById('progressFill1').style.width = prog+'%';
+  document.getElementById('progressPct1').textContent = prog+'%';
 }
-function showFinish1(){
-  document.getElementById('questionCard1').style.display='none';
-  const total=queue1.length;const pct=Math.round((aciertos1/total)*100);
-  const card=document.getElementById('finishCard1');card.className='finish-card show';
-  document.getElementById('finishScore1').textContent=pct+'%';
-  document.getElementById('finishDetail1').textContent=`${aciertos1} aciertos y ${errores1} errores de ${total} preguntas`;
-  document.getElementById('finishEmoji1').textContent=pct>=80?'🎯':pct>=60?'💪':'📚';
-  saveSession1(pct,total);
+
+function showFinish1() {
+  document.getElementById('questionCard1').style.display = 'none';
+  const total = queue1.length;
+  const pct = Math.round((aciertos1/total)*100);
+  const card = document.getElementById('finishCard1');
+  card.className = 'finish-card show';
+  document.getElementById('finishScore1').textContent = pct+'%';
+  document.getElementById('finishDetail1').textContent = `${aciertos1} aciertos y ${errores1} errores de ${total} preguntas`;
+  document.getElementById('finishEmoji1').textContent = pct >= 80 ? '🎯' : pct >= 60 ? '💪' : '📚';
+  saveSession1(pct, total);
 }
-function restartTest1(){buildQueue1();document.getElementById('questionCard1').style.display='block';document.getElementById('finishCard1').className='finish-card';loadQuestion1();}
-function saveSession1(pct,total){
-  const hist=JSON.parse(localStorage.getItem('aena_hist1')||'[]');
-  const now=new Date();const fecha=now.toLocaleDateString('es-ES',{day:'2-digit',month:'2-digit',year:'numeric'});
-  hist.unshift({fecha,tema:'Tema 1',aciertos:aciertos1,errores:errores1,total,pct});
-  if(hist.length>50)hist.pop();localStorage.setItem('aena_hist1',JSON.stringify(hist));renderHistory1();
+
+function restartTest1() {
+  buildQueue1();
+  document.getElementById('questionCard1').style.display = 'block';
+  document.getElementById('finishCard1').className = 'finish-card';
+  loadQuestion1();
 }
-function renderHistory1(){
-  const hist=JSON.parse(localStorage.getItem('aena_hist1')||'[]');
-  const fails=JSON.parse(localStorage.getItem('aena_fails1')||'{}');
-  const failBody=document.getElementById('failBody1');
-  const failEntries=Object.entries(fails).map(([k,v])=>({q:PREGUNTAS_T1[+k],veces:v})).filter(e=>e.q).sort((a,b)=>b.veces-a.veces).slice(0,10);
-  failBody.innerHTML=failEntries.length===0?'<tr><td colspan="4" class="hist-empty">Sin datos aún.</td></tr>':failEntries.map((e,i)=>`<tr><td style="color:var(--text2)">${i+1}</td><td style="font-size:13px">${e.q.texto}</td><td style="font-size:13px;color:var(--green)">${e.q.opciones[e.q.correcta]}</td><td><span class="pill pill-red">${e.veces}x</span></td></tr>`).join('');
-  const tbody=document.getElementById('histBody1');
-  tbody.innerHTML=hist.length===0?'<tr><td colspan="6" class="hist-empty">Sin sesiones registradas aún.</td></tr>':hist.map(s=>{const cls=s.pct>=80?'pill-green':s.pct>=60?'pill-yellow':'pill-red';const nota=s.pct>=80?'✓ Bien':s.pct>=60?'⚠ Regular':'✗ Repasar';return`<tr><td>${s.fecha}</td><td>${s.tema}</td><td style="color:var(--green);font-weight:600">${s.aciertos}</td><td style="color:var(--red);font-weight:600">${s.errores}</td><td><span class="pill ${cls}">${s.pct}%</span></td><td style="color:var(--text2);font-size:13px">${nota}</td></tr>`;}).join('');
+
+function saveSession1(pct, total) {
+  const hist = JSON.parse(localStorage.getItem('aena1_hist') || '[]');
+  const now = new Date();
+  const fecha = now.toLocaleDateString('es-ES', { day:'2-digit', month:'2-digit', year:'numeric' });
+  hist.unshift({ fecha, tema: 'Tema 1 · Tecnología del fuego', aciertos: aciertos1, errores: errores1, total, pct });
+  if (hist.length > 50) hist.pop();
+  localStorage.setItem('aena1_hist', JSON.stringify(hist));
+  renderHistory1();
 }
-function clearHistory1(){if(!confirm('¿Borrar historial del Tema 1?'))return;localStorage.removeItem('aena_hist1');localStorage.removeItem('aena_fails1');renderHistory1();}
-buildQueue1();loadQuestion1();renderHistory1();
+
+function renderHistory1() {
+  const hist = JSON.parse(localStorage.getItem('aena1_hist') || '[]');
+  const fails = JSON.parse(localStorage.getItem('aena1_fails') || '{}');
+  const failBody = document.getElementById('failBody1');
+  const failEntries = Object.entries(fails)
+    .map(([k,v]) => ({ q: PREGUNTAS_T1[+k], veces: v }))
+    .filter(e => e.q)
+    .sort((a,b) => b.veces - a.veces)
+    .slice(0, 10);
+  if (failEntries.length === 0) {
+    failBody.innerHTML = '<tr><td colspan="4" class="hist-empty">Sin datos aún.</td></tr>';
+  } else {
+    failBody.innerHTML = failEntries.map((e,i) => `<tr><td style="color:var(--text2)">${i+1}</td><td style="font-size:13px">${e.q.texto}</td><td style="font-size:13px;color:var(--green)">${e.q.opciones[e.q.correcta]}</td><td><span class="pill pill-red">${e.veces}x</span></td></tr>`).join('');
+  }
+  const tbody = document.getElementById('histBody1');
+  if (hist.length === 0) {
+    tbody.innerHTML = '<tr><td colspan="6" class="hist-empty">Sin sesiones registradas aún.</td></tr>';
+  } else {
+    tbody.innerHTML = hist.map(s => {
+      const cls = s.pct >= 80 ? 'pill-green' : s.pct >= 60 ? 'pill-yellow' : 'pill-red';
+      const nota = s.pct >= 80 ? '✓ Bien' : s.pct >= 60 ? '⚠ Regular' : '✗ Repasar';
+      return `<tr><td>${s.fecha}</td><td>${s.tema}</td><td style="color:var(--green);font-weight:600">${s.aciertos}</td><td style="color:var(--red);font-weight:600">${s.errores}</td><td><span class="pill ${cls}">${s.pct}%</span></td><td style="color:var(--text2);font-size:13px">${nota}</td></tr>`;
+    }).join('');
+  }
+}
+
+function clearHistory1() {
+  if (!confirm('¿Borrar historial?')) return;
+  localStorage.removeItem('aena1_hist');
+  localStorage.removeItem('aena1_fails');
+  renderHistory1();
+}
+
+buildQueue1();
+loadQuestion1();
+renderHistory1();
 
 // --- TEMA 7 ENGINE ---
-let queue7=[], current7=0, aciertos7=0, errores7=0, answered7=false, sessionFails7={};
-function shuffle7(arr){for(let i=arr.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[arr[i],arr[j]]=[arr[j],arr[i]];}return arr;}
-function buildQueue7(){queue7=shuffle7([...PREGUNTAS_T7].map((q,i)=>{return{...q,originalIdx:i}}));current7=0;aciertos7=0;errores7=0;sessionFails7={};}
-function loadQuestion7(){
-  if(current7>=queue7.length){showFinish7();return;}
-  answered7=false;
-  const q=queue7[current7];
-  document.getElementById('qMeta7').textContent=`${q.tema} · ${current7+1}/${queue7.length}`;
-  document.getElementById('qText7').textContent=q.texto;
+let queue7 = [], current7 = 0, aciertos7 = 0, errores7 = 0, answered7 = false, sessionFails7 = {};
+
+function shuffle7(arr) {
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
+}
+
+function buildQueue7() {
+  queue7 = shuffle7([...PREGUNTAS_T7].map((q, i) => ({ ...q, originalIdx: i })));
+  current7 = 0; aciertos7 = 0; errores7 = 0; sessionFails7 = {};
+}
+
+function loadQuestion7() {
+  if (current7 >= queue7.length) { showFinish7(); return; }
+  answered7 = false;
+  const q = queue7[current7];
+  document.getElementById('qMeta7').textContent = `Tema 7 · Aeropuerto · ${q.tema} · ${current7 + 1}/${queue7.length}`;
+  document.getElementById('qText7').textContent = q.texto;
   updateStats7();
-  const letters=['A','B','C'];
-  const opts=q.opciones.map((o,i)=>({text:o,isCorrect:i===q.correcta}));
+  const letters = ['A','B','C'];
+  const opts = q.opciones.map((o,i) => ({ text: o, isCorrect: i === q.correcta }));
   shuffle7(opts);
-  const container=document.getElementById('optionsContainer7');
-  container.innerHTML='';
-  opts.forEach((opt,i)=>{
-    const btn=document.createElement('button');
-    btn.className='option-btn';btn.dataset.correct=opt.isCorrect;
-    btn.innerHTML=`<span class="opt-letter">${letters[i]}</span>${opt.text}`;
-    btn.onclick=()=>selectOption7(btn,opt.isCorrect,q);
+  const container = document.getElementById('optionsContainer7');
+  container.innerHTML = '';
+  opts.forEach((opt, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'option-btn';
+    btn.dataset.correct = opt.isCorrect;
+    btn.innerHTML = `<span class="opt-letter">${letters[i]}</span>${opt.text}`;
+    btn.onclick = () => selectOption7(btn, opt.isCorrect, q);
     container.appendChild(btn);
   });
-  document.getElementById('feedback7').className='feedback';
-  document.getElementById('nextBtn7').className='next-btn';
-  document.getElementById('questionCard7').style.display='block';
-  document.getElementById('finishCard7').className='finish-card';
-  setTimeout(updateNoteBtn,10);
+  document.getElementById('feedback7').className = 'feedback';
+  document.getElementById('nextBtn7').className = 'next-btn';
+  document.getElementById('questionCard7').style.display = 'block';
+  document.getElementById('finishCard7').className = 'finish-card';
 }
-function selectOption7(btn,isCorrect,q){
-  if(answered7)return;answered7=true;
-  document.querySelectorAll('#optionsContainer7 .option-btn').forEach(b=>{b.disabled=true;if(b.dataset.correct==='true')b.classList.add('revealed');});
-  const feedback=document.getElementById('feedback7');
-  if(isCorrect){btn.classList.remove('revealed');btn.classList.add('correct');aciertos7++;feedback.className='feedback correct show';document.getElementById('feedbackIcon7').textContent='✓';document.getElementById('feedbackText7').textContent='¡Correcto!';}
-  else{btn.classList.add('wrong');errores7++;const key=q.originalIdx;sessionFails7[key]=(sessionFails7[key]||0)+1;const fails=JSON.parse(localStorage.getItem('aena_fails7')||'{}');fails[key]=(fails[key]||0)+1;localStorage.setItem('aena_fails7',JSON.stringify(fails));feedback.className='feedback wrong show';document.getElementById('feedbackIcon7').textContent='✗';document.getElementById('feedbackText7').textContent=`Incorrecto. La respuesta correcta es: ${q.opciones[q.correcta]}`;}
-  document.getElementById('nextBtn7').className='next-btn show';
-  updateStats7();renderHistory7();
+
+function selectOption7(btn, isCorrect, q) {
+  if (answered7) return;
+  answered7 = true;
+  document.querySelectorAll('#optionsContainer7 .option-btn').forEach(b => {
+    b.disabled = true;
+    if (b.dataset.correct === 'true') b.classList.add('revealed');
+  });
+  const feedback = document.getElementById('feedback7');
+  const feedbackIcon = document.getElementById('feedbackIcon7');
+  const feedbackText = document.getElementById('feedbackText7');
+  if (isCorrect) {
+    btn.classList.remove('revealed'); btn.classList.add('correct');
+    aciertos7++;
+    feedback.className = 'feedback correct show';
+    feedbackIcon.textContent = '✓';
+    feedbackText.textContent = '¡Correcto!';
+  } else {
+    btn.classList.add('wrong');
+    errores7++;
+    const key = q.originalIdx;
+    sessionFails7[key] = (sessionFails7[key] || 0) + 1;
+    const fails = JSON.parse(localStorage.getItem('aena7_fails') || '{}');
+    fails[key] = (fails[key] || 0) + 1;
+    localStorage.setItem('aena7_fails', JSON.stringify(fails));
+    feedback.className = 'feedback wrong show';
+    feedbackIcon.textContent = '✗';
+    feedbackText.textContent = `Incorrecto. La respuesta correcta es: ${q.opciones[q.correcta]}`;
+  }
+  document.getElementById('nextBtn7').className = 'next-btn show';
+  updateStats7();
+  renderHistory7();
 }
-function nextQuestion7(){current7++;loadQuestion7();}
-function updateStats7(){
-  const total=current7+(answered7?1:0);
-  document.getElementById('statPregunta7').textContent=`${Math.min(current7+1,queue7.length)} / ${queue7.length}`;
-  document.getElementById('statAciertos7').textContent=aciertos7;
-  document.getElementById('statErrores7').textContent=errores7;
-  const pct=total>0?Math.round((aciertos7/total)*100):0;
-  const el=document.getElementById('statPct7');el.textContent=total>0?pct+'%':'—';
-  el.style.color=pct>=70?'var(--green)':pct>=50?'var(--yellow)':'var(--red)';
-  const prog=queue7.length>0?Math.round((current7/queue7.length)*100):0;
-  document.getElementById('progressFill7').style.width=prog+'%';
-  document.getElementById('progressPct7').textContent=prog+'%';
+
+function nextQuestion7() { current7++; loadQuestion7(); }
+
+function updateStats7() {
+  const total = current7 + (answered7 ? 1 : 0);
+  document.getElementById('statPregunta7').textContent = `${Math.min(current7+1, queue7.length)} / ${queue7.length}`;
+  document.getElementById('statAciertos7').textContent = aciertos7;
+  document.getElementById('statErrores7').textContent = errores7;
+  const pct = total > 0 ? Math.round((aciertos7/total)*100) : 0;
+  const el = document.getElementById('statPct7');
+  el.textContent = total > 0 ? pct+'%' : '—';
+  el.style.color = pct >= 70 ? 'var(--green)' : pct >= 50 ? 'var(--yellow)' : 'var(--red)';
+  const prog = queue7.length > 0 ? Math.round((current7/queue7.length)*100) : 0;
+  document.getElementById('progressFill7').style.width = prog+'%';
+  document.getElementById('progressPct7').textContent = prog+'%';
 }
-function showFinish7(){
-  document.getElementById('questionCard7').style.display='none';
-  const total=queue7.length;const pct=Math.round((aciertos7/total)*100);
-  const card=document.getElementById('finishCard7');card.className='finish-card show';
-  document.getElementById('finishScore7').textContent=pct+'%';
-  document.getElementById('finishDetail7').textContent=`${aciertos7} aciertos y ${errores7} errores de ${total} preguntas`;
-  document.getElementById('finishEmoji7').textContent=pct>=80?'🎯':pct>=60?'💪':'📚';
-  saveSession7(pct,total);
+
+function showFinish7() {
+  document.getElementById('questionCard7').style.display = 'none';
+  const total = queue7.length;
+  const pct = Math.round((aciertos7/total)*100);
+  const card = document.getElementById('finishCard7');
+  card.className = 'finish-card show';
+  document.getElementById('finishScore7').textContent = pct+'%';
+  document.getElementById('finishDetail7').textContent = `${aciertos7} aciertos y ${errores7} errores de ${total} preguntas`;
+  document.getElementById('finishEmoji7').textContent = pct >= 80 ? '🎯' : pct >= 60 ? '💪' : '📚';
+  saveSession7(pct, total);
 }
-function restartTest7(){buildQueue7();document.getElementById('questionCard7').style.display='block';document.getElementById('finishCard7').className='finish-card';loadQuestion7();}
-function saveSession7(pct,total){
-  const hist=JSON.parse(localStorage.getItem('aena_hist7')||'[]');
-  const now=new Date();const fecha=now.toLocaleDateString('es-ES',{day:'2-digit',month:'2-digit',year:'numeric'});
-  hist.unshift({fecha,tema:'Tema 7',aciertos:aciertos7,errores:errores7,total,pct});
-  if(hist.length>50)hist.pop();localStorage.setItem('aena_hist7',JSON.stringify(hist));renderHistory7();
+
+function restartTest7() {
+  buildQueue7();
+  document.getElementById('questionCard7').style.display = 'block';
+  document.getElementById('finishCard7').className = 'finish-card';
+  loadQuestion7();
 }
-function renderHistory7(){
-  const hist=JSON.parse(localStorage.getItem('aena_hist7')||'[]');
-  const fails=JSON.parse(localStorage.getItem('aena_fails7')||'{}');
-  const failBody=document.getElementById('failBody7');
-  const failEntries=Object.entries(fails).map(([k,v])=>({q:PREGUNTAS_T7[+k],veces:v})).filter(e=>e.q).sort((a,b)=>b.veces-a.veces).slice(0,10);
-  failBody.innerHTML=failEntries.length===0?'<tr><td colspan="4" class="hist-empty">Sin datos aún.</td></tr>':failEntries.map((e,i)=>`<tr><td style="color:var(--text2)">${i+1}</td><td style="font-size:13px">${e.q.texto}</td><td style="font-size:13px;color:var(--green)">${e.q.opciones[e.q.correcta]}</td><td><span class="pill pill-red">${e.veces}x</span></td></tr>`).join('');
-  const tbody=document.getElementById('histBody7');
-  tbody.innerHTML=hist.length===0?'<tr><td colspan="6" class="hist-empty">Sin sesiones registradas aún.</td></tr>':hist.map(s=>{const cls=s.pct>=80?'pill-green':s.pct>=60?'pill-yellow':'pill-red';const nota=s.pct>=80?'✓ Bien':s.pct>=60?'⚠ Regular':'✗ Repasar';return`<tr><td>${s.fecha}</td><td>${s.tema}</td><td style="color:var(--green);font-weight:600">${s.aciertos}</td><td style="color:var(--red);font-weight:600">${s.errores}</td><td><span class="pill ${cls}">${s.pct}%</span></td><td style="color:var(--text2);font-size:13px">${nota}</td></tr>`;}).join('');
+
+function saveSession7(pct, total) {
+  const hist = JSON.parse(localStorage.getItem('aena7_hist') || '[]');
+  const now = new Date();
+  const fecha = now.toLocaleDateString('es-ES', { day:'2-digit', month:'2-digit', year:'numeric' });
+  hist.unshift({ fecha, tema: 'Tema 7 · Aeropuerto', aciertos: aciertos7, errores: errores7, total, pct });
+  if (hist.length > 50) hist.pop();
+  localStorage.setItem('aena7_hist', JSON.stringify(hist));
+  renderHistory7();
 }
-function clearHistory7(){if(!confirm('¿Borrar historial del Tema 7?'))return;localStorage.removeItem('aena_hist7');localStorage.removeItem('aena_fails7');renderHistory7();}
-buildQueue7();loadQuestion7();renderHistory7();
+
+function renderHistory7() {
+  const hist = JSON.parse(localStorage.getItem('aena7_hist') || '[]');
+  const fails = JSON.parse(localStorage.getItem('aena7_fails') || '{}');
+  const failBody = document.getElementById('failBody7');
+  const failEntries = Object.entries(fails)
+    .map(([k,v]) => ({ q: PREGUNTAS_T7[+k], veces: v }))
+    .filter(e => e.q)
+    .sort((a,b) => b.veces - a.veces)
+    .slice(0, 10);
+  if (failEntries.length === 0) {
+    failBody.innerHTML = '<tr><td colspan="4" class="hist-empty">Sin datos aún.</td></tr>';
+  } else {
+    failBody.innerHTML = failEntries.map((e,i) => `<tr><td style="color:var(--text2)">${i+1}</td><td style="font-size:13px">${e.q.texto}</td><td style="font-size:13px;color:var(--green)">${e.q.opciones[e.q.correcta]}</td><td><span class="pill pill-red">${e.veces}x</span></td></tr>`).join('');
+  }
+  const tbody = document.getElementById('histBody7');
+  if (hist.length === 0) {
+    tbody.innerHTML = '<tr><td colspan="6" class="hist-empty">Sin sesiones registradas aún.</td></tr>';
+  } else {
+    tbody.innerHTML = hist.map(s => {
+      const cls = s.pct >= 80 ? 'pill-green' : s.pct >= 60 ? 'pill-yellow' : 'pill-red';
+      const nota = s.pct >= 80 ? '✓ Bien' : s.pct >= 60 ? '⚠ Regular' : '✗ Repasar';
+      return `<tr><td>${s.fecha}</td><td>${s.tema}</td><td style="color:var(--green);font-weight:600">${s.aciertos}</td><td style="color:var(--red);font-weight:600">${s.errores}</td><td><span class="pill ${cls}">${s.pct}%</span></td><td style="color:var(--text2);font-size:13px">${nota}</td></tr>`;
+    }).join('');
+  }
+}
+
+function clearHistory7() {
+  if (!confirm('¿Borrar historial?')) return;
+  localStorage.removeItem('aena7_hist');
+  localStorage.removeItem('aena7_fails');
+  renderHistory7();
+}
+
+buildQueue7();
+loadQuestion7();
+renderHistory7();
+
+const _origLoad1 = loadQuestion1;
+loadQuestion1 = function() { _origLoad1(); setTimeout(updateNoteBtn, 10); };
+const _origLoad7 = loadQuestion7;
+loadQuestion7 = function() { _origLoad7(); setTimeout(updateNoteBtn, 10); };
+
+
+const PREGUNTAS_T2 = [
+  // CLASIFICACIÓN EXTINTORES
+  { tema:"Extintores · Clasificación por peso", texto:"¿Cuál es la masa total transportable máxima de los extintores manuales?", opciones:["Inferior a 10 kg","Inferior a 20 kg","Inferior a 30 kg"], correcta:1 },
+  { tema:"Extintores · Clasificación por peso", texto:"¿Cuál es la masa total transportable máxima de los extintores dorsales?", opciones:["Inferior a 20 kg","Inferior a 30 kg","Inferior a 50 kg"], correcta:1 },
+  { tema:"Extintores · Clasificación por peso", texto:"¿Entre qué pesos están comprendidos los extintores tipo carro?", opciones:["Entre 5 y 50 kg","Entre 10 y 100 kg","Entre 20 y 200 kg"], correcta:2 },
+  { tema:"Extintores · Clasificación por peso", texto:"¿Qué peso mínimo tienen los extintores clasificados como vehículos?", opciones:["Superior a 100 kg","Superior a 150 kg","Superior a 200 kg"], correcta:2 },
+  // CO2
+  { tema:"Extintores · CO₂", texto:"¿Qué presión interior aproximada soporta un extintor de CO₂ a 20 ºC?", opciones:["Unos 30 kg/cm²","Unos 58 kg/cm²","Unos 90 kg/cm²"], correcta:1 },
+  // ETIQUETA INSPECCIÓN
+  { tema:"Extintores · Etiqueta", texto:"¿Qué tamaño tiene la placa o etiqueta de inspección periódica de un extintor?", opciones:["50 x 25 mm","70 x 35 mm","100 x 50 mm"], correcta:1 },
+  // MODO DE UTILIZACIÓN
+  { tema:"Extintores · Utilización", texto:"¿Entre qué valores oscila el alcance de un extintor en la prueba de disparo?", opciones:["Entre 0,5 y 5 metros","Entre 1 y 10 metros","Entre 5 y 20 metros"], correcta:1 },
+  { tema:"Extintores · Utilización", texto:"¿Cuál es la duración máxima de descarga de un extintor?", opciones:["Hasta 30 segundos","Hasta 1 minuto","Hasta 5 minutos"], correcta:1 },
+  // BIE - CAUDALES
+  { tema:"BIE · Caudales", texto:"¿Cuál es el caudal mínimo de salida de agua en una BIE de 25 mm de diámetro?", opciones:["0,8 l/s","1,6 l/s","3,3 l/s"], correcta:1 },
+  { tema:"BIE · Caudales", texto:"¿Cuál es el caudal mínimo de salida de agua en una BIE de 45 mm de diámetro?", opciones:["1,6 l/s","2,5 l/s","3,3 l/s"], correcta:2 },
+  // BIE - LONGITUDES MANGUERA
+  { tema:"BIE · Mangueras", texto:"¿Cuál es la longitud máxima de manguera para una BIE de 45 mm?", opciones:["15 m","20 m","30 m"], correcta:1 },
+  { tema:"BIE · Mangueras", texto:"¿Cuál es la longitud máxima de manguera para una BIE de 25 mm?", opciones:["20 m","25 m","30 m"], correcta:2 },
+  // BIE - PRESIÓN
+  { tema:"BIE · Presión", texto:"¿Entre qué presiones debe suministrar agua una BIE?", opciones:["Entre 1 y 3 kg/cm²","Entre 3 y 6 kg/cm²","Entre 6 y 10 kg/cm²"], correcta:1 },
+  // BIE - ALTURAS DE INSTALACIÓN
+  { tema:"BIE · Instalación", texto:"¿A qué altura debe quedar el centro del soporte de una BIE de 45 mm respecto al suelo?", opciones:["Entre 0,50 m y 1,20 m","Entre 0,90 m y 1,50 m","Entre 1,00 m y 1,80 m"], correcta:1 },
+  { tema:"BIE · Instalación", texto:"¿A qué altura debe quedar el centro del soporte de una BIE de 25 mm respecto al suelo?", opciones:["Entre 0,70 m y 1,50 m","Entre 0,90 m y 1,70 m","Entre 1,00 m y 2,00 m"], correcta:1 },
+  // BIE - CARACTERÍSTICAS MANGUERA
+  { tema:"BIE · Mangueras · Presiones", texto:"¿Cuál es la presión de prueba de la manguera de tejido sintético con revestimiento de caucho para BIE de 45 mm?", opciones:["10 kg/cm²","15 kg/cm²","20 kg/cm²"], correcta:1 },
+  { tema:"BIE · Mangueras · Presiones", texto:"¿Cuál es la presión de servicio de la manguera semirrígida de una BIE?", opciones:["10 kg/cm²","15 kg/cm²","25 kg/cm²"], correcta:1 },
+  { tema:"BIE · Mangueras · Presiones", texto:"¿Por encima de qué presión de rotura debe estar la manguera semirrígida de una BIE?", opciones:["Por encima de 25 kg/cm²","Por encima de 45 kg/cm²","Por encima de 75 kg/cm²"], correcta:1 },
+  { tema:"BIE · Mangueras · Peso", texto:"¿Cuánto debe pesar como máximo una manguera semirrígida de 20 m de una BIE?", opciones:["5 kg","7 kg","10 kg"], correcta:1 },
+  // BIE - VÁLVULA
+  { tema:"BIE · Válvula", texto:"¿Cuántas vueltas necesita la válvula de apertura/cierre de una BIE de 45 mm?", opciones:["Entre 1 y 2 vueltas","Entre 2¼ y 3½ vueltas","Entre 4 y 6 vueltas"], correcta:1 },
+  // BIE - PRESIONES MÍNIMAS Y CAUDALES
+  { tema:"BIE · Presión mínima", texto:"¿Cuál es la presión mínima en mangas de 45 mm para BIE?", opciones:["2,0 kg","3,5 kg","5,0 kg"], correcta:1 },
+  { tema:"BIE · Presión mínima", texto:"¿Cuál es la presión mínima en mangas de 25 mm para BIE?", opciones:["3,5 kg","5,0 kg","7,5 kg"], correcta:1 },
+  { tema:"BIE · Caudal simultáneo", texto:"¿Cuál es el caudal mínimo cuando funcionan 2 BIE de 45 mm simultáneamente?", opciones:["100 l/m","150 l/m","200 l/m"], correcta:2 },
+  { tema:"BIE · Caudal simultáneo", texto:"¿Cuál es el caudal mínimo permitido con 3 BIE de 45 mm funcionando simultáneamente?", opciones:["100 l/m","150 l/m","200 l/m"], correcta:1 },
+  { tema:"BIE · Caudal simultáneo", texto:"¿Cuál es el caudal mínimo de una BIE de 25 mm?", opciones:["75 l/m","100 l/m","200 l/m"], correcta:1 },
+  { tema:"BIE · Caudal simultáneo", texto:"¿Cuál es el caudal mínimo permitido con 3 BIE de 25 mm funcionando simultáneamente?", opciones:["50 l/m","75 l/m","100 l/m"], correcta:1 },
+  // HIDRANTES
+  { tema:"Hidrantes · Arqueta", texto:"¿Con qué conexiones están equipados los hidrantes de arqueta?", opciones:["Conexión de 70 mm a rosca o doble salida de 45 mm","Conexión de 100 mm a rosca o doble salida de 70 mm Ø Barcelona","Conexión de 45 mm o una salida de 100 mm"], correcta:1 },
+  { tema:"Hidrantes · Boca", texto:"¿De qué diámetros pueden ser las bocas de los hidrantes de boca?", opciones:["25, 45 o 70 mm Ø","45, 70 o 100 mm Ø","70, 100 o 150 mm Ø"], correcta:1 },
+  // COLUMNA SECA
+  { tema:"Columna seca · Conexiones", texto:"¿De qué diámetro son las conexiones de fachada de la columna seca ascendente?", opciones:["45 mm Ø","70 mm Ø","100 mm Ø"], correcta:1 },
+  { tema:"Columna seca · Conexiones", texto:"¿De qué diámetro son las conexiones de planta de la columna seca ascendente?", opciones:["25 mm Ø","45 mm Ø","70 mm Ø"], correcta:1 },
+  // MANGUERAS EN AEROPUERTOS
+  { tema:"Mangueras · Aeropuertos", texto:"¿Qué diámetros se utilizan en las mangueras contra incendios en aeropuertos?", opciones:["25, 45 y 70 mm Ø","25, 50 y 100 mm Ø","45, 70 y 110 mm Ø"], correcta:0 },
+  { tema:"Mangueras · Aeropuertos", texto:"¿De qué diámetro son los mangotes usados para aspiración de agua al vehículo en aeropuertos?", opciones:["70 mm Ø","110 mm Ø","150 mm Ø"], correcta:1 },
+  // RACORES Y BIFURCACIONES
+  { tema:"Racores · Diámetros", texto:"¿Cuáles son los diámetros más usuales de los racores en aeropuertos?", opciones:["25, 45, 70 y 110 mm Ø","25, 45, 70 y 100 mm Ø","45, 70, 100 y 150 mm Ø"], correcta:0 },
+  { tema:"Bifurcaciones", texto:"¿Qué diámetros tiene la bifurcación grande (entrada/salidas)?", opciones:["Entrada de 45 mm y dos salidas de 25 mm","Entrada de 70 mm y dos salidas de 45 mm","Entrada de 100 mm y dos salidas de 70 mm"], correcta:1 },
+  { tema:"Bifurcaciones", texto:"¿Qué diámetros tiene la bifurcación pequeña (entrada/salidas)?", opciones:["Entrada de 25 mm y dos salidas de 15 mm","Entrada de 45 mm y dos salidas de 25 mm","Entrada de 70 mm y dos salidas de 45 mm"], correcta:1 },
+  { tema:"Trifurcaciones", texto:"En una trifurcación, ¿cuál es la distribución de entrada y salidas?", opciones:["Entrada de 70 mm, tres salidas de 45 mm","Entrada de 70 mm, dos salidas de 45 mm y una central de 70 mm","Entrada de 100 mm, tres salidas de 70 mm"], correcta:1 },
+  // LANZAS - 25 mm
+  { tema:"Lanzas · 25 mm · Caudales", texto:"¿Con qué caudales variables trabaja la lanza multiefecto de 25 mm?", opciones:["50, 100, 150 y 200 l/min","50, 125, 200 y 230 l/min","100, 200, 300 y 400 l/min"], correcta:1 },
+  { tema:"Lanzas · 25 mm · Presión", texto:"¿Cuál es la presión nominal aproximada de la lanza multiefecto de 25 mm?", opciones:["Aprox. 4 bar","Aprox. 6 bar","Aprox. 10 bar"], correcta:1 },
+  { tema:"Lanzas · 25 mm · Alcance", texto:"¿Cuáles son los alcances en chorro sólido de la lanza multiefecto de 25 mm según caudal?", opciones:["10, 15, 20 y 25 m","19, 26, 30 y 33 m","26, 34, 40 y 43 m"], correcta:1 },
+  { tema:"Lanzas · 25 mm · Cortina", texto:"¿Cuál es la apertura aproximada en cortina de la lanza multiefecto de 25 mm?", opciones:["60º","90º","110º"], correcta:2 },
+  // LANZAS - 45 mm
+  { tema:"Lanzas · 45 mm · Caudales", texto:"¿Con qué caudales variables trabaja la lanza multiefecto de 45 mm?", opciones:["50, 125, 200 y 230 l/min","115, 230, 360 y 475 l/min","200, 400, 600 y 800 l/min"], correcta:1 },
+  { tema:"Lanzas · 45 mm · Presión", texto:"¿Cuál es la presión nominal aproximada de la lanza multiefecto de 45 mm?", opciones:["Aprox. 5 bar","Aprox. 7 bar","Aprox. 12 bar"], correcta:1 },
+  { tema:"Lanzas · 45 mm · Alcance", texto:"¿Cuáles son los alcances en chorro sólido de la lanza multiefecto de 45 mm según caudal?", opciones:["19, 26, 30 y 33 m","26, 34, 40 y 43 m","40, 50, 60 y 70 m"], correcta:1 },
+  { tema:"Lanzas · 45 mm · Cortina", texto:"¿Cuál es la apertura aproximada en cortina de la lanza multiefecto de 45 mm?", opciones:["60º","90º","110º"], correcta:2 }
+];
+
+const PREGUNTAS_T9 = [
+  { tema:"Prioridades · Quemaduras", texto:"¿Qué porcentaje de quemaduras convierte a una víctima en Prioridad I (cuidados inmediatos)?", opciones:["Más del 10%","Más del 20%","Más del 30%"], correcta:2 },
+  { tema:"Prioridades · Quemaduras", texto:"¿Qué porcentaje de quemaduras sitúa a una víctima en Prioridad II (cuidados demorados)?", opciones:["Menos del 10%","Menos del 30%","Menos del 50%"], correcta:1 },
+  { tema:"Zona clasificación urgencias", texto:"¿A qué distancia mínima del accidente debe situarse la zona de clasificación de urgencias, en contra del viento?", opciones:["A por lo menos 30 metros","A por lo menos 90 metros","A por lo menos 200 metros"], correcta:1 },
+  { tema:"Instalaciones móviles", texto:"¿En cuánto tiempo deberían estar en condiciones de funcionar las instalaciones móviles de estabilización y tratamiento?", opciones:["En menos de 10 minutos","En menos de 30 minutos","En menos de 60 minutos"], correcta:1 }
+];
+
+const PREGUNTAS_T12 = [
+  { tema:"Motores de turbina · Calor residual", texto:"¿Cuánto tiempo pueden mantener suficiente calor residual para inflamar vapores de combustible los motores de turbina tras parar?", opciones:["Hasta 10 minutos","Hasta 30 minutos","Hasta 60 minutos"], correcta:1 },
+  { tema:"Motores de émbolo · Calor residual", texto:"¿Cuánto tiempo pueden mantener suficiente calor residual para inflamar vapores de combustible los motores de émbolo tras parar?", opciones:["Hasta 5 minutos","Hasta 10 minutos","Hasta 30 minutos"], correcta:1 },
+  { tema:"Distancias de seguridad · Motor turbina", texto:"¿A qué distancia mínima deben colocarse los bomberos de la toma frontal o lateral de un motor de turbina?", opciones:["A por lo menos 5 m","A por lo menos 10 m","A por lo menos 25 m"], correcta:1 },
+  { tema:"Distancias de seguridad · Chorro", texto:"¿A qué distancia debe mantenerse el personal de la parte posterior de una aeronave para evitar la zona de peligro del chorro?", opciones:["Hasta 100 m","Hasta 200 m","Hasta 500 m"], correcta:2 },
+  { tema:"Altura de motores", texto:"¿A qué altura máxima pueden encontrarse los motores de una aeronave?", opciones:["Hasta 5 m","Hasta 10,5 m","Hasta 20 m"], correcta:1 },
+  { tema:"Sistema de extinción · Descarga", texto:"¿En cuánto tiempo debe ser capaz de descargar totalmente el agente extintor el sistema de extinción?", opciones:["En 30 segundos","En 1 minuto","En 2 minutos"], correcta:1 },
+  { tema:"Etiquetas · Bultos peligrosos", texto:"¿Cuáles son las dimensiones y orientación de las etiquetas de los bultos de mercancías peligrosas?", opciones:["Rectangulares, 50 mm x 100 mm","Cuadradas, 100 mm x 100 mm con lados a 45°","Circulares, 100 mm de diámetro"], correcta:1 },
+  { tema:"Líquidos inflamables", texto:"¿Cuál es la temperatura máxima de emisión de vapor inflamable que define a un líquido inflamable?", opciones:["No superior a 30,5 °C","No superior a 45 °C","No superior a 60,5 °C"], correcta:2 },
+  { tema:"Estacionamiento aislado", texto:"¿A qué distancia mínima de otros puestos, edificios o áreas públicas debe ubicarse el puesto de estacionamiento aislado para aeronave bajo amenaza?", opciones:["Como mínimo a 50 m","Como mínimo a 100 m","Como mínimo a 250 m"], correcta:1 }
+];
+
+
+// --- T2 ENGINE ---
+let queue2 = [], current2 = 0, aciertos2 = 0, errores2 = 0, answered2 = false, sessionFails2 = {};
+function shuffle2(arr) { for (let i = arr.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [arr[i], arr[j]] = [arr[j], arr[i]]; } return arr; }
+function buildQueue2() { queue2 = shuffle2([...PREGUNTAS_T2].map((q, i) => ({...q, originalIdx: i}))); current2 = 0; aciertos2 = 0; errores2 = 0; sessionFails2 = {}; }
+function loadQuestion2() {
+  if (current2 >= queue2.length) { showFinish2(); return; }
+  answered2 = false;
+  const q = queue2[current2];
+  document.getElementById('qMeta2').textContent = `Tema 2 · Medios extinción · ${q.tema} · ${current2+1}/${queue2.length}`;
+  document.getElementById('qText2').textContent = q.texto;
+  updateStats2();
+  const letters = ['A','B','C'];
+  const opts = q.opciones.map((o,i) => ({text:o, isCorrect: i===q.correcta}));
+  shuffle2(opts);
+  const container = document.getElementById('optionsContainer2');
+  container.innerHTML = '';
+  opts.forEach((opt, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'option-btn'; btn.dataset.correct = opt.isCorrect;
+    btn.innerHTML = `<span class="opt-letter">${letters[i]}</span>${opt.text}`;
+    btn.onclick = () => selectOption2(btn, opt.isCorrect, q);
+    container.appendChild(btn);
+  });
+  document.getElementById('feedback2').className = 'feedback';
+  document.getElementById('nextBtn2').className = 'next-btn';
+  document.getElementById('questionCard2').style.display = 'block';
+  document.getElementById('finishCard2').className = 'finish-card';
+}
+function selectOption2(btn, isCorrect, q) {
+  if (answered2) return; answered2 = true;
+  document.querySelectorAll('#optionsContainer2 .option-btn').forEach(b => { b.disabled = true; if (b.dataset.correct === 'true') b.classList.add('revealed'); });
+  const feedback = document.getElementById('feedback2');
+  if (isCorrect) {
+    btn.classList.remove('revealed'); btn.classList.add('correct'); aciertos2++;
+    feedback.className = 'feedback correct show';
+    document.getElementById('feedbackIcon2').textContent = '✓';
+    document.getElementById('feedbackText2').textContent = '¡Correcto!';
+  } else {
+    btn.classList.add('wrong'); errores2++;
+    const key = q.originalIdx; sessionFails2[key] = (sessionFails2[key]||0)+1;
+    const fails = JSON.parse(localStorage.getItem('aena2_fails')||'{}');
+    fails[key] = (fails[key]||0)+1; localStorage.setItem('aena2_fails', JSON.stringify(fails));
+    feedback.className = 'feedback wrong show';
+    document.getElementById('feedbackIcon2').textContent = '✗';
+    document.getElementById('feedbackText2').textContent = `Incorrecto. La respuesta correcta es: ${q.opciones[q.correcta]}`;
+  }
+  document.getElementById('nextBtn2').className = 'next-btn show';
+  updateStats2(); renderHistory2();
+}
+function nextQuestion2() { current2++; loadQuestion2(); }
+function updateStats2() {
+  const total = current2 + (answered2 ? 1 : 0);
+  document.getElementById('statPregunta2').textContent = `${Math.min(current2+1,queue2.length)} / ${queue2.length}`;
+  document.getElementById('statAciertos2').textContent = aciertos2;
+  document.getElementById('statErrores2').textContent = errores2;
+  const pct = total > 0 ? Math.round((aciertos2/total)*100) : 0;
+  const el = document.getElementById('statPct2');
+  el.textContent = total > 0 ? pct+'%' : '—';
+  el.style.color = pct >= 70 ? 'var(--green)' : pct >= 50 ? 'var(--yellow)' : 'var(--red)';
+  const prog = queue2.length > 0 ? Math.round((current2/queue2.length)*100) : 0;
+  document.getElementById('progressFill2').style.width = prog+'%';
+  document.getElementById('progressPct2').textContent = prog+'%';
+}
+function showFinish2() {
+  document.getElementById('questionCard2').style.display = 'none';
+  const total = queue2.length; const pct = Math.round((aciertos2/total)*100);
+  document.getElementById('finishCard2').className = 'finish-card show';
+  document.getElementById('finishScore2').textContent = pct+'%';
+  document.getElementById('finishDetail2').textContent = `${aciertos2} aciertos y ${errores2} errores de ${total} preguntas`;
+  document.getElementById('finishEmoji2').textContent = pct >= 80 ? '🎯' : pct >= 60 ? '💪' : '📚';
+  saveSession2(pct, total);
+}
+function restartTest2() { buildQueue2(); document.getElementById('questionCard2').style.display = 'block'; document.getElementById('finishCard2').className = 'finish-card'; loadQuestion2(); }
+function saveSession2(pct, total) {
+  const hist = JSON.parse(localStorage.getItem('aena2_hist')||'[]');
+  const now = new Date(); const fecha = now.toLocaleDateString('es-ES',{day:'2-digit',month:'2-digit',year:'numeric'});
+  hist.unshift({fecha, tema:'Tema 2 · Medios extinción', aciertos:aciertos2, errores:errores2, total, pct});
+  if (hist.length > 50) hist.pop(); localStorage.setItem('aena2_hist', JSON.stringify(hist));
+  renderHistory2();
+}
+function renderHistory2() {
+  const hist = JSON.parse(localStorage.getItem('aena2_hist')||'[]');
+  const fails = JSON.parse(localStorage.getItem('aena2_fails')||'{}');
+  const failEntries = Object.entries(fails).map(([k,v])=>({q:PREGUNTAS_T2[+k],veces:v})).filter(e=>e.q).sort((a,b)=>b.veces-a.veces).slice(0,10);
+  const failBody = document.getElementById('failBody2');
+  failBody.innerHTML = failEntries.length === 0 ? '<tr><td colspan="4" class="hist-empty">Sin datos aún.</td></tr>' : failEntries.map((e,i)=>`<tr><td style="color:var(--text2)">${i+1}</td><td style="font-size:13px">${e.q.texto}</td><td style="font-size:13px;color:var(--green)">${e.q.opciones[e.q.correcta]}</td><td><span class="pill pill-red">${e.veces}x</span></td></tr>`).join('');
+  const tbody = document.getElementById('histBody2');
+  tbody.innerHTML = hist.length === 0 ? '<tr><td colspan="6" class="hist-empty">Sin sesiones registradas aún.</td></tr>' : hist.map(s=>{const cls=s.pct>=80?'pill-green':s.pct>=60?'pill-yellow':'pill-red';const nota=s.pct>=80?'✓ Bien':s.pct>=60?'⚠ Regular':'✗ Repasar';return `<tr><td>${s.fecha}</td><td>${s.tema}</td><td style="color:var(--green);font-weight:600">${s.aciertos}</td><td style="color:var(--red);font-weight:600">${s.errores}</td><td><span class="pill ${cls}">${s.pct}%</span></td><td style="color:var(--text2);font-size:13px">${nota}</td></tr>`;}).join('');
+}
+function clearHistory2() { if (!confirm('¿Borrar historial?')) return; localStorage.removeItem('aena2_hist'); localStorage.removeItem('aena2_fails'); renderHistory2(); }
+buildQueue2(); loadQuestion2(); renderHistory2();
+
+// --- T9 ENGINE ---
+let queue9 = [], current9 = 0, aciertos9 = 0, errores9 = 0, answered9 = false, sessionFails9 = {};
+function shuffle9(arr) { for (let i = arr.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [arr[i], arr[j]] = [arr[j], arr[i]]; } return arr; }
+function buildQueue9() { queue9 = shuffle9([...PREGUNTAS_T9].map((q, i) => ({...q, originalIdx: i}))); current9 = 0; aciertos9 = 0; errores9 = 0; sessionFails9 = {}; }
+function loadQuestion9() {
+  if (current9 >= queue9.length) { showFinish9(); return; }
+  answered9 = false;
+  const q = queue9[current9];
+  document.getElementById('qMeta9').textContent = `Capítulo 9 · Urgencias médicas · ${q.tema} · ${current9+1}/${queue9.length}`;
+  document.getElementById('qText9').textContent = q.texto;
+  updateStats9();
+  const letters = ['A','B','C'];
+  const opts = q.opciones.map((o,i) => ({text:o, isCorrect: i===q.correcta}));
+  shuffle9(opts);
+  const container = document.getElementById('optionsContainer9');
+  container.innerHTML = '';
+  opts.forEach((opt, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'option-btn'; btn.dataset.correct = opt.isCorrect;
+    btn.innerHTML = `<span class="opt-letter">${letters[i]}</span>${opt.text}`;
+    btn.onclick = () => selectOption9(btn, opt.isCorrect, q);
+    container.appendChild(btn);
+  });
+  document.getElementById('feedback9').className = 'feedback';
+  document.getElementById('nextBtn9').className = 'next-btn';
+  document.getElementById('questionCard9').style.display = 'block';
+  document.getElementById('finishCard9').className = 'finish-card';
+}
+function selectOption9(btn, isCorrect, q) {
+  if (answered9) return; answered9 = true;
+  document.querySelectorAll('#optionsContainer9 .option-btn').forEach(b => { b.disabled = true; if (b.dataset.correct === 'true') b.classList.add('revealed'); });
+  const feedback = document.getElementById('feedback9');
+  if (isCorrect) {
+    btn.classList.remove('revealed'); btn.classList.add('correct'); aciertos9++;
+    feedback.className = 'feedback correct show';
+    document.getElementById('feedbackIcon9').textContent = '✓';
+    document.getElementById('feedbackText9').textContent = '¡Correcto!';
+  } else {
+    btn.classList.add('wrong'); errores9++;
+    const key = q.originalIdx; sessionFails9[key] = (sessionFails9[key]||0)+1;
+    const fails = JSON.parse(localStorage.getItem('aena9_fails')||'{}');
+    fails[key] = (fails[key]||0)+1; localStorage.setItem('aena9_fails', JSON.stringify(fails));
+    feedback.className = 'feedback wrong show';
+    document.getElementById('feedbackIcon9').textContent = '✗';
+    document.getElementById('feedbackText9').textContent = `Incorrecto. La respuesta correcta es: ${q.opciones[q.correcta]}`;
+  }
+  document.getElementById('nextBtn9').className = 'next-btn show';
+  updateStats9(); renderHistory9();
+}
+function nextQuestion9() { current9++; loadQuestion9(); }
+function updateStats9() {
+  const total = current9 + (answered9 ? 1 : 0);
+  document.getElementById('statPregunta9').textContent = `${Math.min(current9+1,queue9.length)} / ${queue9.length}`;
+  document.getElementById('statAciertos9').textContent = aciertos9;
+  document.getElementById('statErrores9').textContent = errores9;
+  const pct = total > 0 ? Math.round((aciertos9/total)*100) : 0;
+  const el = document.getElementById('statPct9');
+  el.textContent = total > 0 ? pct+'%' : '—';
+  el.style.color = pct >= 70 ? 'var(--green)' : pct >= 50 ? 'var(--yellow)' : 'var(--red)';
+  const prog = queue9.length > 0 ? Math.round((current9/queue9.length)*100) : 0;
+  document.getElementById('progressFill9').style.width = prog+'%';
+  document.getElementById('progressPct9').textContent = prog+'%';
+}
+function showFinish9() {
+  document.getElementById('questionCard9').style.display = 'none';
+  const total = queue9.length; const pct = Math.round((aciertos9/total)*100);
+  document.getElementById('finishCard9').className = 'finish-card show';
+  document.getElementById('finishScore9').textContent = pct+'%';
+  document.getElementById('finishDetail9').textContent = `${aciertos9} aciertos y ${errores9} errores de ${total} preguntas`;
+  document.getElementById('finishEmoji9').textContent = pct >= 80 ? '🎯' : pct >= 60 ? '💪' : '📚';
+  saveSession9(pct, total);
+}
+function restartTest9() { buildQueue9(); document.getElementById('questionCard9').style.display = 'block'; document.getElementById('finishCard9').className = 'finish-card'; loadQuestion9(); }
+function saveSession9(pct, total) {
+  const hist = JSON.parse(localStorage.getItem('aena9_hist')||'[]');
+  const now = new Date(); const fecha = now.toLocaleDateString('es-ES',{day:'2-digit',month:'2-digit',year:'numeric'});
+  hist.unshift({fecha, tema:'Capítulo 9 · Urgencias médicas', aciertos:aciertos9, errores:errores9, total, pct});
+  if (hist.length > 50) hist.pop(); localStorage.setItem('aena9_hist', JSON.stringify(hist));
+  renderHistory9();
+}
+function renderHistory9() {
+  const hist = JSON.parse(localStorage.getItem('aena9_hist')||'[]');
+  const fails = JSON.parse(localStorage.getItem('aena9_fails')||'{}');
+  const failEntries = Object.entries(fails).map(([k,v])=>({q:PREGUNTAS_T9[+k],veces:v})).filter(e=>e.q).sort((a,b)=>b.veces-a.veces).slice(0,10);
+  const failBody = document.getElementById('failBody9');
+  failBody.innerHTML = failEntries.length === 0 ? '<tr><td colspan="4" class="hist-empty">Sin datos aún.</td></tr>' : failEntries.map((e,i)=>`<tr><td style="color:var(--text2)">${i+1}</td><td style="font-size:13px">${e.q.texto}</td><td style="font-size:13px;color:var(--green)">${e.q.opciones[e.q.correcta]}</td><td><span class="pill pill-red">${e.veces}x</span></td></tr>`).join('');
+  const tbody = document.getElementById('histBody9');
+  tbody.innerHTML = hist.length === 0 ? '<tr><td colspan="6" class="hist-empty">Sin sesiones registradas aún.</td></tr>' : hist.map(s=>{const cls=s.pct>=80?'pill-green':s.pct>=60?'pill-yellow':'pill-red';const nota=s.pct>=80?'✓ Bien':s.pct>=60?'⚠ Regular':'✗ Repasar';return `<tr><td>${s.fecha}</td><td>${s.tema}</td><td style="color:var(--green);font-weight:600">${s.aciertos}</td><td style="color:var(--red);font-weight:600">${s.errores}</td><td><span class="pill ${cls}">${s.pct}%</span></td><td style="color:var(--text2);font-size:13px">${nota}</td></tr>`;}).join('');
+}
+function clearHistory9() { if (!confirm('¿Borrar historial?')) return; localStorage.removeItem('aena9_hist'); localStorage.removeItem('aena9_fails'); renderHistory9(); }
+buildQueue9(); loadQuestion9(); renderHistory9();
+
+// --- T12 ENGINE ---
+let queue12 = [], current12 = 0, aciertos12 = 0, errores12 = 0, answered12 = false, sessionFails12 = {};
+function shuffle12(arr) { for (let i = arr.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [arr[i], arr[j]] = [arr[j], arr[i]]; } return arr; }
+function buildQueue12() { queue12 = shuffle12([...PREGUNTAS_T12].map((q, i) => ({...q, originalIdx: i}))); current12 = 0; aciertos12 = 0; errores12 = 0; sessionFails12 = {}; }
+function loadQuestion12() {
+  if (current12 >= queue12.length) { showFinish12(); return; }
+  answered12 = false;
+  const q = queue12[current12];
+  document.getElementById('qMeta12').textContent = `Capítulo 12 · Procedimientos OACI · ${q.tema} · ${current12+1}/${queue12.length}`;
+  document.getElementById('qText12').textContent = q.texto;
+  updateStats12();
+  const letters = ['A','B','C'];
+  const opts = q.opciones.map((o,i) => ({text:o, isCorrect: i===q.correcta}));
+  shuffle12(opts);
+  const container = document.getElementById('optionsContainer12');
+  container.innerHTML = '';
+  opts.forEach((opt, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'option-btn'; btn.dataset.correct = opt.isCorrect;
+    btn.innerHTML = `<span class="opt-letter">${letters[i]}</span>${opt.text}`;
+    btn.onclick = () => selectOption12(btn, opt.isCorrect, q);
+    container.appendChild(btn);
+  });
+  document.getElementById('feedback12').className = 'feedback';
+  document.getElementById('nextBtn12').className = 'next-btn';
+  document.getElementById('questionCard12').style.display = 'block';
+  document.getElementById('finishCard12').className = 'finish-card';
+}
+function selectOption12(btn, isCorrect, q) {
+  if (answered12) return; answered12 = true;
+  document.querySelectorAll('#optionsContainer12 .option-btn').forEach(b => { b.disabled = true; if (b.dataset.correct === 'true') b.classList.add('revealed'); });
+  const feedback = document.getElementById('feedback12');
+  if (isCorrect) {
+    btn.classList.remove('revealed'); btn.classList.add('correct'); aciertos12++;
+    feedback.className = 'feedback correct show';
+    document.getElementById('feedbackIcon12').textContent = '✓';
+    document.getElementById('feedbackText12').textContent = '¡Correcto!';
+  } else {
+    btn.classList.add('wrong'); errores12++;
+    const key = q.originalIdx; sessionFails12[key] = (sessionFails12[key]||0)+1;
+    const fails = JSON.parse(localStorage.getItem('aena12_fails')||'{}');
+    fails[key] = (fails[key]||0)+1; localStorage.setItem('aena12_fails', JSON.stringify(fails));
+    feedback.className = 'feedback wrong show';
+    document.getElementById('feedbackIcon12').textContent = '✗';
+    document.getElementById('feedbackText12').textContent = `Incorrecto. La respuesta correcta es: ${q.opciones[q.correcta]}`;
+  }
+  document.getElementById('nextBtn12').className = 'next-btn show';
+  updateStats12(); renderHistory12();
+}
+function nextQuestion12() { current12++; loadQuestion12(); }
+function updateStats12() {
+  const total = current12 + (answered12 ? 1 : 0);
+  document.getElementById('statPregunta12').textContent = `${Math.min(current12+1,queue12.length)} / ${queue12.length}`;
+  document.getElementById('statAciertos12').textContent = aciertos12;
+  document.getElementById('statErrores12').textContent = errores12;
+  const pct = total > 0 ? Math.round((aciertos12/total)*100) : 0;
+  const el = document.getElementById('statPct12');
+  el.textContent = total > 0 ? pct+'%' : '—';
+  el.style.color = pct >= 70 ? 'var(--green)' : pct >= 50 ? 'var(--yellow)' : 'var(--red)';
+  const prog = queue12.length > 0 ? Math.round((current12/queue12.length)*100) : 0;
+  document.getElementById('progressFill12').style.width = prog+'%';
+  document.getElementById('progressPct12').textContent = prog+'%';
+}
+function showFinish12() {
+  document.getElementById('questionCard12').style.display = 'none';
+  const total = queue12.length; const pct = Math.round((aciertos12/total)*100);
+  document.getElementById('finishCard12').className = 'finish-card show';
+  document.getElementById('finishScore12').textContent = pct+'%';
+  document.getElementById('finishDetail12').textContent = `${aciertos12} aciertos y ${errores12} errores de ${total} preguntas`;
+  document.getElementById('finishEmoji12').textContent = pct >= 80 ? '🎯' : pct >= 60 ? '💪' : '📚';
+  saveSession12(pct, total);
+}
+function restartTest12() { buildQueue12(); document.getElementById('questionCard12').style.display = 'block'; document.getElementById('finishCard12').className = 'finish-card'; loadQuestion12(); }
+function saveSession12(pct, total) {
+  const hist = JSON.parse(localStorage.getItem('aena12_hist')||'[]');
+  const now = new Date(); const fecha = now.toLocaleDateString('es-ES',{day:'2-digit',month:'2-digit',year:'numeric'});
+  hist.unshift({fecha, tema:'Capítulo 12 · Procedimientos OACI', aciertos:aciertos12, errores:errores12, total, pct});
+  if (hist.length > 50) hist.pop(); localStorage.setItem('aena12_hist', JSON.stringify(hist));
+  renderHistory12();
+}
+function renderHistory12() {
+  const hist = JSON.parse(localStorage.getItem('aena12_hist')||'[]');
+  const fails = JSON.parse(localStorage.getItem('aena12_fails')||'{}');
+  const failEntries = Object.entries(fails).map(([k,v])=>({q:PREGUNTAS_T12[+k],veces:v})).filter(e=>e.q).sort((a,b)=>b.veces-a.veces).slice(0,10);
+  const failBody = document.getElementById('failBody12');
+  failBody.innerHTML = failEntries.length === 0 ? '<tr><td colspan="4" class="hist-empty">Sin datos aún.</td></tr>' : failEntries.map((e,i)=>`<tr><td style="color:var(--text2)">${i+1}</td><td style="font-size:13px">${e.q.texto}</td><td style="font-size:13px;color:var(--green)">${e.q.opciones[e.q.correcta]}</td><td><span class="pill pill-red">${e.veces}x</span></td></tr>`).join('');
+  const tbody = document.getElementById('histBody12');
+  tbody.innerHTML = hist.length === 0 ? '<tr><td colspan="6" class="hist-empty">Sin sesiones registradas aún.</td></tr>' : hist.map(s=>{const cls=s.pct>=80?'pill-green':s.pct>=60?'pill-yellow':'pill-red';const nota=s.pct>=80?'✓ Bien':s.pct>=60?'⚠ Regular':'✗ Repasar';return `<tr><td>${s.fecha}</td><td>${s.tema}</td><td style="color:var(--green);font-weight:600">${s.aciertos}</td><td style="color:var(--red);font-weight:600">${s.errores}</td><td><span class="pill ${cls}">${s.pct}%</span></td><td style="color:var(--text2);font-size:13px">${nota}</td></tr>`;}).join('');
+}
+function clearHistory12() { if (!confirm('¿Borrar historial?')) return; localStorage.removeItem('aena12_hist'); localStorage.removeItem('aena12_fails'); renderHistory12(); }
+buildQueue12(); loadQuestion12(); renderHistory12();
+
+const _origLoad2 = loadQuestion2;
+loadQuestion2 = function() { _origLoad2(); setTimeout(updateNoteBtn, 10); };
+const _origLoad9 = loadQuestion9;
+loadQuestion9 = function() { _origLoad9(); setTimeout(updateNoteBtn, 10); };
+const _origLoad12 = loadQuestion12;
+loadQuestion12 = function() { _origLoad12(); setTimeout(updateNoteBtn, 10); };
+const PREGUNTAS_T4 = [
+  // EQUIPO IGNÍFUGO LIGERO
+  { tema:"EPI · Ignífugo ligero", texto:"¿Qué prenda de ropa interior se incluye con el Equipo Ignífugo Ligero?", opciones:["Polo o camiseta de algodón 100% o material ignífugo","Camiseta térmica de poliéster","Ropa de lana merina"], correcta:0 },
+  // CIRCUITO CERRADO
+  { tema:"ERA · Circuito cerrado", texto:"¿Cuántas horas de autonomía tienen los equipos respiratorios de circuito cerrado con generación de oxígeno?", opciones:["2 horas","4 horas","8 horas"], correcta:1 },
+  // CIRCUITO ABIERTO - ESPECIFICACIONES
+  { tema:"ERA · Circuito abierto · Máscara", texto:"¿Cuál es la máxima penetración permitida de la máscara en los equipos de circuito abierto?", opciones:["0,01%","0,05%","0,5%"], correcta:1 },
+  { tema:"ERA · Circuito abierto · Presión", texto:"¿Hasta qué presión puede ser la presión de llenado en equipos de circuito abierto?", opciones:["200 bares","250 bares","300 bares"], correcta:2 },
+  { tema:"ERA · Circuito abierto · Agua", texto:"¿Cuál debe ser el contenido máximo de agua en equipos de circuito abierto a 300 bares?", opciones:["Inferior a 10 mg/m³","Inferior a 30 mg/m³","Inferior a 50 mg/m³"], correcta:1 },
+  { tema:"ERA · Circuito abierto · Agua", texto:"¿Cuál debe ser el contenido máximo de agua en equipos de circuito abierto a 200 bares?", opciones:["Inferior a 30 mg/m³","Inferior a 50 mg/m³","Inferior a 100 mg/m³"], correcta:1 },
+  { tema:"ERA · Circuito abierto · Temperatura", texto:"¿En qué rango de temperatura deben funcionar sin problemas los equipos de circuito abierto?", opciones:["De -10 ºC a +40 ºC","De -20 ºC a +50 ºC","De -30 ºC a +60 ºC"], correcta:2 },
+  { tema:"ERA · Circuito abierto · Peso", texto:"¿Cuál es el peso máximo permitido del equipo de circuito abierto con botellas llenas e incluyendo la máscara?", opciones:["14 kg","18 kg","22 kg"], correcta:1 },
+  // CAPUZ DE RESCATE
+  { tema:"ERA · Capuz de rescate", texto:"¿Cuánta autonomía proporciona el capuz de rescate (EPR autónomo de circuito abierto)?", opciones:["Hasta 5 minutos","Hasta 10 minutos","Hasta 15 minutos"], correcta:2 },
+  // SEMIAUTÓNOMOS
+  { tema:"ERA · Semiautónomos", texto:"¿A qué presión máxima llega el aire en los equipos semiautónomos de línea de aire comprimido?", opciones:["5 bares","10 bares","15 bares"], correcta:1 },
+  // REDUCTOR DE PRESIÓN
+  { tema:"ERA · Reductor de presión", texto:"¿A qué presión aproximada reduce la botella el reductor de presión?", opciones:["Aprox. 5 bares","Aprox. 7 bares","Aprox. 10 bares"], correcta:1 },
+  { tema:"ERA · Válvula de seguridad", texto:"¿A qué presión aproximada está tarada la válvula de seguridad para sobrepresión?", opciones:["Aprox. 7 bar","Aprox. 11 bar","Aprox. 15 bar"], correcta:1 },
+  { tema:"ERA · Avisador acústico", texto:"¿A qué presión aproximada de la botella emite señal de aviso el avisador acústico?", opciones:["Aprox. 30 bar","Aprox. 58 bar","Aprox. 100 bar"], correcta:1 },
+  { tema:"ERA · Reductor · Llenado rápido", texto:"¿Para qué presión de botella está diseñada la conexión del reductor con sistema rápido de llenado?", opciones:["Solo para botellas de 200 bares","Solo para botellas de 300 bares","Para botellas de 200 o 300 bares"], correcta:1 },
+  // BOTELLA ACERO
+  { tema:"ERA · Botella acero · Capacidad", texto:"¿Cuál es la capacidad de la botella de acero del ERA?", opciones:["4 l/300 bar","6 l/300 bar","9 l/300 bar"], correcta:1 },
+  { tema:"ERA · Botella acero · Volumen", texto:"¿Cuántos litros de aire contiene la botella de acero del ERA?", opciones:["1.200 litros","1.800 litros","2.040 litros"], correcta:1 },
+  { tema:"ERA · Botella acero · Peso", texto:"¿Cuánto pesa como máximo la botella de acero del ERA?", opciones:["Hasta 6 kg","Hasta 9 kg","Hasta 12 kg"], correcta:1 },
+  { tema:"ERA · Botella acero · Autonomía", texto:"¿Cuál es la autonomía aproximada de la botella de acero del ERA?", opciones:["Aprox. 25 minutos","Aprox. 35 minutos","Aprox. 45 minutos"], correcta:1 },
+  // BOTELLA COMPOSITE
+  { tema:"ERA · Botella composite · Capacidad", texto:"¿Cuál es la capacidad de la botella composite de carbono del ERA?", opciones:["6 l/300 bar","6,8 l/300 bar","9 l/300 bar"], correcta:1 },
+  { tema:"ERA · Botella composite · Volumen", texto:"¿Cuántos litros de aire contiene la botella composite del ERA?", opciones:["1.800 litros","2.040 litros","2.400 litros"], correcta:1 },
+  { tema:"ERA · Botella composite · Peso", texto:"¿Cuánto pesa aproximadamente la botella composite del ERA?", opciones:["Entorno a 4 kg","Entorno a 7 kg","Entorno a 9 kg"], correcta:0 },
+  { tema:"ERA · Botella composite · Autonomía", texto:"¿Cuál es la autonomía aproximada de la botella composite del ERA?", opciones:["Aprox. 35 minutos","Aprox. 40 minutos","Aprox. 50 minutos"], correcta:1 },
+  // VÁLVULA DE ENTRADA
+  { tema:"ERA · Botella · Válvula", texto:"¿A qué presión está diseñada la válvula de entrada de la botella del ERA?", opciones:["200 bar","300 bar","400 bar"], correcta:1 },
+  // GRIFERÍA - APERTURA
+  { tema:"ERA · Grifería · Apertura", texto:"¿Cómo debe abrirse la grifería de la botella para que esté completamente abierta con margen de seguridad?", opciones:["Completamente, sin límite","Completamente menos ¼ de vuelta","Exactamente 3 vueltas"], correcta:1 },
+  // LIMPIEZA
+  { tema:"ERA · Limpieza · Secado", texto:"¿A qué temperatura máxima se debe terminar de secar el ERA?", opciones:["40 ºC","60 ºC","80 ºC"], correcta:1 },
+  { tema:"ERA · Limpieza · Lavadora", texto:"¿A qué temperatura se puede lavar el ERA completo (incluyendo partes metálicas) en lavadora si está muy sucio?", opciones:["30 ºC","40 ºC","60 ºC"], correcta:1 },
+  // ALMACENAMIENTO
+  { tema:"ERA · Almacenamiento", texto:"¿A qué temperatura aproximada deben almacenarse los ERA?", opciones:["Aprox. 10 ºC","Aprox. 20 ºC","Aprox. 30 ºC"], correcta:1 },
+  // GRIFERÍA T
+  { tema:"ERA · Pieza en T · 200 bar", texto:"¿Qué botellas conecta la pieza en T 115/200 bar?", opciones:["Dos botellas de 4 l/200 bar","Dos botellas de 6 l/300 bar","Dos botellas de 6,8 l/300 bar"], correcta:0 },
+  { tema:"ERA · Pieza en T · 300 bar", texto:"¿Qué botellas conecta la pieza en T 156/300 bar?", opciones:["Dos botellas de 4 l/200 bar","Dos botellas de 6,8 l/300 bar composite","Dos botellas de 9 l/300 bar"], correcta:1 },
+  // CAMBIO DE BOTELLA
+  { tema:"ERA · Cambio de botella", texto:"Al cambiar la botella del ERA, ¿con cuántas vueltas se abre y en qué posición el manómetro?", opciones:["1 vuelta, manómetro hacia arriba","2 vueltas, manómetro hacia el suelo","3 vueltas, manómetro de lado"], correcta:1 },
+  { tema:"ERA · Comprobación · Presión mínima", texto:"¿Cuál es la presión mínima aceptable para una botella de 300 bares en el ERA?", opciones:["250 bares","270 bares","290 bares"], correcta:1 },
+  { tema:"ERA · Comprobación · Estanqueidad", texto:"Al comprobar la estanqueidad del ERA, ¿cuánto tiempo se observa y cuánto no debe descender la presión?", opciones:["Durante 30 segundos, no más de 5 bares","Durante 1 minuto, no más de 10 bares","Durante 2 minutos, no más de 20 bares"], correcta:1 },
+  { tema:"ERA · Comprobación · Avisador", texto:"¿A qué presión aproximada debe saltar el avisador acústico durante la comprobación del ERA?", opciones:["Entorno a 30 bares","Entorno a 58 bares","Entorno a 100 bares"], correcta:1 }
+];
+
+
+// --- T4 ENGINE ---
+let queue4 = [], current4 = 0, aciertos4 = 0, errores4 = 0, answered4 = false, sessionFails4 = {};
+function shuffle4(arr) { for (let i = arr.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [arr[i], arr[j]] = [arr[j], arr[i]]; } return arr; }
+function buildQueue4() { queue4 = shuffle4([...PREGUNTAS_T4].map((q, i) => ({...q, originalIdx: i}))); current4 = 0; aciertos4 = 0; errores4 = 0; sessionFails4 = {}; }
+function loadQuestion4() {
+  if (current4 >= queue4.length) { showFinish4(); return; }
+  answered4 = false;
+  const q = queue4[current4];
+  document.getElementById('qMeta4').textContent = `Tema 4 · ${q.tema} · ${current4+1}/${queue4.length}`;
+  document.getElementById('qText4').textContent = q.texto;
+  updateStats4();
+  const letters = ['A','B','C'];
+  const opts = q.opciones.map((o,i) => ({text:o, isCorrect: i===q.correcta}));
+  shuffle4(opts);
+  const container = document.getElementById('optionsContainer4');
+  container.innerHTML = '';
+  opts.forEach((opt, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'option-btn'; btn.dataset.correct = opt.isCorrect;
+    btn.innerHTML = `<span class="opt-letter">${letters[i]}</span>${opt.text}`;
+    btn.onclick = () => selectOption4(btn, opt.isCorrect, q);
+    container.appendChild(btn);
+  });
+  document.getElementById('feedback4').className = 'feedback';
+  document.getElementById('nextBtn4').className = 'next-btn';
+  document.getElementById('questionCard4').style.display = 'block';
+  document.getElementById('finishCard4').className = 'finish-card';
+}
+function selectOption4(btn, isCorrect, q) {
+  if (answered4) return; answered4 = true;
+  document.querySelectorAll('#optionsContainer4 .option-btn').forEach(b => { b.disabled = true; if (b.dataset.correct === 'true') b.classList.add('revealed'); });
+  const feedback = document.getElementById('feedback4');
+  if (isCorrect) {
+    btn.classList.remove('revealed'); btn.classList.add('correct'); aciertos4++;
+    feedback.className = 'feedback correct show';
+    document.getElementById('feedbackIcon4').textContent = '✓';
+    document.getElementById('feedbackText4').textContent = '¡Correcto!';
+  } else {
+    btn.classList.add('wrong'); errores4++;
+    const key = q.originalIdx; sessionFails4[key] = (sessionFails4[key]||0)+1;
+    const fails = JSON.parse(localStorage.getItem('aena4_fails')||'{}');
+    fails[key] = (fails[key]||0)+1; localStorage.setItem('aena4_fails', JSON.stringify(fails));
+    feedback.className = 'feedback wrong show';
+    document.getElementById('feedbackIcon4').textContent = '✗';
+    document.getElementById('feedbackText4').textContent = `Incorrecto. La respuesta correcta es: ${q.opciones[q.correcta]}`;
+  }
+  document.getElementById('nextBtn4').className = 'next-btn show';
+  updateStats4(); renderHistory4();
+}
+function nextQuestion4() { current4++; loadQuestion4(); }
+function updateStats4() {
+  const total = current4 + (answered4 ? 1 : 0);
+  document.getElementById('statPregunta4').textContent = `${Math.min(current4+1,queue4.length)} / ${queue4.length}`;
+  document.getElementById('statAciertos4').textContent = aciertos4;
+  document.getElementById('statErrores4').textContent = errores4;
+  const pct = total > 0 ? Math.round((aciertos4/total)*100) : 0;
+  const el = document.getElementById('statPct4');
+  el.textContent = total > 0 ? pct+'%' : '—';
+  el.style.color = pct >= 70 ? 'var(--green)' : pct >= 50 ? 'var(--yellow)' : 'var(--red)';
+  const prog = queue4.length > 0 ? Math.round((current4/queue4.length)*100) : 0;
+  document.getElementById('progressFill4').style.width = prog+'%';
+  document.getElementById('progressPct4').textContent = prog+'%';
+}
+function showFinish4() {
+  document.getElementById('questionCard4').style.display = 'none';
+  const total = queue4.length; const pct = Math.round((aciertos4/total)*100);
+  document.getElementById('finishCard4').className = 'finish-card show';
+  document.getElementById('finishScore4').textContent = pct+'%';
+  document.getElementById('finishDetail4').textContent = `${aciertos4} aciertos y ${errores4} errores de ${total} preguntas`;
+  document.getElementById('finishEmoji4').textContent = pct >= 80 ? '🎯' : pct >= 60 ? '💪' : '📚';
+  saveSession4(pct, total);
+}
+function restartTest4() { buildQueue4(); document.getElementById('questionCard4').style.display = 'block'; document.getElementById('finishCard4').className = 'finish-card'; loadQuestion4(); }
+function saveSession4(pct, total) {
+  const hist = JSON.parse(localStorage.getItem('aena4_hist')||'[]');
+  const now = new Date(); const fecha = now.toLocaleDateString('es-ES',{day:'2-digit',month:'2-digit',year:'numeric'});
+  hist.unshift({fecha, tema:'Tema 4 · Equipos de protección', aciertos:aciertos4, errores:errores4, total, pct});
+  if (hist.length > 50) hist.pop(); localStorage.setItem('aena4_hist', JSON.stringify(hist));
+  renderHistory4();
+}
+function renderHistory4() {
+  const hist = JSON.parse(localStorage.getItem('aena4_hist')||'[]');
+  const fails = JSON.parse(localStorage.getItem('aena4_fails')||'{}');
+  const failEntries = Object.entries(fails).map(([k,v])=>({q:PREGUNTAS_T4[+k],veces:v})).filter(e=>e.q).sort((a,b)=>b.veces-a.veces).slice(0,10);
+  const failBody = document.getElementById('failBody4');
+  failBody.innerHTML = failEntries.length === 0 ? '<tr><td colspan="4" class="hist-empty">Sin datos aún.</td></tr>' : failEntries.map((e,i)=>`<tr><td style="color:var(--text2)">${i+1}</td><td style="font-size:13px">${e.q.texto}</td><td style="font-size:13px;color:var(--green)">${e.q.opciones[e.q.correcta]}</td><td><span class="pill pill-red">${e.veces}x</span></td></tr>`).join('');
+  const tbody = document.getElementById('histBody4');
+  tbody.innerHTML = hist.length === 0 ? '<tr><td colspan="6" class="hist-empty">Sin sesiones registradas aún.</td></tr>' : hist.map(s=>{const cls=s.pct>=80?'pill-green':s.pct>=60?'pill-yellow':'pill-red';const nota=s.pct>=80?'✓ Bien':s.pct>=60?'⚠ Regular':'✗ Repasar';return `<tr><td>${s.fecha}</td><td>${s.tema}</td><td style="color:var(--green);font-weight:600">${s.aciertos}</td><td style="color:var(--red);font-weight:600">${s.errores}</td><td><span class="pill ${cls}">${s.pct}%</span></td><td style="color:var(--text2);font-size:13px">${nota}</td></tr>`;}).join('');
+}
+function clearHistory4() { if (!confirm('¿Borrar historial?')) return; localStorage.removeItem('aena4_hist'); localStorage.removeItem('aena4_fails'); renderHistory4(); }
+buildQueue4(); loadQuestion4(); renderHistory4();
+
+const _origLoad4 = loadQuestion4;
+loadQuestion4 = function() { _origLoad4(); setTimeout(updateNoteBtn, 10); };
 
 </script>
 </body>
