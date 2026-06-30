@@ -2015,6 +2015,7 @@ const PREGUNTAS_T7 = [
   // RADIOBALIZAS
   { tema:"ILS · Radiobalizas", texto:"¿Cuántas radiobalizas mínimas debe tener toda instalación ILS?", opciones:["Una","Tres","Dos"], correcta:2 },
   { tema:"ILS · Radiobalizas", texto:"¿A qué distancia del umbral de pista se ubica la Radiobaliza Exterior (Outer Marker)?", opciones:["A unos 1.050 m","A unos 7 km","A unos 300 m"], correcta:1 },
+];
 
 // --- TEMA 1 ENGINE ---
 let queue1 = [], current1 = 0, aciertos1 = 0, errores1 = 0, answered1 = false, sessionFails1 = {};
@@ -2079,9 +2080,9 @@ function selectOption1(btn, isCorrect, q) {
     errores1++;
     const key = q.originalIdx;
     sessionFails1[key] = (sessionFails1[key] || 0) + 1;
-    const fails = JSON.parse(localStorage.getItem('aena1_fails') || '{}');
+    const fails = JSON.parse(localStorage.getItem('aena_fails1') || '{}');
     fails[key] = (fails[key] || 0) + 1;
-    localStorage.setItem('aena1_fails', JSON.stringify(fails));
+    localStorage.setItem('aena_fails1', JSON.stringify(fails));
     feedback.className = 'feedback wrong show';
     feedbackIcon.textContent = '✗';
     feedbackText.textContent = `Incorrecto. La respuesta correcta es: ${q.opciones[q.correcta]}`;
@@ -2127,18 +2128,18 @@ function restartTest1() {
 }
 
 function saveSession1(pct, total) {
-  const hist = JSON.parse(localStorage.getItem('aena1_hist') || '[]');
+  const hist = JSON.parse(localStorage.getItem('aena_hist1') || '[]');
   const now = new Date();
   const fecha = now.toLocaleDateString('es-ES', { day:'2-digit', month:'2-digit', year:'numeric' });
   hist.unshift({ fecha, tema: 'Tema 1 · Tecnología del fuego', aciertos: aciertos1, errores: errores1, total, pct });
   if (hist.length > 50) hist.pop();
-  localStorage.setItem('aena1_hist', JSON.stringify(hist));
+  localStorage.setItem('aena_hist1', JSON.stringify(hist));
   renderHistory1();
 }
 
 function renderHistory1() {
-  const hist = JSON.parse(localStorage.getItem('aena1_hist') || '[]');
-  const fails = JSON.parse(localStorage.getItem('aena1_fails') || '{}');
+  const hist = JSON.parse(localStorage.getItem('aena_hist1') || '[]');
+  const fails = JSON.parse(localStorage.getItem('aena_fails1') || '{}');
   const failBody = document.getElementById('failBody1');
   const failEntries = Object.entries(fails)
     .map(([k,v]) => ({ q: PREGUNTAS_T1[+k], veces: v }))
@@ -2164,8 +2165,8 @@ function renderHistory1() {
 
 function clearHistory1() {
   if (!confirm('¿Borrar historial?')) return;
-  localStorage.removeItem('aena1_hist');
-  localStorage.removeItem('aena1_fails');
+  localStorage.removeItem('aena_hist1');
+  localStorage.removeItem('aena_fails1');
   renderHistory1();
 }
 
@@ -2236,9 +2237,9 @@ function selectOption7(btn, isCorrect, q) {
     errores7++;
     const key = q.originalIdx;
     sessionFails7[key] = (sessionFails7[key] || 0) + 1;
-    const fails = JSON.parse(localStorage.getItem('aena7_fails') || '{}');
+    const fails = JSON.parse(localStorage.getItem('aena_fails7') || '{}');
     fails[key] = (fails[key] || 0) + 1;
-    localStorage.setItem('aena7_fails', JSON.stringify(fails));
+    localStorage.setItem('aena_fails7', JSON.stringify(fails));
     feedback.className = 'feedback wrong show';
     feedbackIcon.textContent = '✗';
     feedbackText.textContent = `Incorrecto. La respuesta correcta es: ${q.opciones[q.correcta]}`;
@@ -2284,18 +2285,18 @@ function restartTest7() {
 }
 
 function saveSession7(pct, total) {
-  const hist = JSON.parse(localStorage.getItem('aena7_hist') || '[]');
+  const hist = JSON.parse(localStorage.getItem('aena_hist7') || '[]');
   const now = new Date();
   const fecha = now.toLocaleDateString('es-ES', { day:'2-digit', month:'2-digit', year:'numeric' });
   hist.unshift({ fecha, tema: 'Tema 7 · Aeropuerto', aciertos: aciertos7, errores: errores7, total, pct });
   if (hist.length > 50) hist.pop();
-  localStorage.setItem('aena7_hist', JSON.stringify(hist));
+  localStorage.setItem('aena_hist7', JSON.stringify(hist));
   renderHistory7();
 }
 
 function renderHistory7() {
-  const hist = JSON.parse(localStorage.getItem('aena7_hist') || '[]');
-  const fails = JSON.parse(localStorage.getItem('aena7_fails') || '{}');
+  const hist = JSON.parse(localStorage.getItem('aena_hist7') || '[]');
+  const fails = JSON.parse(localStorage.getItem('aena_fails7') || '{}');
   const failBody = document.getElementById('failBody7');
   const failEntries = Object.entries(fails)
     .map(([k,v]) => ({ q: PREGUNTAS_T7[+k], veces: v }))
@@ -2321,8 +2322,8 @@ function renderHistory7() {
 
 function clearHistory7() {
   if (!confirm('¿Borrar historial?')) return;
-  localStorage.removeItem('aena7_hist');
-  localStorage.removeItem('aena7_fails');
+  localStorage.removeItem('aena_hist7');
+  localStorage.removeItem('aena_fails7');
   renderHistory7();
 }
 
